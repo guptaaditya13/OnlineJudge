@@ -56,5 +56,26 @@ class Login
 			return null;
 		}
 	}
+	/**
+	 *@return boolean
+	 *This method inputs user's id, new password and password change token.
+	 * If token is genuine, changes password and returns true
+	 * else returns false 
+	*/
+	public function changePassword($id,$newpassword,$token)
+	{
+		$sql = "SELECT COUNT(*) FROM login_table WHERE id=$id AND token=$token";
+		$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
+		$result = mysqli_query($sql,$conn);
+		$row = mysqli_fetch_assoc($result);
+		$count = $row['COUNT(*)'];
+		if($count == 1){
+			$sql = "UPDATE TABLE login_table SET password = '$newpassword' WHERE id = $id";
+			$result = mysqli_query($sql,$conn);
+			return true;
+		} else{
+			return false;
+		}
+	}
 }
 ?>
