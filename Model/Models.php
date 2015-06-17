@@ -7,7 +7,7 @@ class Login
 {
 	public function getAll()
 	{
-		$sql = "SELECT * FROM LoginTable";
+		$sql = "SELECT * FROM login_table";
 		$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
 		$result = mysqli_query($sql,$conn);
 		return $result;
@@ -15,10 +15,13 @@ class Login
 
 	public function get($id)
 	{
-		$sql = "SELECT * FROM LoginTable WHERE id = $id";
+		$sql = "SELECT * FROM login_table WHERE id = $id";
 		$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
 		$result = mysqli_query($sql,$conn);
 		return $result;	
+	}
+	public function validateData($username, $password){
+
 	}
 }
 

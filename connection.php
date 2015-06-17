@@ -9,5 +9,5 @@
 define ('SERVER_ADDRESS' ,'localhost');
 define ('USER_NAME' ,'root');
 define ('PASSWORD' ,'');
-define ('DATABASE' ,'OnlineJudge');
+define ('DATABASE' ,'online_judge');
 ?>
