@@ -18,8 +18,5 @@ if (defined('PASSWORD')) {} else {
 if (defined('DATABASE')) {} else {
 	define ('DATABASE' ,'online_judge');
 }
-// define ('SERVER_ADDRESS' ,'localhost');
-// define ('USER_NAME' ,'root');
-// define ('PASSWORD' ,'');
-// define ('DATABASE' ,'online_judge');
+
 ?>

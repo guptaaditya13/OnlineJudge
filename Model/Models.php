@@ -1,5 +1,5 @@
 <?php
-require('../connection.php')
+require('../connection.php');
 /**
 * This Model is used to access the Login table for users.
 */
@@ -55,6 +55,7 @@ class Auth
 		if (mysqli_num_rows($result) == 1){
 			$row = mysqli_fetch_assoc($result);
 			session_start();
+			$_SESSION['auth_logged_in'] = True;
 			$_SESSION['auth_username'] = $username;
 			$_SESSION['auth_name'] = $row['name'];
 			$_SESSION['auth_id'] = $row['id'];
@@ -72,6 +73,20 @@ class Auth
 			}
 		} else {
 			mysqli_close($conn);
+			return null;
+		}
+	}
+
+	/**
+	 * @return String
+	 * 
+	 * This function returns user's class if logged in else returns null
+	 */
+	public function loginStatus()
+	{
+		if(isset($_SESSION['auth_logged_in']) && $_SESSION['auth_logged_in'] == True){
+			return $_SESSION['auth_type'];
+		} else {
 			return null;
 		}
 	}
@@ -106,12 +121,6 @@ class User
 	var $username;
 	var $id;
 	var $email;
-	/**
-	 * @return instance of User class
-	 * 
-	 * Non-parameterized constructor of User class
-	 */
-	function __construct(){}
 
 	/**
 	 * @return instance of User class
@@ -132,14 +141,6 @@ class User
 */
 class Student extends User
 {
-	/**
-	 * @return instance of Student class
-	 * 
-	 * Non parameterized constructor of Student class
-	 */
-	function __construct(){
-		parent::__construct();
-	}
 
 	/**
 	 * @return instance of Student class
@@ -155,14 +156,7 @@ class Student extends User
 */
 class Teacher extends User
 {
-	/**
-	 * @return instance of Teacher class
-	 * 
-	 * Non parameterized constructor of Teacher class
-	 */
-	function __construct(){
-		parent::__construct();
-	}
+
 
 	/**
 	 * @return instance of Teacher class
