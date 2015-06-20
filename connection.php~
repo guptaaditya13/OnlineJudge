@@ -6,8 +6,18 @@
  * 1. First create the database then enter the connection details.
  * 2. After filling the connection details run file migrations/setupdb.php to setup the database.
  */
-define ('SERVER_ADDRESS' ,'localhost');
-define ('USER_NAME' ,'root');
-define ('PASSWORD' ,'sunny424');
-define ('DATABASE' ,'online_judge');
+
+if (defined('SERVER_ADDRESS')) {} else {
+	define ('SERVER_ADDRESS' ,'localhost');
+}
+if (defined('USER_NAME')) {} else {
+	define ('USER_NAME' ,'root');
+}
+if (defined('PASSWORD')) {} else {
+	define ('PASSWORD' ,'');
+}
+if (defined('DATABASE')) {} else {
+	define ('DATABASE' ,'online_judge');
+}
+
 ?>
