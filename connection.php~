@@ -8,6 +8,6 @@
  */
 define ('SERVER_ADDRESS' ,'localhost');
 define ('USER_NAME' ,'root');
-define ('PASSWORD' ,'');
+define ('PASSWORD' ,'sunny424');
 define ('DATABASE' ,'online_judge');
 ?>
