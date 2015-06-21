@@ -1,4 +1,3 @@
-<?php define('Dir', '../View/') ?>
 <!DOCTYPE html>
 <!-- <html xmlns="http://www.w3.org/1999/xhtml"> -->
 <head>
@@ -11,11 +10,11 @@
         <![endif]-->
     <title>Online Judge</title>
     <!-- BOOTSTRAP CORE STYLE  -->
-    <link href="<?php echo Dir; ?>assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="<?php echo ROUTE_MODEL; ?>assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME ICONS  -->
-    <link href="<?php echo Dir; ?>assets/css/font-awesome.css" rel="stylesheet" />
+    <link href="<?php echo ROUTE_MODEL; ?>assets/css/font-awesome.css" rel="stylesheet" />
     <!-- CUSTOM STYLE  -->
-    <link href="<?php echo Dir; ?>assets/css/style.css" rel="stylesheet" />
+    <link href="<?php echo ROUTE_MODEL; ?>assets/css/style.css" rel="stylesheet" />
      <!-- HTML5 Shiv and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -45,7 +44,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button> -->
-                <a class="navbar-brand" href="<?php echo Dir; ?>index.html">
+                <a class="navbar-brand" href="<?php echo ROUTE_MODEL; ?>index.html">
 
                     <img src="assets/img/logo.png" />
                 </a>
@@ -67,7 +66,7 @@
                                     </a>
                                     <div class="media-body">
                                         <h4 class="media-heading">Jhon Deo Alex </h4>
-                                        <h5>Developer & Designer</h5>
+                                        <h5>Developer &amp; Designer</h5>
 
                                     </div>
                                 </div>
@@ -93,9 +92,9 @@
                 <div class="col-md-12">
                     <div class="navbar-collapse collapse ">
                         <ul id="menu-top" class="nav navbar-nav navbar-right">
-                            <li><a class="menu-top-active " href="<?php echo Dir; ?>Home.html">Home</a></li>
+                            <li><a class="menu-top-active " href="<?php echo ROUTE_MODEL; ?>Home.php">Home</a></li>
                             <li><a >||</a></li>
-                            <li><a href="<?php echo Dir; ?>Submission.html">Submit Ques.</a></li>
+                            <li><a href="<?php echo ROUTE_MODEL; ?>Submission.html">Submit Ques.</a></li>
                             <li><a href="login.php">Login Page</a></li>
 
                         </ul>

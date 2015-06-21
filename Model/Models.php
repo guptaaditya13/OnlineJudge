@@ -45,7 +45,7 @@ class Auth
 		return $error;
 	}
 	/**
-	 *@return instance of user(Student or Techer class)
+	 *@return User class (Student or Techer class)
 	 * This method is used to get the user instance object, it also sets th data in the sessions.
 	*/
 	public function loginUser($username, $password){
@@ -73,6 +73,15 @@ class Auth
 			}
 		} else {
 			mysqli_close($conn);
+			return null;
+		}
+	}
+
+	public function userType()
+	{
+		if(isset($_SESSION['auth_type'])){
+			return $_SESSION['auth_type'];
+		} else {
 			return null;
 		}
 	}
