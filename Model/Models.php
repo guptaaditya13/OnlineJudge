@@ -179,4 +179,64 @@ class Teacher extends User
 		parent::__construct($name, $username, $id, $email);
 	}
 }
+
+/**
+* Following class will represent a question in the database.
+*/
+class Question
+{
+	var $userID;
+	var $questionId;
+	var $questionText;
+	var $questionImage;
+	var $startTime;
+	var $endTime;
+	var $maxMarks;
+	var $time;
+	// function __construct(argument)
+	// {
+	// 	# code...
+	// }
+	public function createNew($questionText, $questionImage, $startTime, $endTime, $maxMarks)
+	{
+		$has_session = session_status() == PHP_SESSION_ACTIVE;
+		if (!$has_session){
+			session_start();
+		}
+		$userID = $_SESSION['auth_id'];
+		$sql = "INSERT INTO `online_judge`.`questions` (`user_id`, `q_text`, `start_time`, ".
+			"`end_time`, `max_marks`, `timestamps`) VALUES ".
+			"('$userID', '$questionText', '$start_time', '$endTime', '$maxMarks', CURRENT_TIMESTAMP);";
+		$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
+		$result = mysqli_query($conn,$sql);
+		if ($result == true){
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public function getAll($value='')
+	{
+		$sql = "SELECT * FROM questions;";
+		$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
+		$result = mysqli_query($conn,$sql);
+		$n = mysqli_num_rows($result);
+		$res = array();
+		for ($i=0; $i <$n ; $i++) { 
+			$row = mysqli_fetch_assoc($result);
+			$temp = new Question();
+			$temp->$userID = $row['user_id'];
+			$temp->$questionId = $row['id'];
+			$temp->$questionText = $row['q_text'];
+			$temp->$questionImage = $row['q_image'];
+			$temp->$startTime = $row['start_time'];
+			$temp->$endTime = $row['end_time'];
+			$temp->$maxMarks = $row['max_marks'];
+			$temp->$time = $row['timestamps'];
+			$res[] = $temp;
+		}
+		return $res;
+	}
+}
 ?>
