@@ -15,7 +15,7 @@ $sql = "ALTER TABLE `user_table` ADD PRIMARY KEY (`id`) COMMENT 'User id for the
 mysqli_query($conn,$sql);
 $sql = "ALTER TABLE `user_table` MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;";
 mysqli_query($conn,$sql);
-$sql = "ALTER TABLE `user_table` ADD `type` INT(1)0 NOT NULL DEFAULT '0' COMMENT 'stores the type of user' ;";
+$sql = "ALTER TABLE `user_table` ADD `type` INT(1) NOT NULL DEFAULT '0' COMMENT 'stores the type of user' ;";
 mysqli_query($conn,$sql);
 
 /**

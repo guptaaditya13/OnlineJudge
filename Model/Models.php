@@ -11,9 +11,9 @@ class Auth
 	// */
 	// public function getAll()
 	// {
-	// 	$sql = "SELECT * FROM login_table";
+	// 	$sql = "SELECT * FROM user_table";
 	// 	$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
-	// 	$result = mysqli_query($sql,$conn);
+	// 	$result = mysqli_query($conn,$sql);
 	// 	mysqli_close($conn);
 	// 	return $result;
 	// }
@@ -23,9 +23,9 @@ class Auth
 	
 	// public function get($id)
 	// {
-	// 	$sql = "SELECT * FROM login_table WHERE id = $id";
+	// 	$sql = "SELECT * FROM user_table WHERE id = $id";
 	// 	$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
-	// 	$result = mysqli_query($sql,$conn);
+	// 	$result = mysqli_query($conn,$sql);
 	// 	mysqli_close($conn);
 	// 	return $result;	
 	// }
@@ -45,14 +45,15 @@ class Auth
 		return $error;
 	}
 	/**
-	 *@return instance of user(Student or Techer class)
+	 *@return User class (Student or Techer class)
 	 * This method is used to get the user instance object, it also sets th data in the sessions.
 	*/
 	public function loginUser($username, $password){
-		$sql = "SELECT * FROM login_table WHERE username = $username AND password = $password";
+		$sql = "SELECT * FROM user_table WHERE username = '$username' AND password = '$password'";
+		// var_dump($sql);
 		$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
-		$result = mysqli_query($sql,$conn);
-		if (mysqli_num_rows($result) == 1){
+		$result = mysqli_query($conn,$sql);
+		if ($result != null){
 			$row = mysqli_fetch_assoc($result);
 			session_start();
 			$_SESSION['auth_logged_in'] = True;
@@ -77,6 +78,15 @@ class Auth
 		}
 	}
 
+	public function userType()
+	{
+		if(isset($_SESSION['auth_type'])){
+			return $_SESSION['auth_type'];
+		} else {
+			return null;
+		}
+	}
+
 	/**
 	 * @return String
 	 * 
@@ -84,6 +94,8 @@ class Auth
 	 */
 	public function loginStatus()
 	{
+		session_start();
+		// var_dump($_SESSION);
 		if(isset($_SESSION['auth_logged_in']) && $_SESSION['auth_logged_in'] == True){
 			return $_SESSION['auth_type'];
 		} else {
@@ -98,14 +110,14 @@ class Auth
 	*/
 	public function changePassword($id,$newpassword,$token)
 	{
-		$sql = "SELECT COUNT(*) FROM login_table WHERE id=$id AND token=$token";
+		$sql = "SELECT COUNT(*) FROM user_table WHERE id=$id AND token='$token'";
 		$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
-		$result = mysqli_query($sql,$conn);
+		$result = mysqli_query($conn,$sql);
 		$row = mysqli_fetch_assoc($result);
 		$count = $row['COUNT(*)'];
 		if($count == 1){
-			$sql = "UPDATE TABLE login_table SET password = '$newpassword' WHERE id = $id";
-			$result = mysqli_query($sql,$conn);
+			$sql = "UPDATE TABLE user_table SET password = '$newpassword' WHERE id = $id";
+			$result = mysqli_query($conn,$sql);
 			return true;
 		} else{
 			return false;

@@ -1,10 +1,24 @@
 <?php
+require ('../routes.php');
 require ('../Model/Models.php');
-if($type = Auth::loginStatus()){
-	$home_url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . $type . 'Home.php';
-	header('Location: ' . $home_url);
-	exit();
-} else {
-	require('../View/Home.php');
-}
+
+/**
+ * If user is alradye authenticated then he is redirected to his homepage
+ */
+// if($type = Auth::loginStatus()){
+
+// 	if(Auth::userType() == 'Teacher'){
+// 		header('Location:' . URL_TEACHER_HOME);
+// 	} else {
+// 		header('Location:' . URL_STUDENT_HOME);
+// 	}
+
+// 	exit();
+
+// } else {
+	/**
+	 * Else request is served the Home page!
+	 */
+require('../View/Home.php');
+// }
 ?>
