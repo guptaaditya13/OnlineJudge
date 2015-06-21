@@ -38,5 +38,9 @@ $sql = "ALTER TABLE `questions` ADD PRIMARY KEY (`id`) COMMENT 'User id for the 
 mysqli_query($conn,$sql);
 $sql = "ALTER TABLE `user_table` MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;";
 mysqli_query($conn,$sql);
+$sql = "ALTER TABLE `questions` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;";
+mysqli_query($conn,$sql);
+$sql = "ALTER TABLE `questions` CHANGE `q_image` `q_image` VARCHAR(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL, CHANGE `sample_inp` `sample_inp` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL, CHANGE `sample_out` `sample_out` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL;";
+mysqli_query($conn,$sql);
 mysqli_close($conn);
 ?>
