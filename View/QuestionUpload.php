@@ -8,7 +8,7 @@
     <!--[if IE]>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <![endif]-->
-    <title>Free Responsive Admin Theme - ZONTAL</title>
+    <title>Online Judge</title>
     <!-- BOOTSTRAP CORE STYLE  -->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME ICONS  -->
@@ -74,7 +74,7 @@
                                 <h5><strong>Personal Bio : </strong></h5>
                                 Anim pariatur cliche reprehen derit.
                                 <hr />
-                                <a href="#" class="btn btn-info btn-sm">Full Profile</a>&nbsp; <a href="login.html" class="btn btn-danger btn-sm">Logout</a>
+                                <a href="#" class="btn btn-info btn-sm">Full Profile</a>&nbsp; <a href="login.php" class="btn btn-danger btn-sm">Logout</a>
 
                             </div>
                         </li>
@@ -92,10 +92,10 @@
                 <div class="col-md-12">
                     <div class="navbar-collapse collapse ">
                         <ul id="menu-top" class="nav navbar-nav navbar-right">
-                            <li><a class="menu-top-active " href="Home.html">Home</a></li>
+                            <li><a class="menu-top-active " href="Home.php">Home</a></li>
                             <li><a >||</a></li>
-                            <li><a href="Submission.html">Submit Ques.</a></li>
-                            <li><a href="login.html">Login Page</a></li>
+                            <li><a href="Submission.php">Submit Ques.</a></li>
+                            <li><a href="login.php">Login Page</a></li>
 
                         </ul>
                     </div>
