@@ -5,6 +5,6 @@ if($type = Auth::loginStatus()){
 	header('Location: ' . $home_url);
 	exit();
 } else {
-	require('../View/Home.html');
+	require('../View/Home.php');
 }
 ?>
