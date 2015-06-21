@@ -6,10 +6,10 @@
  */
 
 require ('../routes.php');
-require (ROUTE_MODEL . 'Models.php');
+require ('../Model/Models.php');
 
 
-if (isset($_POST['submit'])) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if (!isset($_POST['username']) || !isset($_POST['password'])){
 		die("Username and password missing in post request!");
 	}
@@ -53,7 +53,8 @@ if (isset($_POST['submit'])) {
 		/**
 		 * Else he is served the login page!
 		 */
-	require(ROUTE_VIEW . 'login.php');
+	// require('../View/login.php');
+		die("serving login page");
 	}
 }
 ?>

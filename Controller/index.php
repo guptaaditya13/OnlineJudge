@@ -1,6 +1,6 @@
 <?php
 require ('../routes.php');
-require ( ROUTE_MODEL . 'Models.php');
+require ('../Model/Models.php');
 
 /**
  * If user is alradye authenticated then he is redirected to his homepage
@@ -19,6 +19,6 @@ if($type = Auth::loginStatus()){
 	/**
 	 * Else request is served the Home page!
 	 */
-require(ROUTE_VIEW . 'Home.php');
+require('../View/Home.php');
 }
 ?>

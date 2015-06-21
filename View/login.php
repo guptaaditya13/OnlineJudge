@@ -11,11 +11,11 @@
         ]-->
     <title>Online Judge</title>
     <!-- BOOTSTRAP CORE STYLE  -->
-    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="<?php echo ROUTE_VIEW; ?>assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME ICONS  -->
-    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+    <link href="<?php echo ROUTE_VIEW; ?>assets/css/font-awesome.css" rel="stylesheet" />
     <!-- CUSTOM STYLE  -->
-    <link href="assets/css/style.css" rel="stylesheet" />
+    <link href="<?php echo ROUTE_VIEW; ?>assets/css/style.css" rel="stylesheet" />
      <!-- HTML5 Shiv and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -70,7 +70,7 @@
 
             </div>
             <div class="row">
-                <form name="form1" action="/login/" method="post">
+                <form name="form1" action="<?php echo ROUTE_CONTROLLER; ?>login.php" method="POST">
 
                 <div class="col-md-6 col-md-offset-3 alert alert-success">
                    <!-- <h4> Login with facebook <strong> / </strong>Google :</h4>
@@ -84,11 +84,11 @@
                      <h4>  Login with <strong>Private Account  :</strong></h4>
                     <br />
                      <label>Enter Username : </label>
-                        <input type="text" class="form-control" placeholder="example: rahul.cs13@stud / samrat@fac" />
+                        <input type="text" class="form-control" placeholder="example: rahul.cs13 / samrat" />
                         <label>Enter Password :  </label>
                         <input type="password" class="form-control" placeholder="*********"/>
                         <hr />
-                        <a href="Home.php" class="btn btn-info"><span class="glyphicon glyphicon-user"></span> &nbsp;Log Me In </a>&nbsp;   <!-- add action -->
+                        <a href="<?php echo ROUTE_CONTROLLER; ?>login.php" class="btn btn-info"><span class="glyphicon glyphicon-user"></span> &nbsp;Log Me In </a>&nbsp;   <!-- add action -->
                 </div>
                 </form>
                 <!-- <div class="col-md-6">

@@ -13,7 +13,7 @@ class Auth
 	// {
 	// 	$sql = "SELECT * FROM login_table";
 	// 	$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
-	// 	$result = mysqli_query($sql,$conn);
+	// 	$result = mysqli_query($conn,$sql);
 	// 	mysqli_close($conn);
 	// 	return $result;
 	// }
@@ -25,7 +25,7 @@ class Auth
 	// {
 	// 	$sql = "SELECT * FROM login_table WHERE id = $id";
 	// 	$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
-	// 	$result = mysqli_query($sql,$conn);
+	// 	$result = mysqli_query($conn,$sql);
 	// 	mysqli_close($conn);
 	// 	return $result;	
 	// }
@@ -51,8 +51,8 @@ class Auth
 	public function loginUser($username, $password){
 		$sql = "SELECT * FROM login_table WHERE username = $username AND password = $password";
 		$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
-		$result = mysqli_query($sql,$conn);
-		if (mysqli_num_rows($result) == 1){
+		$result = mysqli_query($conn,$sql);
+		if ($result != null){
 			$row = mysqli_fetch_assoc($result);
 			session_start();
 			$_SESSION['auth_logged_in'] = True;
@@ -109,12 +109,12 @@ class Auth
 	{
 		$sql = "SELECT COUNT(*) FROM login_table WHERE id=$id AND token=$token";
 		$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
-		$result = mysqli_query($sql,$conn);
+		$result = mysqli_query($conn,$sql);
 		$row = mysqli_fetch_assoc($result);
 		$count = $row['COUNT(*)'];
 		if($count == 1){
 			$sql = "UPDATE TABLE login_table SET password = '$newpassword' WHERE id = $id";
-			$result = mysqli_query($sql,$conn);
+			$result = mysqli_query($conn,$sql);
 			return true;
 		} else{
 			return false;
