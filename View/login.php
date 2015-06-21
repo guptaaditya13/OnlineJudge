@@ -88,7 +88,7 @@
                         <label>Enter Password :  </label>
                         <input type="password" class="form-control" placeholder="*********"/>
                         <hr />
-                        <a href="Home.html" class="btn btn-info"><span class="glyphicon glyphicon-user"></span> &nbsp;Log Me In </a>&nbsp;   <!-- add action -->
+                        <a href="Home.php" class="btn btn-info"><span class="glyphicon glyphicon-user"></span> &nbsp;Log Me In </a>&nbsp;   <!-- add action -->
                 </div>
                 </form>
                 <!-- <div class="col-md-6">

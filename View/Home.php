@@ -94,7 +94,7 @@
                         <ul id="menu-top" class="nav navbar-nav navbar-right">
                             <li><a class="menu-top-active " href="<?php echo ROUTE_MODEL; ?>Home.php">Home</a></li>
                             <li><a >||</a></li>
-                            <li><a href="<?php echo ROUTE_MODEL; ?>Submission.html">Submit Ques.</a></li>
+                            <li><a href="<?php echo ROUTE_MODEL; ?>Submission.php">Submit Ques.</a></li>
                             <li><a href="login.php">Login Page</a></li>
 
                         </ul>
