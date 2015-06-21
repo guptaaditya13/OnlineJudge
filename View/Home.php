@@ -95,7 +95,7 @@
                         <ul id="menu-top" class="nav navbar-nav navbar-right">
                             <li><a class="menu-top-active " href="<?php echo Dir; ?>Home.php">Home</a></li>
                             <li><a >||</a></li>
-                            <li><a href="<?php echo Dir; ?>Submission.php">Submit Ques.</a></li>
+                            <li><a href="<?php echo Dir; ?>QuestionUpload.php">Submit Ques.</a></li>
                             <li><a href="login.php">Login Page</a></li>
 
                         </ul>

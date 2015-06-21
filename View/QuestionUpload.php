@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <!-- <html xmlns="http://www.w3.org/1999/xhtml"> -->
 <head>
@@ -118,7 +119,7 @@
                 <div class="col-md-12">
                     <div class="alert alert-warning">
                         <p>Author: </p>
-                        <input class="form-control" name="author"  required value="">
+                        <input class="form-control" name="author"  required value="<?php echo $_SESSION['auth_username']; ?>">
                         <p>Tester: </p>
                         <input class="form-control" name="tester"  required value="">
                         <p><strong>DIFFICULTY:</strong></p>
