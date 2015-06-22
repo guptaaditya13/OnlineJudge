@@ -151,7 +151,7 @@
                 <div class="col-md-12">
                     <div class="alert alert-warning">
                         <p>Author: </p>
-                        <input class="form-control" name="author"  required value="<?php echo $_SESSION['auth_username']; ?>">
+                        <input class="form-control" name="author"  required value="<?php echo $name; ?>">
                         <p>Tester: </p>
                         <input class="form-control" name="tester"  >
                         <p><strong>DIFFICULTY:</strong></p>
