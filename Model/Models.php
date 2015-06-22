@@ -181,10 +181,27 @@ class Question
 	var $maxMarks;
 	var $time;
 	var $difficulty;
-	// function __construct(argument)
-	// {
-	// 	# code...
-	// }
+	function __construct()
+	{
+		# code...
+	}
+	
+	public function validateQuestionText($questionText)
+	{
+		$qText = htmlspecialchars(strip_tags($questionText));
+		$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
+		$qText = mysqli_real_escape_string($conn,$qry);
+		return $qText;
+	}
+	public function validateQuestionTime($startTime, $endTime)
+	{
+		return TRUE;
+	}
+
+	/**
+	 * @return boolean
+	 * createNew(...) creates an entry in the table questions. If successful returns TRUE else returns FALSE
+	 */
 	public function createNew($questionText, $questionImage, $startTime, $endTime, $maxMarks, $difficulty)
 	{
 		$has_session = session_status() == PHP_SESSION_ACTIVE;
@@ -213,7 +230,33 @@ class Question
 			return false;
 		}
 	}
-
+	/**
+	 * 
+	 */
+	public function save()
+	{
+		if ($this->$userID == NULL) {
+			return FALSE;
+		}
+		if ($this->$questionText == NULL) {
+			return FALSE;
+		}
+		if ($this->$maxMarks == NULL) {
+			$this->$maxMarks = 0;
+		}
+		if ($this->$time == NULL) {
+			$time = time() + (5*60*60 + 30*60);
+            $stime = gmdate('Y-m-d H:i:s',$time);	
+			$this->$time = $stime;
+		}
+		if ($this->$difficulty == NULL) {
+			$this->$difficulty = 0;
+		}
+		return createNew($this->$userID,$this->$questionId,$this->$questionText,$this->$questionImage,$this->$startTime,$this->$endTime,$this->$maxMarks,$this->$time,$this->$difficulty);
+	}
+	/**
+	 * 
+	 */
 	public function getAll($value='')
 	{
 		$sql = "SELECT * FROM questions;";
@@ -232,11 +275,14 @@ class Question
 			$temp->$endTime = $row['end_time'];
 			$temp->$maxMarks = $row['max_marks'];
 			$temp->$time = $row['timestamps'];
+			$temp->difficulty = $row['difficulty'];
 			$res[] = $temp;
 		}
 		return $res;
 	}
-
+	/**
+	 * 
+	 */
 	public function getQuestion($questionId)
 	{
 		$sql = "SELECT * FROM questions WHERE id = $questionId;";
@@ -255,8 +301,10 @@ class Question
 			$temp->$endTime = $row['end_time'];
 			$temp->$maxMarks = $row['max_marks'];
 			$temp->$time = $row['timestamps'];
+			$temp->difficulty = $row['difficulty'];
 		}
 		return $temp;
 	}
+
 }
 ?>
