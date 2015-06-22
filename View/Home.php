@@ -74,7 +74,7 @@
                                 <h5><strong>Personal Bio : </strong></h5>
                                 <?php echo $_SESSION['auth_username']; ?>
                                 <hr />
-                                <a href="#" class="btn btn-info btn-sm">Full Profile</a>&nbsp; <a href="login.php" class="btn btn-danger btn-sm">Logout</a>
+                                <a href="#" class="btn btn-info btn-sm">Full Profile</a>&nbsp; <a href="logout.php" class="btn btn-danger btn-sm">Logout</a>
 
                             </div>
                         </li>
@@ -96,8 +96,8 @@
                         <ul id="menu-top" class="nav navbar-nav navbar-right">
                             <li><a class="menu-top-active " href="<?php echo ROUTE_CONTROLLER; ?>index.php">Home</a></li>
                             <li><a >||</a></li>
-                            <li><a href="../View/QuestionUpload.php">Submit Ques.</a></li>
-                            <li><a href="ViewQuestion.php">View Question</a></li>
+                            <li><a href="questionUpload.php">Submit Ques.</a></li>
+                            <li><a href="viewQuestion.php">View Question</a></li>
                             <li><a href="login.php">Login Page</a></li>
 
                         </ul>
