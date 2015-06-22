@@ -10,11 +10,11 @@
         <![endif]-->
     <title>Online Judge</title>
     <!-- BOOTSTRAP CORE STYLE  -->
-    <link href="<?php echo ROUTE_VIEW; ?>assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="../View/assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME ICONS  -->
-    <link href="<?php echo ROUTE_VIEW; ?>assets/css/font-awesome.css" rel="stylesheet" />
+    <link href="../View/assets/css/font-awesome.css" rel="stylesheet" />
     <!-- CUSTOM STYLE  -->
-    <link href="<?php echo ROUTE_VIEW; ?>assets/css/style.css" rel="stylesheet" />
+    <link href="../View/assets/css/style.css" rel="stylesheet" />
      <!-- HTML5 Shiv and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -65,7 +65,7 @@
                                         <img src="assets/img/64-64.jpg" alt="" class="img-rounded" />
                                     </a>
                                     <div class="media-body">
-                                        <h4 class="media-heading">Jhon Deo Alex </h4>
+                                        <h4 class="media-heading"><?php echo $_SESSION['auth_username']; ?> </h4>
                                         <h5>Developer &amp; Designer</h5>
 
                                     </div>
@@ -94,7 +94,7 @@
                         <ul id="menu-top" class="nav navbar-nav navbar-right">
                             <li><a class="menu-top-active " href="<?php echo ROUTE_CONTROLLER; ?>index.php">Home</a></li>
                             <li><a >||</a></li>
-                            <li><a href="<?php echo ROUTE_CONTROLLER; ?>questionUpload.php">Submit Ques.</a></li>
+                            <li><a href="../VIEW/QuestionUpload.php">Submit Ques.</a></li>
                             <li><a href="login.php">Login Page</a></li>
 
                         </ul>
@@ -133,7 +133,7 @@
                                     </div>
                                     <div class="panel-body">
                                
-                                        <ul >
+                                        <!-- <ul >
                                    
                                             <li>
                                                 <a href="#">
@@ -164,7 +164,7 @@
                                                 </a>
                                             </li>
                    
-                                        </ul>
+                                        </ul> -->
                                     </div>
                                     <div class="panel-footer">
                                         <a href="#" class="btn btn-default btn-block"> <i class="glyphicon glyphicon-repeat"></i> Just A Small Footer Button</a>
