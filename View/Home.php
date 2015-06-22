@@ -46,7 +46,7 @@
                 </button> -->
                 <a class="navbar-brand" href="<?php echo ROUTE_MODEL; ?>index.php">
 
-                    <img src="assets/img/logo.png" />
+                    <img src="assets/img/logo.png" height="101" width="230" />
                 </a>
 
             </div>
@@ -59,24 +59,24 @@
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
                                 <span class="glyphicon glyphicon-user" style="font-size: 25px;"></span>
                             </a>
-                            <div class="dropdown-menu dropdown-settings">
+                           <!--  <div class="dropdown-menu dropdown-settings">
                                 <div class="media">
                                     <a class="media-left" href="#">
                                         <img src="assets/img/64-64.jpg" alt="" class="img-rounded" />
                                     </a>
                                     <div class="media-body">
-                                        <h4 class="media-heading"><?php echo $_SESSION['auth_username']; ?> </h4>
-                                        <h5>Developer &amp; Designer</h5>
+                                        <h4 class="media-heading"> <?php echo $_SESSION['auth_username']; ?></h4>
+                                        <h5><?php echo $_SESSION['auth_username']; ?></h5>
 
                                     </div>
                                 </div>
                                 <hr />
                                 <h5><strong>Personal Bio : </strong></h5>
-                                Anim pariatur cliche reprehen derit.
+                                <?php echo $_SESSION['auth_username']; ?>
                                 <hr />
                                 <a href="#" class="btn btn-info btn-sm">Full Profile</a>&nbsp; <a href="login.php" class="btn btn-danger btn-sm">Logout</a>
-
-                            </div>
+ -->
+                            <!-- </div> -->
                         </li>
 
 
@@ -95,6 +95,7 @@
                             <li><a class="menu-top-active " href="<?php echo ROUTE_CONTROLLER; ?>index.php">Home</a></li>
                             <li><a >||</a></li>
                             <li><a href="../VIEW/QuestionUpload.php">Submit Ques.</a></li>
+                            <li><a href="ViewQuestion.php">View Question</a></li>
                             <li><a href="login.php">Login Page</a></li>
 
                         </ul>

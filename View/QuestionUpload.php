@@ -46,7 +46,7 @@
                 </button>
                 <a class="navbar-brand" href="index.html">
 
-                    <img src="assets/img/logo.png" />
+                    <img src="assets/img/logo.png" height="101" width="230"/>
                 </a>
 
             </div>
@@ -59,7 +59,7 @@
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
                                 <span class="glyphicon glyphicon-user" style="font-size: 25px;"></span>
                             </a>
-                            <div class="dropdown-menu dropdown-settings">
+                            <!-- <div class="dropdown-menu dropdown-settings">
                                 <div class="media">
                                     <a class="media-left" href="#">
                                         <img src="assets/img/64-64.jpg" alt="" class="img-rounded" />
@@ -75,7 +75,7 @@
                                 Anim pariatur cliche reprehen derit.
                                 <hr />
                                 <a href="#" class="btn btn-info btn-sm">Full Profile</a>&nbsp; <a href="login.php" class="btn btn-danger btn-sm">Logout</a>
-
+ -->
                             </div>
                         </li>
 
@@ -95,6 +95,7 @@
                             <li><a class="menu-top-active " href="Home.php">Home</a></li>
                             <li><a >||</a></li>
                             <li><a href="Submission.php">Submit Ques.</a></li>
+                            <li><a href="ViewQuestion.php">View Question</a></li>
                             <li><a href="login.php">Login Page</a></li>
 
                         </ul>

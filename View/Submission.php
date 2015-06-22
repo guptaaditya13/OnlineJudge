@@ -46,7 +46,7 @@
                 </button> -->
                 <a class="navbar-brand" href="index.html">
 
-                    <img src="assets/img/logo.png" />
+                    <img src="assets/img/logo.png" height="101" width="230" />
                 </a>
 
             </div>
@@ -56,7 +56,7 @@
                     <ul class="nav">
 
                         <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                            <!-- <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
                                 <span class="glyphicon glyphicon-user" style="font-size: 25px;"></span>
                             </a>
                             <div class="dropdown-menu dropdown-settings">
@@ -75,7 +75,7 @@
                                 Anim pariatur cliche reprehen derit.
                                 <hr />
                                 <a href="#" class="btn btn-info btn-sm">Full Profile</a>&nbsp; <a href="login.php" class="btn btn-danger btn-sm">Logout</a>
-
+ -->
                             </div>
                         </li>
 

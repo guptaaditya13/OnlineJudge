@@ -46,7 +46,7 @@
                 </button>
                 <a class="navbar-brand" href="index.html">
 
-                    <img src="assets/img/logo.png" />
+                    <img src="assets/img/logo.png" height="101" width="230"/>
                 </a>
 
             </div>
@@ -95,6 +95,7 @@
                             <li><a class="menu-top-active " href="Home.php">Home</a></li>
                             <li><a >||</a></li>
                             <li><a href="Submission.php">Submit Ques.</a></li>
+                            <li><a href="ViewQuestion.php">View Question</a></li>
                             <li><a href="login.php">Login Page</a></li>
 
                         </ul>
