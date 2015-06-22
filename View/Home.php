@@ -185,8 +185,10 @@
                                     
                                     <tbody>
                                         <tr>
-                                            <td>Otto</td>
-                                            <td > <a href="#"  class="btn btn-xs btn-danger pull-right"  >View</a> </td>    
+                                            <th>Question</th>
+                                            <th>Start time</th>
+                                            <th>End time</th>
+                                            <th > <a href="#"  class="btn btn-xs btn-danger pull-right"  >View</a> </th>    
                                         </tr>
                                         
                                     </tbody>
