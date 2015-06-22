@@ -13,23 +13,23 @@ if (!Auth::loginStatus()){
 session_start();
 $name = $_SESSION['auth_name'];
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	if (!isset($_POST['tester']) || !isset($_POST['difficulty']) || !isset($_POST['question']) || !isset($_POST['start_time']) || !isset($_POST['end_time'])){
+	if (!isset($_POST['difficulty']) || !isset($_POST['question']) || !isset($_POST['start_time']) || !isset($_POST['end_time']) || empty($_POST['difficulty']) || empty($_POST['question']) || empty($_POST['start_time']) || empty($_POST['end_time'])){
 		die("Something missing in post request!");
 	}
-	$tester = $_POST['tester'];
 	$difficulty = $_POST['difficulty'];
 	$questionText = $_POST['question'];
 	$startTime = $_POST['startTime'];
 	$endTime = $_POST['endTime'];
 	$maxMarks = $_POST['mm'];
-	$questionImage = "set_this";
+	$questionImage = '';
+	if (!Question::validateQuestionTime($startTime, $endTime)) {
+		die("invalid question Text");
+	}
+	$questionText=Question::validateQuestionText($questionText);
 	/**
-	 * Validating of question --------write it
+	 * Date validation is missing
 	 */
-	
-	/**
-	 * adding question
-	 */
+
 	$ques = Question::createNew($questionText, $questionImage, $startTime, $endTime, $maxMarks, $difficulty);
 	header('Location:' . URL_WEBSITE_HOME);
 	exit();
