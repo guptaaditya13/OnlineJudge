@@ -193,20 +193,31 @@ class Question
 	var $endTime;
 	var $maxMarks;
 	var $time;
+	var $difficulty;
 	// function __construct(argument)
 	// {
 	// 	# code...
 	// }
-	public function createNew($questionText, $questionImage, $startTime, $endTime, $maxMarks)
+	public function createNew($questionText, $questionImage, $startTime, $endTime, $maxMarks, $difficulty)
 	{
 		$has_session = session_status() == PHP_SESSION_ACTIVE;
 		if (!$has_session){
 			session_start();
 		}
+		$diff = 0;
 		$userID = $_SESSION['auth_id'];
+		if ($difficulty == "easy"){
+			$diff = 0;
+		}elseif ($difficulty == "medium") {
+			$diff = 1;
+		}elseif ($difficulty == "hard") {
+			$diff = 2;
+		}else{
+			$diff = 3;
+		}
 		$sql = "INSERT INTO `online_judge`.`questions` (`user_id`, `q_text`, `start_time`, ".
-			"`end_time`, `max_marks`, `timestamps`) VALUES ".
-			"('$userID', '$questionText', '$start_time', '$endTime', '$maxMarks', CURRENT_TIMESTAMP);";
+			"`end_time`, `max_marks`, `difficulty`, `timestamps`) VALUES ".
+			"('$userID', '$questionText', '$start_time', '$endTime', '$maxMarks','$diff' CURRENT_TIMESTAMP);";
 		$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
 		$result = mysqli_query($conn,$sql);
 		if ($result == true){

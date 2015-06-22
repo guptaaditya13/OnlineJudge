@@ -14,7 +14,7 @@ if (defined('USER_NAME')) {} else {
 	define ('USER_NAME' ,'root');
 }
 if (defined('PASSWORD')) {} else {
-	define ('PASSWORD' ,'');
+	define ('PASSWORD' ,'sunny424');
 }
 if (defined('DATABASE')) {} else {
 	define ('DATABASE' ,'online_judge');

@@ -3,6 +3,10 @@
 require ('../routes.php');
 require ('../Model/Models.php');
 
+
+echo Auth::loginStatus();
+echo "6541d5s4ge6";
+die("x");
 if (!Auth::loginStatus()){
 	header('Location:' . URL_LOGIN_PAGE);
 	exit();
@@ -10,32 +14,27 @@ if (!Auth::loginStatus()){
 	header('Location:' . URL_WEBSITE_HOME);
 	exit();
 }
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	if (!isset($_POST['tester']) || !isset($_POST['difficulty']) || !isset($_POST['question']) ){
-		die("Username and password missing in post request!");
+	if (!isset($_POST['tester']) || !isset($_POST['difficulty']) || !isset($_POST['question']) || !isset($_POST['start_time']) || !isset($_POST['end_time'])){
+		die("Something missing in post request!");
 	}
-	$username = $_POST['username'];
-	$password = $_POST['password'];
+	$tester = $_POST['tester'];
+	$difficulty = $_POST['difficulty'];
+	$questionText = $_POST['question'];
+	$startTime = $_POST['startTime'];
+	$endTime = $_POST['endTime'];
+	$maxMarks = $_POST['mm'];
+	$questionImage = "set_this";
+	/**
+	 * Validating of question --------write it
+	 */
 	
 	/**
-	 * Validating the username & password provided
+	 * adding question
 	 */
-	if($error = Auth::validateData($username, $password)){
-		die($error);
-	}
-	
-	$user = Auth::loginUser($username, sha1($password));
-	
-	if(is_a($user, 'Student')){
-		header('Location: ' . URL_STUDENT_HOME);
-		exit();
-	} elseif (is_a($user, 'Teacher')) {
-		header('Location: ' . URL_TEACHER_HOME);
-		exit();
-	} else {
-		// var_dump(Auth::loginUser($username, sha1($password)));
-		die("User not found! ");
-	}
-
+	$ques = Question::createNew($questionText, $questionImage, $startTime, $endTime, $maxMarks, $difficulty);
+	header('Location:' . URL_WEBSITE_HOME);
+	exit();
 }
- ?>
+?>

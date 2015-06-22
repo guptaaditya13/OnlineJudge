@@ -139,7 +139,7 @@
                     </div>
                 </div>
             </div>
-             <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-user"></span> Submit </button>
+             <!-- <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-user"></span> Submit </button> -->
             </form>
         </div>
     </div>
