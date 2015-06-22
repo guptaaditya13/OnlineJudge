@@ -52,7 +52,7 @@ if ($type = Auth::loginStatus()){
 	 * Else he is served the login page!
 	 */
 	$dir = '../View/';
-	require($dir.'login.php');
+	require($dir . 'login.php');
 	// die("serving login page");
 }
 

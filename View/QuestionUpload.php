@@ -47,7 +47,23 @@
         }
         
     }
-    function check () {
+    function DateValidate()
+    {
+        var start = document.getElementById("start_date").value;
+        var end = document.getElementById("end_date").value;
+        
+        if(start > end)
+        {
+                document.getElementById("start").style.color = 'red';
+                document.getElementById("start").innerHTML="Start Date can't exceed End date ";
+        }
+        else if(start <= end)
+        {
+            document.getElementById("start").style.color = 'green';
+            document.getElementById("start").innerHTML="Ok ";
+            document.getElementById("end").style.color = 'green';
+            document.getElementById("end").innerHTML="Ok ";
+        }
         
     }
 
@@ -161,14 +177,14 @@
                                 <option  value="hard">Hard</option>
                                 <option  value="challenge">Challenge</option>
                             </select>
-                        <p><strong>START TIME</strong></p>
-                        <!-- <input type="time" value="12:01:00;"> -->
-                        <input type="time" name="StartTime" id ="start_time" placeholder="hrs:mins" pattern="^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$" class="inputs time" required>
-                        <p id="start"></p>
-                        <p><strong>END TIME</strong></p>
-                        <!-- <input type="time" value="12:01:00;"> -->
-                        <input type="time" name="EndTime" id ="end_time" onchange='TimeValidate()' placeholder="hrs:mins"  class="inputs time" required>
-                        <p id="end"></p>
+                            
+                                <label>Start Date Time&nbsp;&nbsp;(MM/DD/YYYY hh:mm AM/PM)</label>
+                                <input type="datetime-local" class="form-control" required value="" id="start_date" name="start_date" placeholder="Select Start date">
+                                <p id="start"></p>
+                                <label>End Date Time&nbsp;&nbsp;(MM/DD/YYYY hh:mm AM/PM)</label>
+                                <input type="datetime-local" class="form-control" id="end_date" onchange='DateValidate()' required value="" name="end_date" placeholder="Select End date">
+                                <p id="end"></p>
+                        
                         <p><strong>PROBLEM:</strong></p>
                         <textarea class="form-control" name="question" rows="3" ></textarea>
                         <p><strong>SHORT EXPLANATION</strong></p>
