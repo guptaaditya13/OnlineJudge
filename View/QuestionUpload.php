@@ -110,7 +110,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h4 class="page-head-line">View Question</h4>
+                    <h4 class="page-head-line">Upload Question</h4>
 
                 </div>
 
@@ -130,12 +130,20 @@
                                 <option  value="hard">Hard</option>
                                 <option  value="challenge">Challenge</option>
                             </select>
+                        <p><strong>START TIME</strong></p>
+                        <!-- <input type="time" value="12:01:00;"> -->
+                        <input type="time" name="StartTime" placeholder="hrs:mins" pattern="^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$" class="inputs time" required>
+                        <p><strong>END TIME</strong></p>
+                        <!-- <input type="time" value="12:01:00;"> -->
+                        <input type="time" name="EndTime" placeholder="hrs:mins" pattern="^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$" class="inputs time" required>
                         <p><strong>PROBLEM:</strong></p>
                         <textarea class="form-control" name="question" rows="3" required value=""></textarea>
                         <p><strong>SHORT EXPLANATION</strong></p>
                         <textarea class="form-control" name="ShortExplain" rows="3" required value=""></textarea>
                         <p><strong>EXPLANATION:</strong></p>
                         <textarea class="form-control" name="FullExplain" rows="3" required value=""></textarea>
+<br>
+                        <div class ="col-md-offset-5"><button type="submit" class="btn btn-success">Submit</button></div>
                     </div>
                 </div>
             </div>

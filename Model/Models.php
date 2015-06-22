@@ -5,30 +5,6 @@ require('../connection.php');
 */
 class Auth
 {
-	// /**
-	//  *@return array.
-	//  * This method returns all the data present in the login table.
-	// */
-	// public function getAll()
-	// {
-	// 	$sql = "SELECT * FROM user_table";
-	// 	$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
-	// 	$result = mysqli_query($conn,$sql);
-	// 	mysqli_close($conn);
-	// 	return $result;
-	// }
-	// *
-	//  *@return array
-	//  * This method returns an array containing the object with id = $id 
-	
-	// public function get($id)
-	// {
-	// 	$sql = "SELECT * FROM user_table WHERE id = $id";
-	// 	$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
-	// 	$result = mysqli_query($conn,$sql);
-	// 	mysqli_close($conn);
-	// 	return $result;	
-	// }
 	/**
 	 *@return string
 	 * This method checks whether the username is matched the regex or not. 
@@ -123,6 +99,17 @@ class Auth
 			return false;
 		}
 	}
+
+	public function logout($value='')
+	{
+		$has_session = session_status() == PHP_SESSION_ACTIVE;
+		if (!$has_session){
+			session_start();
+		}
+		$_SESSION = array();
+		session_destroy();
+	}
+
 }
 /**
 * The basic parent class of child Student and Techer
@@ -248,6 +235,28 @@ class Question
 			$res[] = $temp;
 		}
 		return $res;
+	}
+
+	public function getQuestion($questionId)
+	{
+		$sql = "SELECT * FROM questions WHERE id = $questionId;";
+		$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
+		$result = mysqli_query($conn,$sql);
+		$n = mysqli_num_rows($result);
+		$temp;
+		if ($n == 1) { 
+			$row = mysqli_fetch_assoc($result);
+			$temp = new Question();
+			$temp->$userID = $row['user_id'];
+			$temp->$questionId = $row['id'];
+			$temp->$questionText = $row['q_text'];
+			$temp->$questionImage = $row['q_image'];
+			$temp->$startTime = $row['start_time'];
+			$temp->$endTime = $row['end_time'];
+			$temp->$maxMarks = $row['max_marks'];
+			$temp->$time = $row['timestamps'];
+		}
+		return $temp;
 	}
 }
 ?>
