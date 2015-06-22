@@ -10,8 +10,7 @@ if (!Auth::loginStatus()){
 	header('Location:' . URL_WEBSITE_HOME);
 	exit();
 }
-session_start();
-$name = $_SESSION['auth_name'];
+Auth::joinSession();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if (!isset($_POST['tester']) || !isset($_POST['difficulty']) || !isset($_POST['question']) || !isset($_POST['start_time']) || !isset($_POST['end_time'])){
 		die("Something missing in post request!");
@@ -34,7 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	header('Location:' . URL_WEBSITE_HOME);
 	exit();
 }else{
-	require('../View/QuestionUpload.php');
+	$dir = '../View/';
+	require($dir . 'QuestionUpload.php');
 	exit();
 }
 ?>
