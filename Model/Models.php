@@ -70,8 +70,7 @@ class Auth
 	 */
 	public function loginStatus()
 	{
-		session_start();
-		// var_dump($_SESSION);
+		Auth::joinSession();
 		if(isset($_SESSION['auth_logged_in']) && $_SESSION['auth_logged_in'] == True){
 			return $_SESSION['auth_type'];
 		} else {
@@ -108,6 +107,11 @@ class Auth
 		}
 		$_SESSION = array();
 		session_destroy();
+	}
+	public function joinSession(){
+		if (session_status() != PHP_SESSION_ACTIVE){
+			session_start();
+		}
 	}
 
 }

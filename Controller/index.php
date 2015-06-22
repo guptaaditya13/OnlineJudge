@@ -19,6 +19,7 @@ require ('../Model/Models.php');
 	/**
 	 * Else request is served the Home page!
 	 */
-require('../View/Home.php');
+$dir = '../View/';
+require($dir. 'Home.php');
 // }
 ?>
