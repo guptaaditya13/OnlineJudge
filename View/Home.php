@@ -44,7 +44,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button> -->
-                <a class="navbar-brand" href="<?php echo ROUTE_MODEL; ?>index.html">
+                <a class="navbar-brand" href="<?php echo ROUTE_MODEL; ?>index.php">
 
                     <img src="assets/img/logo.png" />
                 </a>
@@ -92,9 +92,9 @@
                 <div class="col-md-12">
                     <div class="navbar-collapse collapse ">
                         <ul id="menu-top" class="nav navbar-nav navbar-right">
-                            <li><a class="menu-top-active " href="<?php echo ROUTE_MODEL; ?>Home.php">Home</a></li>
+                            <li><a class="menu-top-active " href="<?php echo ROUTE_CONTROLLER; ?>index.php">Home</a></li>
                             <li><a >||</a></li>
-                            <li><a href="<?php echo ROUTE_VIEW; ?>QuestionUpload.php">Submit Ques.</a></li>
+                            <li><a href="<?php echo ROUTE_CONTROLLER; ?>questionUpload.php">Submit Ques.</a></li>
                             <li><a href="login.php">Login Page</a></li>
 
                         </ul>

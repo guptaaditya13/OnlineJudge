@@ -3,10 +3,6 @@
 require ('../routes.php');
 require ('../Model/Models.php');
 
-
-echo Auth::loginStatus();
-echo "6541d5s4ge6";
-die("x");
 if (!Auth::loginStatus()){
 	header('Location:' . URL_LOGIN_PAGE);
 	exit();
@@ -35,6 +31,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	 */
 	$ques = Question::createNew($questionText, $questionImage, $startTime, $endTime, $maxMarks, $difficulty);
 	header('Location:' . URL_WEBSITE_HOME);
+	exit();
+}else{
+	require('../View/QuestionUpload.php');
 	exit();
 }
 ?>
