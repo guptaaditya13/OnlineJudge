@@ -10,11 +10,11 @@
         <![endif]-->
     <title>Online Judge</title>
     <!-- BOOTSTRAP CORE STYLE  -->
-    <link href="<?php echo ROUTE_VIEW; ?>assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="../View/assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME ICONS  -->
-    <link href="<?php echo ROUTE_VIEW; ?>assets/css/font-awesome.css" rel="stylesheet" />
+    <link href="../View/assets/css/font-awesome.css" rel="stylesheet" />
     <!-- CUSTOM STYLE  -->
-    <link href="<?php echo ROUTE_VIEW; ?>assets/css/style.css" rel="stylesheet" />
+    <link href="../View/assets/css/style.css" rel="stylesheet" />
      <!-- HTML5 Shiv and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -46,7 +46,7 @@
                 </button> -->
                 <a class="navbar-brand" href="<?php echo ROUTE_MODEL; ?>index.php">
 
-                    <img src="assets/img/logo.png" />
+                    <img src="assets/img/logo.png" height="101" width="230" />
                 </a>
 
             </div>
@@ -59,24 +59,24 @@
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
                                 <span class="glyphicon glyphicon-user" style="font-size: 25px;"></span>
                             </a>
-                            <div class="dropdown-menu dropdown-settings">
+                           <!--  <div class="dropdown-menu dropdown-settings">
                                 <div class="media">
                                     <a class="media-left" href="#">
                                         <img src="assets/img/64-64.jpg" alt="" class="img-rounded" />
                                     </a>
                                     <div class="media-body">
-                                        <h4 class="media-heading">Jhon Deo Alex </h4>
-                                        <h5>Developer &amp; Designer</h5>
+                                        <h4 class="media-heading"> <?php echo $_SESSION['auth_username']; ?></h4>
+                                        <h5><?php echo $_SESSION['auth_username']; ?></h5>
 
                                     </div>
                                 </div>
                                 <hr />
                                 <h5><strong>Personal Bio : </strong></h5>
-                                Anim pariatur cliche reprehen derit.
+                                <?php echo $_SESSION['auth_username']; ?>
                                 <hr />
                                 <a href="#" class="btn btn-info btn-sm">Full Profile</a>&nbsp; <a href="login.php" class="btn btn-danger btn-sm">Logout</a>
-
-                            </div>
+ -->
+                            <!-- </div> -->
                         </li>
 
 
@@ -94,7 +94,8 @@
                         <ul id="menu-top" class="nav navbar-nav navbar-right">
                             <li><a class="menu-top-active " href="<?php echo ROUTE_CONTROLLER; ?>index.php">Home</a></li>
                             <li><a >||</a></li>
-                            <li><a href="<?php echo ROUTE_CONTROLLER; ?>questionUpload.php">Submit Ques.</a></li>
+                            <li><a href="../View/QuestionUpload.php">Submit Ques.</a></li>
+                            <li><a href="ViewQuestion.php">View Question</a></li>
                             <li><a href="login.php">Login Page</a></li>
 
                         </ul>
@@ -133,7 +134,7 @@
                                     </div>
                                     <div class="panel-body">
                                
-                                        <ul >
+                                        <!-- <ul >
                                    
                                             <li>
                                                 <a href="#">
@@ -164,7 +165,7 @@
                                                 </a>
                                             </li>
                    
-                                        </ul>
+                                        </ul> -->
                                     </div>
                                     <div class="panel-footer">
                                         <a href="#" class="btn btn-default btn-block"> <i class="glyphicon glyphicon-repeat"></i> Just A Small Footer Button</a>

@@ -9,9 +9,10 @@ public class Compile {
 
    public static void main(String[] args) {
         boolean compiled=true;
-        ProcessBuilder p = new ProcessBuilder("javac", "/opt/lampp/htdocs/OnlineJudge/Resources/" + args[0]);
+        ProcessBuilder p = new ProcessBuilder("javac", "/opt/lampp/htdocs/OnlineJudge/Resources/" + args[1]);
         p.directory();
         p.redirectErrorStream(true);
+	System.out.println("COMPILING....");
         try{
             Process pp = p.start();
             InputStream is = pp.getInputStream();
