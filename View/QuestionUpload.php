@@ -10,11 +10,11 @@
         <![endif]-->
     <title>Online Judge</title>
     <!-- BOOTSTRAP CORE STYLE  -->
-    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <link href=" assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME ICONS  -->
-    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+    <link href=" assets/css/font-awesome.css" rel="stylesheet" />
     <!-- CUSTOM STYLE  -->
-    <link href="assets/css/style.css" rel="stylesheet" />
+    <link href=" assets/css/style.css" rel="stylesheet" />
      <!-- HTML5 Shiv and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -51,7 +51,7 @@
     {
         var start = document.getElementById("start_date").value;
         var end = document.getElementById("end_date").value;
-        
+         document.getElementById("myBtn").disabled = true;
         if(start > end)
         {
                 document.getElementById("start").style.color = 'red';
@@ -63,6 +63,7 @@
             document.getElementById("start").innerHTML="Ok ";
             document.getElementById("end").style.color = 'green';
             document.getElementById("end").innerHTML="Ok ";
+             document.getElementById("myBtn").disabled = false;
         }
         
     }
@@ -93,7 +94,7 @@
                 </button>
                 <a class="navbar-brand" href="index.html">
 
-                    <img src="assets/img/logo.png" height="101" width="230"/>
+                    <img src=" assets/img/logo.png" height="101" width="230"/>
                 </a>
 
             </div>
@@ -141,9 +142,9 @@
                         <ul id="menu-top" class="nav navbar-nav navbar-right">
                             <li><a class="menu-top-active " href="Home.php">Home</a></li>
                             <li><a >||</a></li>
-                            <li><a href="Submission.php">Submit Ques.</a></li>
-                            <li><a href="ViewQuestion.php">View Question</a></li>
-                            <li><a href="login.php">Login Page</a></li>
+                            <li><a href=" Submission.php">Submit Ques.</a></li>
+                            <li><a href=" ViewQuestion.php">View Question</a></li>
+                            <li><a href=" login.php">Login Page</a></li>
 
                         </ul>
                     </div>
@@ -215,8 +216,8 @@
     <!-- FOOTER SECTION END-->
     <!-- JAVASCRIPT AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
     <!-- CORE JQUERY SCRIPTS -->
-    <script src="assets/js/jquery-1.11.1.js"></script>
+    <script src=" assets/js/jquery-1.11.1.js"></script>
     <!-- BOOTSTRAP SCRIPTS  -->
-    <script src="assets/js/bootstrap.js"></script>
+    <script src=" assets/js/bootstrap.js"></script>
 </body>
 </html>
