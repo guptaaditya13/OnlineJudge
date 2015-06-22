@@ -11,11 +11,11 @@
         ]-->
     <title>Online Judge</title>
     <!-- BOOTSTRAP CORE STYLE  -->
-    <link href="../View/assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="<?php echo $dir; ?>assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME ICONS  -->
-    <link href="../View/assets/css/font-awesome.css" rel="stylesheet" />
+    <link href="<?php echo $dir; ?>assets/css/font-awesome.css" rel="stylesheet" />
     <!-- CUSTOM STYLE  -->
-    <link href="../View/assets/css/style.css" rel="stylesheet" />
+    <link href="<?php echo $dir; ?>assets/css/style.css" rel="stylesheet" />
      <!-- HTML5 Shiv and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -47,7 +47,7 @@
                 </button> -->
                 <a class="navbar-brand" href="index.php">
 
-                    <img src="assets/img/logo.png" />
+                    <img src="<?php echo $dir; ?>assets/img/logo.png" />
                 </a>
 
             </div>
@@ -70,7 +70,7 @@
 
             </div>
             <div class="row">
-                <form name="form1" action="<?php echo ROUTE_CONTROLLER; ?>login.php" method="POST">
+                <form name="form1" action="login.php" method="POST">
 
                 <div class="col-md-6 col-md-offset-3 alert alert-success">
                    <!-- <h4> Login with facebook <strong> / </strong>Google :</h4>
