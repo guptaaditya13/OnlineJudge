@@ -7,6 +7,7 @@ define('URL_WEBSITE_HOME',  DIR_SERVER . 'Controller/index.php');
 define('URL_LOGIN_PAGE',  DIR_SERVER . 'Controller/login.php');
 define('URL_STUDENT_HOME', DIR_SERVER . 'Controller/index.php');
 define('URL_TEACHER_HOME', DIR_SERVER . 'Controller/index.php');
+define('URL_TEACHER_Q_SUBMIT', DIR_SERVER . 'view/QuestionUpload.php');
 /* <a href="<?php echo DIR_SERVER; ?>">DIR_SERVER</a><br>
  <a href="<?php echo ROUTE_VIEW; ?>">ROUTE_VIEW</a><br>
  <a href="<?php echo ROUTE_MODEL; ?>">ROUTE_MODEL</a><br>

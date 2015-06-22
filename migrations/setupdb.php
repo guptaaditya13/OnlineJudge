@@ -29,6 +29,7 @@ $sql = "CREATE TABLE IF NOT EXISTS `questions` (
   `start_time` datetime NOT NULL,
   `end_time` datetime NOT NULL,
   `max_marks` int(11) NOT NULL,
+  `difficulty` int(1) NOT NULL,
   `sample_inp` text NOT NULL,
   `sample_out` text NOT NULL,
   `timestamps` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP

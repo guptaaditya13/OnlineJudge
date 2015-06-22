@@ -124,12 +124,19 @@
 
 
 
-
+                        <p><strong>START TIME</strong></p>
+                        <!-- <input type="time" value="12:01:00;"> -->
+                        <input type="time" name="StartTime" placeholder="hrs:mins" pattern="^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$" class="inputs time" disabled>
+                        <p><strong>END TIME</strong></p>
+                        <!-- <input type="time" value="12:01:00;"> -->
+                        <input type="time" name="EndTime" placeholder="hrs:mins" pattern="^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$" class="inputs time" disabled>
+                        
                         <p><strong>PROBLEM:</strong></p>
 
                         <p><strong>SHORT EXPLANATION</strong></p>
 
                         <p><strong>EXPLANATION:</strong></p>
+
 
                     </div>
                 </div>
