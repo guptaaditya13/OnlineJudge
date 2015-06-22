@@ -180,10 +180,10 @@ class Question
 	var $endTime;
 	var $maxMarks;
 	var $time;
-	// function __construct(argument)
-	// {
-	// 	# code...
-	// }
+	function __construct()
+	{
+		# code...
+	}
 	public function createNew($questionText, $questionImage, $startTime, $endTime, $maxMarks)
 	{
 		$has_session = session_status() == PHP_SESSION_ACTIVE;
@@ -224,6 +224,28 @@ class Question
 			$res[] = $temp;
 		}
 		return $res;
+	}
+
+	public function getQuestion($questionId)
+	{
+		$sql = "SELECT * FROM questions WHERE id = $questionId;";
+		$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
+		$result = mysqli_query($conn,$sql);
+		$n = mysqli_num_rows($result);
+		$temp;
+		if ($n == 1) { 
+			$row = mysqli_fetch_assoc($result);
+			$temp = new Question();
+			$temp->$userID = $row['user_id'];
+			$temp->$questionId = $row['id'];
+			$temp->$questionText = $row['q_text'];
+			$temp->$questionImage = $row['q_image'];
+			$temp->$startTime = $row['start_time'];
+			$temp->$endTime = $row['end_time'];
+			$temp->$maxMarks = $row['max_marks'];
+			$temp->$time = $row['timestamps'];
+		}
+		return $temp;
 	}
 }
 ?>
