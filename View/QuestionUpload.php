@@ -21,6 +21,37 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script type="text/javascript">
+    function TimeValidate()
+    {   
+
+        var start = document.getElementById("start_time").value;
+        var end = document.getElementById("end_time").value;
+        
+        
+                if(start > end)
+        {
+                document.getElementById("start").style.color = 'red';
+                document.getElementById("start").innerHTML="Start time can't exceed End time ";
+                document.getElementById("myBtn").disabled = true;
+        }
+        else if(start < end)
+        {
+            document.getElementById("start").style.color = 'green';
+            document.getElementById("start").innerHTML="Ok ";
+            document.getElementById("end").style.color = 'green';
+            document.getElementById("end").innerHTML="Ok ";
+
+            document.getElementById("myBtn").disabled = false;
+
+        }
+        
+    }
+    function check () {
+        
+    }
+
+</script>
 </head>
 <body>
     <header>
@@ -122,7 +153,7 @@
                         <p>Author: </p>
                         <input class="form-control" name="author"  required value="<?php echo $name; ?>">
                         <p>Tester: </p>
-                        <input class="form-control" name="tester"  required value="">
+                        <input class="form-control" name="tester"  >
                         <p><strong>DIFFICULTY:</strong></p>
                             <select name="difficulty" class="form-control">
                                 <option  value="easy" >Easy</option>
@@ -132,18 +163,21 @@
                             </select>
                         <p><strong>START TIME</strong></p>
                         <!-- <input type="time" value="12:01:00;"> -->
-                        <input type="time" name="StartTime" placeholder="hrs:mins" pattern="^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$" class="inputs time" required>
+                        <input type="time" name="StartTime" id ="start_time" placeholder="hrs:mins" pattern="^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$" class="inputs time" required>
+                        <p id="start"></p>
                         <p><strong>END TIME</strong></p>
                         <!-- <input type="time" value="12:01:00;"> -->
-                        <input type="time" name="EndTime" placeholder="hrs:mins" pattern="^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$" class="inputs time" required>
+                        <input type="time" name="EndTime" id ="end_time" onchange='TimeValidate()' placeholder="hrs:mins"  class="inputs time" required>
+                        <p id="end"></p>
                         <p><strong>PROBLEM:</strong></p>
-                        <textarea class="form-control" name="question" rows="3" required value=""></textarea>
+                        <textarea class="form-control" name="question" rows="3" ></textarea>
                         <p><strong>SHORT EXPLANATION</strong></p>
-                        <textarea class="form-control" name="ShortExplain" rows="3" required value=""></textarea>
+                        <textarea class="form-control" name="ShortExplain" rows="3" ></textarea>
                         <p><strong>EXPLANATION:</strong></p>
-                        <textarea class="form-control" name="FullExplain" rows="3" required value=""></textarea>
-<br>
-                        <div class ="col-md-offset-5"><button type="submit" class="btn btn-success">Submit</button></div>
+                        <textarea class="form-control" name="FullExplain" rows="3" ></textarea>
+                        Select images <input type="file" name="img" multiple>
+                        <br>
+                        <div class ="col-md-offset-5"><button type="submit" id="myBtn" onclick='TimeValidate()' class="btn btn-success" disabled>Submit</button></div>
                     </div>
                 </div>
             </div>
