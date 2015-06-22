@@ -201,7 +201,15 @@ class Question
 	{
 		return TRUE;
 	}
-
+	/**
+	 * @return boolean
+	 * validateQuestionId($id) is used to check if the question id is of valid type or not.
+	 * This method will allow developers to adopt a generic id for the questions
+	 */
+	public function validateQuestionId($id)
+	{
+		return is_numeric($id);
+	}
 	/**
 	 * @return boolean
 	 * createNew(...) creates an entry in the table questions. If successful returns TRUE else returns FALSE
@@ -259,11 +267,22 @@ class Question
 		return createNew($this->$userID,$this->$questionId,$this->$questionText,$this->$questionImage,$this->$startTime,$this->$endTime,$this->$maxMarks,$this->$time,$this->$difficulty);
 	}
 	/**
-	 * 
+	 * @return Question array
+	 * returns all the questions available in the database according to the type of user
+	 * example : 
+	 * 1. If requested by student, it will only show questions whose submission is going on, or completed
+	 * 2. If requested by faculty, it will show all the questions present in the database.
 	 */
-	public function getAll($value='')
+	public function getAll($userType)
 	{
-		$sql = "SELECT * FROM questions;";
+		$sql = "";
+		if ($userType == "Teacher"){
+			$sql = "SELECT * FROM `questions`;";
+		} elseif ($userType == "Student") {
+			$sql = "SELECT * FROM `questions` WHERE `start_time` <= CURTIME();";
+		} else {
+			$sql = "SELECT * FROM `questions` WHERE `start_time` <= CURTIME();";
+		}
 		$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
 		$result = mysqli_query($conn,$sql);
 		$n = mysqli_num_rows($result);

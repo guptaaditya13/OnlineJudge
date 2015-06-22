@@ -183,6 +183,7 @@ header {
 .navbar-inverse {
     background-color: #C36464;
     border-color: transparent;
+    height: 132px;
 }
 
 .navbar-toggle {
