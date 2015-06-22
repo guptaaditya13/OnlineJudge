@@ -8,7 +8,7 @@
     <!--[if IE]>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <![endif]-->
-    <title>Free Responsive Admin Theme - ZONTAL</title>
+    <title>Online Judge</title>
     <!-- BOOTSTRAP CORE STYLE  -->
     <link href="<?php echo $dir; ?>assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME ICONS  -->
@@ -127,17 +127,17 @@
 
                         <p><strong>START TIME</strong></p>
                         <!-- <input type="time" value="12:01:00;"> -->
-                        <input type="time" name="StartTime" placeholder="hrs:mins" pattern="^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$" class="inputs time" disabled>
+                        <input type="datetime-local" name="StartTime" placeholder="hrs:mins"  class="inputs time" disabled>
                         <p><strong>END TIME</strong></p>
                         <!-- <input type="time" value="12:01:00;"> -->
-                        <input type="time" name="EndTime" placeholder="hrs:mins" pattern="^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$" class="inputs time" disabled>
+                        <input type="datetime-local" name="EndTime" placeholder="hrs:mins"  class="inputs time" disabled>
                         
                         <p><strong>PROBLEM:</strong></p>
 
                         <p><strong>SHORT EXPLANATION</strong></p>
 
                         <p><strong>EXPLANATION:</strong></p>
-
+                        <div class ="col-md-offset-5"><button type="submit" id="myBtn"  class="btn btn-success" ><p id="check">Status</p></button></div>
 
                     </div>
                 </div>

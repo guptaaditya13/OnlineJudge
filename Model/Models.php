@@ -194,7 +194,7 @@ class Question
 	{
 		$qText = htmlspecialchars(strip_tags($questionText));
 		$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
-		$qText = mysqli_real_escape_string($conn,$qry);
+		$qText = mysqli_real_escape_string($conn,$qText);
 		return $qText;
 	}
 	public function validateQuestionTime($startTime, $endTime)
@@ -233,7 +233,8 @@ class Question
 		}
 		$sql = "INSERT INTO `online_judge`.`questions` (`user_id`, `q_text`, `start_time`, ".
 			"`end_time`, `max_marks`, `difficulty`, `timestamps`) VALUES ".
-			"('$userID', '$questionText', '$start_time', '$endTime', '$maxMarks','$diff' CURRENT_TIMESTAMP);";
+			"('$userID', '$questionText', '$startTime', '$endTime', '$maxMarks','$diff' CURRENT_TIMESTAMP);";
+		var_dump($sql);
 		$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
 		$result = mysqli_query($conn,$sql);
 		if ($result == true){

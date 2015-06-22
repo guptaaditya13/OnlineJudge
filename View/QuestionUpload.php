@@ -10,6 +10,7 @@
         <![endif]-->
     <title>Online Judge</title>
     <!-- BOOTSTRAP CORE STYLE  -->
+
     <link href="<?php echo $dir; ?>assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME ICONS  -->
     <link href="<?php echo $dir; ?>assets/css/font-awesome.css" rel="stylesheet" />
@@ -51,9 +52,8 @@
     {
         var start = document.getElementById("start_date").value;
         var end = document.getElementById("end_date").value;
+
         document.getElementById("myBtn").disabled = true;
-        }
-        
         if(start > end)
         {
                 document.getElementById("start").style.color = 'red';
@@ -65,6 +65,7 @@
             document.getElementById("start").innerHTML="Ok ";
             document.getElementById("end").style.color = 'green';
             document.getElementById("end").innerHTML="Ok ";
+
             document.getElementById("myBtn").disabled = false;
         }
         
@@ -95,6 +96,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="index.php">
+
 
                     <img src="<?php echo $dir; ?>assets/img/logo.png" height="101" width="230"/>
                 </a>
@@ -144,6 +146,7 @@
                         <ul id="menu-top" class="nav navbar-nav navbar-right">
                             <li><a class="menu-top-active " href="index.php">Home</a></li>
                             <li><a >||</a></li>
+
                             <li><a href="questionUpload.php">Submit Ques.</a></li>
                             <li><a href="viewQuestion.php">View Question</a></li>
                             <li><a href="login.php">Login Page</a></li>
@@ -165,7 +168,7 @@
                 </div>
 
             </div>
-            <form action="">
+            <form action="questionUpload.php" method="POST">
             <div class="row">
                 <div class="col-md-12">
                     <div class="alert alert-warning">
@@ -218,6 +221,7 @@
     <!-- FOOTER SECTION END-->
     <!-- JAVASCRIPT AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
     <!-- CORE JQUERY SCRIPTS -->
+
     <script src="<?php echo $dir; ?>assets/js/jquery-1.11.1.js"></script>
     <!-- BOOTSTRAP SCRIPTS  -->
     <script src="<?php echo $dir; ?>assets/js/bootstrap.js"></script>
