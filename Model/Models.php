@@ -31,7 +31,7 @@ class Auth
 		$result = mysqli_query($conn,$sql);
 		if ($result != null){
 			$row = mysqli_fetch_assoc($result);
-			session_start();
+			Auth::joinSession();
 			$_SESSION['auth_logged_in'] = True;
 			$_SESSION['auth_username'] = $username;
 			$_SESSION['auth_name'] = $row['name'];
@@ -101,10 +101,7 @@ class Auth
 
 	public function logout($value='')
 	{
-		$has_session = session_status() == PHP_SESSION_ACTIVE;
-		if (!$has_session){
-			session_start();
-		}
+		Auth::joinSession();
 		$_SESSION = array();
 		session_destroy();
 	}
@@ -176,15 +173,15 @@ class Teacher extends User
 */
 class Question
 {
-	var $userID;
-	var $questionId;
-	var $questionText;
-	var $questionImage;
-	var $startTime;
-	var $endTime;
-	var $maxMarks;
-	var $time;
-	var $difficulty;
+	public $userID;
+	public $questionId;
+	public $questionText;
+	public $questionImage;
+	public $startTime;
+	public $endTime;
+	public $maxMarks;
+	public $time;
+	public $difficulty;
 	function __construct()
 	{
 		# code...
@@ -197,9 +194,11 @@ class Question
 		$qText = mysqli_real_escape_string($conn,$qry);
 		return $qText;
 	}
-	public function validateQuestionTime($startTime, $endTime)
+	public function validateTime($time)
 	{
-		return TRUE;
+		if (preg_match('/^(\\d\\d)-(\\d\\d)-(\\d\\d\\d\\d) (\\d\\d):(\\d\\d) ([AP]M)$/',$time,$arr)){
+			return $arr[3] ."-" .$arr[2]."-".$arr[1] . " " . $arr[4] . ":" . $arr[5] . ":00" . " " . $arr[6];
+		}
 	}
 	/**
 	 * @return boolean
@@ -216,10 +215,7 @@ class Question
 	 */
 	public function createNew($questionText, $questionImage, $startTime, $endTime, $maxMarks, $difficulty)
 	{
-		$has_session = session_status() == PHP_SESSION_ACTIVE;
-		if (!$has_session){
-			session_start();
-		}
+		Auth::joinSession();
 		$diff = 0;
 		$userID = $_SESSION['auth_id'];
 		if ($difficulty == "easy"){
@@ -243,7 +239,9 @@ class Question
 		}
 	}
 	/**
+	 * @return boolean
 	 * 
+	 * saves the 
 	 */
 	public function save()
 	{
@@ -273,32 +271,38 @@ class Question
 	 * 1. If requested by student, it will only show questions whose submission is going on, or completed
 	 * 2. If requested by faculty, it will show all the questions present in the database.
 	 */
-	public function getAll($userType)
+	public function getAll($userType, $limit)
 	{
 		$sql = "";
 		if ($userType == "Teacher"){
-			$sql = "SELECT * FROM `questions`;";
+			$sql = "SELECT * FROM `questions`";
 		} elseif ($userType == "Student") {
-			$sql = "SELECT * FROM `questions` WHERE `start_time` <= CURTIME();";
+			$sql = "SELECT * FROM `questions` WHERE `start_time` <= CURTIME()";
 		} else {
-			$sql = "SELECT * FROM `questions` WHERE `start_time` <= CURTIME();";
+			$sql = "SELECT * FROM `questions` WHERE `start_time` <= CURTIME()";
+		}
+		if ($limit != 0){
+			$sql.= " LIMIT $limit;";
 		}
 		$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
 		$result = mysqli_query($conn,$sql);
+		// var_dump($sql);echo("<br>");
+		// var_dump($result);echo("<br>");
 		$n = mysqli_num_rows($result);
 		$res = array();
 		for ($i=0; $i <$n ; $i++) { 
 			$row = mysqli_fetch_assoc($result);
+			// var_dump($row);echo("<br>");
 			$temp = new Question();
-			$temp->$userID = $row['user_id'];
-			$temp->$questionId = $row['id'];
-			$temp->$questionText = $row['q_text'];
-			$temp->$questionImage = $row['q_image'];
-			$temp->$startTime = $row['start_time'];
-			$temp->$endTime = $row['end_time'];
-			$temp->$maxMarks = $row['max_marks'];
-			$temp->$time = $row['timestamps'];
-			$temp->difficulty = $row['difficulty'];
+			$temp->userID = $row['user_id'];
+			$temp->questionId = $row['id'];
+			$temp->questionText = $row['q_text'];
+			$temp->questionImage = $row['q_image'];
+			$temp->startTime = $row['start_time'];
+			$temp->endTime = $row['end_time'];
+			$temp->maxMarks = $row['max_marks'];
+			$temp->time = $row['timestamps'];
+			// $temp->difficulty = $row['difficulty'];
 			$res[] = $temp;
 		}
 		return $res;
