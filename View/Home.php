@@ -15,6 +15,7 @@
     <link href="<?php echo $dir; ?>assets/css/font-awesome.css" rel="stylesheet" />
     <!-- CUSTOM STYLE  -->
     <link href="<?php echo $dir; ?>assets/css/style.css" rel="stylesheet" />
+    <script src="<?php echo $dir ?>assets/js/jquery-1.11.1.js"></script>
      <!-- HTML5 Shiv and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -449,7 +450,7 @@
     <!-- FOOTER SECTION END-->
     <!-- JAVASCRIPT AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
     <!-- CORE JQUERY SCRIPTS -->
-    <script src="<?php echo $dir ?>assets/js/jquery-1.11.1.js"></script>
+    
     <!-- BOOTSTRAP SCRIPTS  -->
     <script src="<?php echo $dir ?>assets/js/bootstrap.js"></script>
 </body>
