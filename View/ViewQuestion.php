@@ -137,7 +137,7 @@
                         <p><strong>SHORT EXPLANATION</strong></p>
 
                         <p><strong>EXPLANATION:</strong></p>
-                        <div class ="col-md-offset-5"><button type="submit" id="myBtn"  class="btn btn-success" ><p id="check">Status</p></button></div>
+                        <div class ="col-md-offset-5"><button type="submit" id="myBtn"  class="btn btn-success" ><p id="check">start</p></button></div>
 
                     </div>
                 </div>
