@@ -10,31 +10,35 @@ if (!Auth::loginStatus()){
 	header('Location:' . URL_WEBSITE_HOME);
 	exit();
 }
-session_start();
-$name = $_SESSION['auth_name'];
+Auth::joinSession();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	if (!isset($_POST['difficulty']) || !isset($_POST['question']) || !isset($_POST['start_time']) || !isset($_POST['end_time']) || empty($_POST['difficulty']) || empty($_POST['question']) || empty($_POST['start_time']) || empty($_POST['end_time'])){
+	if (!isset($_POST['difficulty']) || !isset($_POST['question']) || !isset($_POST['start_date']) || !isset($_POST['end_date']) || empty($_POST['difficulty']) || empty($_POST['question']) || empty($_POST['start_date']) || empty($_POST['end_date'])){
 		die("Something missing in post request!");
 	}
 	$difficulty = $_POST['difficulty'];
 	$questionText = $_POST['question'];
-	$startTime = $_POST['startTime'];
-	$endTime = $_POST['endTime'];
-	$maxMarks = $_POST['mm'];
+	$startTime = $_POST['start_date'];
+	$endTime = $_POST['end_date'];
+	$maxMarks = 100;
 	$questionImage = '';
-	if (!Question::validateQuestionTime($startTime, $endTime)) {
-		die("invalid question Text");
-	}
+	// var_dump($startTime);
+	// var_dump($endTime);
+	// if (!Question::validateTime($startTime, $endTime)) {
+	// 	die("invalid question Text");
+	// }
 	$questionText=Question::validateQuestionText($questionText);
-	/**
-	 * Date validation is missing
-	 */
-
-	$ques = Question::createNew($questionText, $questionImage, $startTime, $endTime, $maxMarks, $difficulty);
-	header('Location:' . URL_WEBSITE_HOME);
-	exit();
+	$startTime = Question::validateTime($startTime);
+	$endTime = Question::validateTime($endTime);
+	if(Question::createNew($questionText, $questionImage, $startTime, $endTime, $maxMarks, $difficulty)){
+		header('Location:' . URL_WEBSITE_HOME);
+		exit();	
+	} else {
+		die("unable to create new entry");
+	}
+	
 }else{
-	require('../View/QuestionUpload.php');
+	$dir = '../View/';
+	require($dir . 'QuestionUpload.php');
 	exit();
 }
 ?>

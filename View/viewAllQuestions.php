@@ -15,7 +15,6 @@
     <link href="<?php echo $dir; ?>assets/css/font-awesome.css" rel="stylesheet" />
     <!-- CUSTOM STYLE  -->
     <link href="<?php echo $dir; ?>assets/css/style.css" rel="stylesheet" />
-    <script src="<?php echo $dir ?>assets/js/jquery-1.11.1.js"></script>
      <!-- HTML5 Shiv and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -75,7 +74,7 @@
                                 <h5><strong>Personal Bio : </strong></h5>
                                 <?php echo $_SESSION['auth_username']; ?>
                                 <hr />
-                                <a href="#" class="btn btn-info btn-sm">Full Profile</a>&nbsp; <a href="logout.php" class="btn btn-danger btn-sm">Logout</a>
+                                <a href="#" class="btn btn-info btn-sm">Full Profile</a>&nbsp; <a href="login.php" class="btn btn-danger btn-sm">Logout</a>
 
                             </div>
                         </li>
@@ -97,8 +96,8 @@
                         <ul id="menu-top" class="nav navbar-nav navbar-right">
                             <li><a class="menu-top-active " href="<?php echo ROUTE_CONTROLLER; ?>index.php">Home</a></li>
                             <li><a >||</a></li>
-                            <li><a href="questionUpload.php">Submit Ques.</a></li>
-                            <li><a href="viewQuestion.php">View Question</a></li>
+                            <li><a href="../View/QuestionUpload.php">Submit Ques.</a></li>
+                            <li><a href="ViewQuestion.php">View Question</a></li>
                             <li><a href="login.php">Login Page</a></li>
 
                         </ul>
@@ -118,64 +117,8 @@
                 </div>
                 
                     
-                        <div class="col-md-5">
-                            <div class="notice-board">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                      Active  Notice Panel 
-                                        <div class="pull-right" >
-                                            <div class="dropdown">
-                                                <button class="btn btn-success dropdown-toggle btn-xs" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-                                                <span class="glyphicon glyphicon-cog"></span>
-                                                <span class="caret"></span></button>
-                                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Refresh</a></li>
-                                                    </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="panel-body">
-                               
-                                        <!-- <ul >
-                                   
-                                            <li>
-                                                <a href="#">
-                                                    <span class="glyphicon glyphicon-align-left text-success" ></span> 
-                                                        Lorem ipsum dolor sit amet ipsum dolor sit amet
-                                                    <span class="label label-warning" > Just now </span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <span class="glyphicon glyphicon-info-sign text-danger" ></span>  
-                                                        Lorem ipsum dolor sit amet ipsum dolor sit amet
-                                                    <span class="label label-info" > 2 min chat</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <span class="glyphicon glyphicon-comment  text-warning" ></span>  
-                                                        Lorem ipsum dolor sit amet ipsum dolor sit amet
-                                                    <span class="label label-success" >GO ! </span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <span class="glyphicon glyphicon-edit  text-danger" ></span>  
-                                                        Lorem ipsum dolor sit amet ipsum dolor sit amet
-                                                    <span class="label label-success" >Let's have it </span>
-                                                </a>
-                                            </li>
-                   
-                                        </ul> -->
-                                    </div>
-                                    <div class="panel-footer">
-                                        <a href="#" class="btn btn-default btn-block"> <i class="glyphicon glyphicon-repeat"></i> Just A Small Footer Button</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                <div class="col-md-7">
+                        
+                <div class="col-md-12">
                   <!--   Kitchen Sink -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -192,13 +135,7 @@
                                             <th>End time</th>
                                             <th > <a href="#"  class="btn btn-xs btn-danger pull-right"  >View</a> </th>    
                                         </tr>
-                                        <?php foreach ($arr as $var) {
-                                            echo "<tr>";
-                                            echo "<td>$var->questionText</td>";
-                                            echo "<td>$var->startTime</td>";
-                                            echo "<td>$var->endTime</td>";
-                                            echo "</tr>";
-                                        } ?>
+                                        
                                     </tbody>
                                 </table>
                             </div>
@@ -456,7 +393,7 @@
     <!-- FOOTER SECTION END-->
     <!-- JAVASCRIPT AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
     <!-- CORE JQUERY SCRIPTS -->
-    
+    <script src="<?php echo $dir ?>assets/js/jquery-1.11.1.js"></script>
     <!-- BOOTSTRAP SCRIPTS  -->
     <script src="<?php echo $dir ?>assets/js/bootstrap.js"></script>
 </body>

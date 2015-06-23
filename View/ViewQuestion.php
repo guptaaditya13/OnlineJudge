@@ -8,13 +8,13 @@
     <!--[if IE]>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <![endif]-->
-    <title>Free Responsive Admin Theme - ZONTAL</title>
+    <title>Online Judge</title>
     <!-- BOOTSTRAP CORE STYLE  -->
-    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="<?php echo $dir; ?>assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME ICONS  -->
-    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+    <link href="<?php echo $dir; ?>assets/css/font-awesome.css" rel="stylesheet" />
     <!-- CUSTOM STYLE  -->
-    <link href="assets/css/style.css" rel="stylesheet" />
+    <link href="<?php echo $dir; ?>assets/css/style.css" rel="stylesheet" />
      <!-- HTML5 Shiv and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -44,9 +44,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="index.php">
 
-                    <img src="assets/img/logo.png" height="101" width="230"/>
+                    <img src="<?php echo $dir; ?>assets/img/logo.png" height="101" width="230"/>
                 </a>
 
             </div>
@@ -62,7 +62,7 @@
                             <div class="dropdown-menu dropdown-settings">
                                 <div class="media">
                                     <a class="media-left" href="#">
-                                        <img src="assets/img/64-64.jpg" alt="" class="img-rounded" />
+                                        <img src="<?php echo $dir; ?>assets/img/64-64.jpg" alt="" class="img-rounded" />
                                     </a>
                                     <div class="media-body">
                                         <h4 class="media-heading">Jhon Deo Alex </h4>
@@ -74,7 +74,7 @@
                                 <h5><strong>Personal Bio : </strong></h5>
                                 Anim pariatur cliche reprehen derit.
                                 <hr />
-                                <a href="#" class="btn btn-info btn-sm">Full Profile</a>&nbsp; <a href="login.php" class="btn btn-danger btn-sm">Logout</a>
+                                <a href="#" class="btn btn-info btn-sm">Full Profile</a>&nbsp; <a href="logout.php" class="btn btn-danger btn-sm">Logout</a>
 
                             </div>
                         </li>
@@ -92,10 +92,10 @@
                 <div class="col-md-12">
                     <div class="navbar-collapse collapse ">
                         <ul id="menu-top" class="nav navbar-nav navbar-right">
-                            <li><a class="menu-top-active " href="Home.php">Home</a></li>
+                            <li><a class="menu-top-active " href="index.php">Home</a></li>
                             <li><a >||</a></li>
-                            <li><a href="Submission.php">Submit Ques.</a></li>
-                            <li><a href="ViewQuestion.php">View Question</a></li>
+                            <li><a href="questionUpload.php">Submit Ques.</a></li>
+                            <li><a href="viewQuestion.php">View Question</a></li>
                             <li><a href="login.php">Login Page</a></li>
 
                         </ul>
@@ -127,17 +127,17 @@
 
                         <p><strong>START TIME</strong></p>
                         <!-- <input type="time" value="12:01:00;"> -->
-                        <input type="time" name="StartTime" placeholder="hrs:mins" pattern="^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$" class="inputs time" disabled>
+                        <input type="datetime-local" name="StartTime" placeholder="hrs:mins"  class="inputs time" disabled>
                         <p><strong>END TIME</strong></p>
                         <!-- <input type="time" value="12:01:00;"> -->
-                        <input type="time" name="EndTime" placeholder="hrs:mins" pattern="^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$" class="inputs time" disabled>
+                        <input type="datetime-local" name="EndTime" placeholder="hrs:mins"  class="inputs time" disabled>
                         
                         <p><strong>PROBLEM:</strong></p>
 
                         <p><strong>SHORT EXPLANATION</strong></p>
 
                         <p><strong>EXPLANATION:</strong></p>
-
+                        <div class ="col-md-offset-5"><button type="submit" id="myBtn"  class="btn btn-success" ><p id="check">Status</p></button></div>
 
                     </div>
                 </div>
@@ -159,8 +159,8 @@
     <!-- FOOTER SECTION END-->
     <!-- JAVASCRIPT AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
     <!-- CORE JQUERY SCRIPTS -->
-    <script src="assets/js/jquery-1.11.1.js"></script>
+    <script src="<?php echo $dir; ?>assets/js/jquery-1.11.1.js"></script>
     <!-- BOOTSTRAP SCRIPTS  -->
-    <script src="assets/js/bootstrap.js"></script>
+    <script src="<?php echo $dir; ?>assets/js/bootstrap.js"></script>
 </body>
 </html>

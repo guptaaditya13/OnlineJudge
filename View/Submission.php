@@ -113,27 +113,12 @@
                     </div>
                 </div>
                 <p><strong>PROBLEM LINK:</strong></p>
-
-
-
-<p>Author: </p>
-<p>Tester: </p>
-<p>Editorialist: </p>
-<p>Russian Translator: </p>
-<p>Mandarian Translator: </p>
-<p><strong>DIFFICULTY:</strong></p>
-
-
-<p><strong>PREREQUISITES:</strong></p>
-
-
-<p><strong>PROBLEM:</strong></p>
-
-<p><strong>SHORT EXPLANATION</strong></p>
-
-<p><strong>EXPLANATION:</strong></p>
-                    
-             <BR>                    
+                <p>Tester: </p>
+                <p><strong>DIFFICULTY:</strong></p>
+                <p><strong>PROBLEM:</strong></p>
+                <p><strong>SHORT EXPLANATION</strong></p>
+                <p><strong>EXPLANATION:</strong></p>
+                <BR>                    
 
 
 
