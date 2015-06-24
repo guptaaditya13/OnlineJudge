@@ -196,10 +196,22 @@ class Question
 	}
 	public function validateTime($time)
 	{
-		if (preg_match('/^(\\d\\d)-(\\d\\d)-(\\d\\d\\d\\d) (\\d\\d):(\\d\\d) ([AP]M)$/',$time,$arr)){
-			return $arr[3] ."-" .$arr[2]."-".$arr[1] . " " . $arr[4] . ":" . $arr[5] . ":00" . " " . $arr[6];
-		}
+//		if (preg_match('/^(\\d\\d)-(\\d\\d)-(\\d\\d\\d\\d) (\\d\\d):(\\d\\d) ([AP]M)$/',$time,$arr)){
+//			return $arr[3] ."-" .$arr[2]."-".$arr[1] . " " . $arr[4] . ":" . $arr[5] . ":00" . " " . $arr[6];
+//		}
+        $format = "m-d-Y h:i A";
+        $obj = DateTime::createFromFormat($format, $time);
+        if ($obj){
+            return $obj;
+        } else {
+            $format = "m-d-Y H:i";
+            $obj = DateTime::createFromFormat($format, $time);
+            return $obj;
+        }
 	}
+    public function validateDates($startDate,$endDate){
+        return $startDate < $endDate;
+    }
 	/**
 	 * @return boolean
 	 * validateQuestionId($id) is used to check if the question id is of valid type or not.
