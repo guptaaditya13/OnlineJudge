@@ -9,3 +9,4 @@ $arr = Question::getAll(Auth::loginStatus(), 0);
 $dir = "../View/";
 require($dir . 'viewAllQuestions.php');
 ?>
+

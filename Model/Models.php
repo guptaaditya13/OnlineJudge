@@ -289,10 +289,10 @@ class Question
 		$sql = "";
 		if ($userType == "Teacher"){
 			$sql = "SELECT * FROM `questions`";
-		} elseif ($userType == "Student") {
-			$sql = "SELECT * FROM `questions` WHERE `start_time` <= CURTIME()";
+		// } elseif ($userType == "Student") {
+			// $sql = "SELECT * FROM `questions` WHERE `start_time` <= CURTIME()";
 		} else {
-			$sql = "SELECT * FROM `questions` WHERE `start_time` <= CURTIME()";
+			$sql = "SELECT * FROM `questions` WHERE `start_time` <= CURTIME()"; //
 		}
 		if ($limit != 0){
 			$sql.= " LIMIT $limit;";

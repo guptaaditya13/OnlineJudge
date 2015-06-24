@@ -66,15 +66,15 @@
                                         <img src="<?php echo $dir; ?>assets/img/<?php echo $_SESSION['auth_username']; ?>.jpg" alt="" class="img-rounded" />
                                     </a>
                                     <div class="media-body">
-                                        <h4 class="media-heading"> <?php echo $_SESSION['auth_username']; ?></h4>
-                                        <h5><?php echo $_SESSION['auth_username']; ?></h5>
+                                        <h4 class="media-heading"> <?php echo $_SESSION['auth_name']; ?></h4>
+                                        <h5>......</h5>
 
                                     </div>
                                 </div>
-                                <hr />
+                                <!-- <hr />
                                 <h5><strong>Personal Bio : </strong></h5>
-                                <?php echo $_SESSION['auth_username']; ?>
-                                <hr />
+                                <?php echo $_SESSION['auth_name']; ?>
+                                <hr /> -->
                                 <a href="#" class="btn btn-info btn-sm">Full Profile</a>&nbsp; <a href="logout.php" class="btn btn-danger btn-sm">Logout</a>
 
                             </div>
@@ -190,14 +190,17 @@
                                             <th>Question</th>
                                             <th>Start time</th>
                                             <th>End time</th>
-                                            <th > <a href="#"  class="btn btn-xs btn-danger pull-right"  >View</a> </th>    
+                                                
                                         </tr>
                                         <?php foreach ($arr as $var) {
+
                                             echo "<tr>";
                                             echo "<td>$var->questionText</td>";
                                             echo "<td>$var->startTime</td>";
                                             echo "<td>$var->endTime</td>";
+                                            echo "<td><a href=\"viewQuestion.php?questionId=$var->questionId\"  class=\"btn btn-xs btn-danger pull-right\" >View</a> </td>";
                                             echo "</tr>";
+
                                         } ?>
                                     </tbody>
                                 </table>
