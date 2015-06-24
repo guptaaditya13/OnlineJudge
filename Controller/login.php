@@ -21,8 +21,8 @@ if ($type = Auth::loginStatus()){
 		exit();
 
 } elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	if (!isset($_POST['username']) || !isset($_POST['password']) || empty($_POST['username']) || empty($_POST['password'])){
-		die("Username and password missing in post request!");
+	if (isset($_POST['username']) && isset($_POST['password']) && !empty($_POST['username']) && !empty($_POST['password']) && Auth::validateCSRF("POST")){
+		die("Username, password or CSRF missing in post request!");
 	}
 	$username = $_POST['username'];
 	$password = $_POST['password'];

@@ -1,5 +1,10 @@
 <?php
 require('../connection.php');
+//                                    AAA   UU   UU TTTTTTT HH   HH 
+//                                   AAAAA  UU   UU   TTT   HH   HH 
+//                                  AA   AA UU   UU   TTT   HHHHHHH 
+//                                  AAAAAAA UU   UU   TTT   HH   HH 
+//                                  AA   AA  UUUUU    TTT   HH   HH 
 /**
 * This Model is used to access the Login table for users.
 */
@@ -139,19 +144,68 @@ class Auth
 		}
 	}
 
+	/**
+	 * Logout the current logged in user by destroying the session array.
+	*/
 	public function logout($value='')
 	{
 		Auth::joinSession();
 		$_SESSION = array();
 		session_destroy();
 	}
+
+	/**
+	 * performs session_start() if a session is not already active.
+	 */
 	public function joinSession(){
 		if (session_status() != PHP_SESSION_ACTIVE){
 			session_start();
 		}
 	}
 
+	/**
+	 * @return String
+	 * 
+	 * Generates a random CSRF token of length 44. Does not put that in session array.
+	 */
+	public function generateCSRFtoken()
+	{
+		return base64_encode( openssl_random_pseudo_bytes(32));
+	}
+
+	/**
+	 *  
+	 * This function echo a String containing a HTML code of hidden input box with CSRF token
+	 */
+	public function embedCSRF()
+	{
+		$token = Auth::generateCSRFtoken();
+		$_SESSION['CSRF'] = $token;
+		echo "<input type = \"hidden\" name = \"CSRF\" value = \"$token\">";
+	}
+
+	/**
+	 * @param boolean
+	 * 
+	 * Takes input the request method, checks whether the CSRF is valid or not.
+	 */
+	public function validateCSRF($requestMethod)
+	{
+		if (strcmp($requestMethod,"POST") == 0){
+			return ((isset($_POST['CSRF'])) && (!empty($_POST['CSRF'])) && (strlen($_POST['CSRF']) == 44) && ($_SESSION['CSRF'] == $_POST['CSRF']));
+		} elseif (strcmp($requestMethod,"GET") == 0) {
+			return ((isset($_GET['CSRF'])) && (!empty($_GET['CSRF'])) && (strlen($_GET['CSRF']) == 44) && ($_SESSION['CSRF'] == $_POST['CSRF']));
+		} else {
+			return false;
+		}
+	}
 }
+
+//                                  UU   UU  SSSSS  EEEEEEE RRRRRR  
+//                                  UU   UU SS      EE      RR   RR 
+//                                  UU   UU  SSSSS  EEEEE   RRRRRR  
+//                                 UU   UU      SS EE      RR  RR  
+//                                   UUUUU   SSSSS  EEEEEEE RR   RR 
 /**
 * The basic parent class of child Student and Techer
 */
@@ -176,6 +230,13 @@ class User
 	}
 }
 
+
+//                       SSSSS  TTTTTTT UU   UU DDDDD   EEEEEEE NN   NN TTTTTTT 
+//                      SS        TTT   UU   UU DD  DD  EE      NNN  NN   TTT   
+//                       SSSSS    TTT   UU   UU DD   DD EEEEE   NN N NN   TTT   
+//                           SS   TTT   UU   UU DD   DD EE      NN  NNN   TTT   
+//                       SSSSS    TTT    UUUUU  DDDDDD  EEEEEEE NN   NN   TTT   
+
 /**
 * The student class contains all methods and properties related to Student
 */
@@ -191,6 +252,12 @@ class Student extends User
 		parent::__construct($name, $username, $id, $email);
 	}
 }
+
+//                      TTTTTTT EEEEEEE   AAA    CCCCC  HH   HH EEEEEEE RRRRRR  
+//                        TTT   EE       AAAAA  CC    C HH   HH EE      RR   RR 
+//                        TTT   EEEEE   AA   AA CC      HHHHHHH EEEEE   RRRRRR  
+//                        TTT   EE      AAAAAAA CC    C HH   HH EE      RR  RR  
+//                        TTT   EEEEEEE AA   AA  CCCCC  HH   HH EEEEEEE RR   RR 
 /**
 * The teacher class contains all methods and properties related to Student
 */
@@ -205,6 +272,12 @@ class Teacher extends User
 		parent::__construct($name, $username, $id, $email);
 	}
 }
+
+//                    QQQQQ  UU   UU EEEEEEE  SSSSS  TTTTTTT IIIII  OOOOO  NN   NN 
+//                   QQ   QQ UU   UU EE      SS        TTT    III  OO   OO NNN  NN 
+//                   QQ   QQ UU   UU EEEEE    SSSSS    TTT    III  OO   OO NN N NN 
+//                   QQ  QQ  UU   UU EE           SS   TTT    III  OO   OO NN  NNN 
+//                    QQQQ Q  UUUUU  EEEEEEE  SSSSS    TTT   IIIII  OOOO0  NN   NN 
 
 /**
 * Following class will represent a question in the database.

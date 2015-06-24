@@ -88,6 +88,7 @@
                         <label>Enter Password :  </label>
                         <input type="password" name="password" class="form-control" placeholder="*********"/>
                         <br>
+                         <?php Auth::embedCSRF(); ?>
                         <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-user"></span>  Log Me In</button>
                 </div>
                 </form>

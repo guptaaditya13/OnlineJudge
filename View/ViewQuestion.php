@@ -127,10 +127,10 @@
 
                         <p><strong>START TIME :</strong></p>
                         <!-- <input type="time" value="12:01:00;"> -->
-                        <input type="datetime-local" name="StartTime" value = "<?php echo $question->startTime; ?>" class="inputs time" disabled>
+                        <input name="StartTime" value = "<?php echo $question->startTime; ?>" class="inputs time" disabled>
                         <p><strong>END TIME :</strong></p>
                         <!-- <input type="time" value="12:01:00;"> -->
-                        <input type="datetime-local" name="EndTime" value = "<?php echo $question->endTime; ?>" class="inputs time" disabled>
+                        <input name="EndTime" value = "<?php echo $question->endTime; ?>" class="inputs time" disabled>
                         
                         <p><strong>PROBLEM :</strong> <?php echo $question->questionText; ?></p>
 
