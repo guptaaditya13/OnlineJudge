@@ -26,7 +26,6 @@ class Auth
 	*/
 	public function loginUser($username, $password){
 		$sql = "SELECT * FROM user_table WHERE username = '$username' AND password = '$password'";
-		// var_dump($sql);
 		$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
 		$result = mysqli_query($conn,$sql);
 		if ($result != null){
@@ -54,6 +53,47 @@ class Auth
 		}
 	}
 
+	public function getCurrentUser()
+	{
+		Auth::joinSession();
+		if (Auth::loginStatus()){
+			$username = $_SESSION['auth_username'];
+			$name = $_SESSION['auth_name'];
+			$id = $_SESSION['auth_id'];
+			$email = $_SESSION['auth_email'];
+			if ($_SESSION['auth_type'] == 'Teacher'){
+				$obj = new Teacher($name,$username,$id,$email);
+			} else {
+				$obj = new Student($name,$username,$id,$email);
+			}
+			return $obj;
+		} else {
+			return null;
+		}
+	}
+	public function getUser($id)
+	{
+		$sql = "SELECT * FROM user_table WHERE id = $id";
+		$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
+		$result = mysqli_query($conn,$sql);
+		if ($result){
+			$row = mysqli_fetch_assoc($result);
+			$name = $row['name'];
+			$username = $row['username'];
+			$email = $row['email'];
+			$clss;
+			if ($row['type'] == 1){
+				$clss = "Teacher";
+			} else {
+				$clss = "Student";
+			}
+			$obj = new $clss($name,$username,$id,$email);
+			return $obj;
+
+		} else {
+			return null;
+		}
+	}
 	public function userType()
 	{
 		if(isset($_SESSION['auth_type'])){
@@ -129,10 +169,10 @@ class User
 	 */
 	function __construct($name, $username, $id, $email)
 	{
-		$this->$name = $name;
+		$this->name = $name;
 		$this->username = $username;
-		$this->$id = $id;
-		$this->$email = $email;
+		$this->id = $id;
+		$this->email = $email;
 	}
 }
 
@@ -156,8 +196,6 @@ class Student extends User
 */
 class Teacher extends User
 {
-
-
 	/**
 	 * @return instance of Teacher class
 	 * 
@@ -182,11 +220,6 @@ class Question
 	public $maxMarks;
 	public $time;
 	public $difficulty;
-	function __construct()
-	{
-		# code...
-	}
-	
 	public function validateQuestionText($questionText)
 	{
 		$qText = htmlspecialchars(strip_tags($questionText));
@@ -199,12 +232,12 @@ class Question
 //		if (preg_match('/^(\\d\\d)-(\\d\\d)-(\\d\\d\\d\\d) (\\d\\d):(\\d\\d) ([AP]M)$/',$time,$arr)){
 //			return $arr[3] ."-" .$arr[2]."-".$arr[1] . " " . $arr[4] . ":" . $arr[5] . ":00" . " " . $arr[6];
 //		}
-        $format = "m-d-Y h:i A";
+        $format = "Y-m-d?h:i A";
         $obj = DateTime::createFromFormat($format, $time);
         if ($obj){
             return $obj;
         } else {
-            $format = "m-d-Y H:i";
+            $format = "Y-m-d?H:i";
             $obj = DateTime::createFromFormat($format, $time);
             return $obj;
         }
@@ -247,6 +280,7 @@ class Question
 		$result = mysqli_query($conn,$sql);
 		if ($result == true){
 			return true;
+	
 		} else {
 			return false;
 		}
@@ -258,24 +292,24 @@ class Question
 	 */
 	public function save()
 	{
-		if ($this->$userID == NULL) {
+		if ($this->userID == NULL) {
 			return FALSE;
 		}
-		if ($this->$questionText == NULL) {
+		if ($this->questionText == NULL) {
 			return FALSE;
 		}
-		if ($this->$maxMarks == NULL) {
-			$this->$maxMarks = 0;
+		if ($this->maxMarks == NULL) {
+			$this->maxMarks = 0;
 		}
-		if ($this->$time == NULL) {
+		if ($this->time == NULL) {
 			$time = time() + (5*60*60 + 30*60);
             $stime = gmdate('Y-m-d H:i:s',$time);	
-			$this->$time = $stime;
+			$this->time = $stime;
 		}
-		if ($this->$difficulty == NULL) {
-			$this->$difficulty = 0;
+		if ($this->difficulty == NULL) {
+			$this->difficulty = 0;
 		}
-		return createNew($this->$userID,$this->$questionId,$this->$questionText,$this->$questionImage,$this->$startTime,$this->$endTime,$this->$maxMarks,$this->$time,$this->$difficulty);
+		return createNew($this->userID,$this->questionId,$this->questionText,$this->questionImage,$this->startTime,$this->endTime,$this->maxMarks,$this->time,$this->difficulty);
 	}
 	/**
 	 * @return Question array
@@ -289,10 +323,10 @@ class Question
 		$sql = "";
 		if ($userType == "Teacher"){
 			$sql = "SELECT * FROM `questions`";
-		// } elseif ($userType == "Student") {
-			// $sql = "SELECT * FROM `questions` WHERE `start_time` <= CURTIME()";
+		} elseif ($userType == "Student") {
+			$sql = "SELECT * FROM `questions` WHERE `start_time` <= CURTIME()";
 		} else {
-			$sql = "SELECT * FROM `questions` WHERE `start_time` <= CURTIME()"; //
+			$sql = "SELECT * FROM `questions` WHERE `start_time` <= CURTIME()";
 		}
 		if ($limit != 0){
 			$sql.= " LIMIT $limit;";
@@ -305,7 +339,6 @@ class Question
 		$res = array();
 		for ($i=0; $i <$n ; $i++) { 
 			$row = mysqli_fetch_assoc($result);
-			// var_dump($row);echo("<br>");
 			$temp = new Question();
 			$temp->userID = $row['user_id'];
 			$temp->questionId = $row['id'];
@@ -315,7 +348,7 @@ class Question
 			$temp->endTime = $row['end_time'];
 			$temp->maxMarks = $row['max_marks'];
 			$temp->time = $row['timestamps'];
-			// $temp->difficulty = $row['difficulty'];
+			$temp->difficulty = $row['difficulty'];
 			$res[] = $temp;
 		}
 		return $res;
@@ -333,18 +366,26 @@ class Question
 		if ($n == 1) { 
 			$row = mysqli_fetch_assoc($result);
 			$temp = new Question();
-			$temp->$userID = $row['user_id'];
-			$temp->$questionId = $row['id'];
-			$temp->$questionText = $row['q_text'];
-			$temp->$questionImage = $row['q_image'];
-			$temp->$startTime = $row['start_time'];
-			$temp->$endTime = $row['end_time'];
-			$temp->$maxMarks = $row['max_marks'];
-			$temp->$time = $row['timestamps'];
-			$temp->difficulty = $row['difficulty'];
+			$temp->userID = $row['user_id'];
+			$temp->questionId = $row['id'];
+			$temp->questionText = $row['q_text'];
+			$temp->questionImage = $row['q_image'];
+			$temp->startTime = $row['start_time'];
+			$temp->endTime = $row['end_time'];
+			$temp->maxMarks = $row['max_marks'];
+			$temp->time = $row['timestamps'];
+			$difficulty = $row['difficulty'];
+			if ($difficulty == 0){
+				$temp->difficulty = "Easy";
+			} elseif ($difficulty == 1){
+				$temp->difficulty = "Medium";
+			} elseif ($difficulty == 2){
+				$temp->difficulty = "Hard";
+			} else {
+				$temp->difficulty = "Challenge";
+			}
 		}
 		return $temp;
 	}
-
 }
 ?>

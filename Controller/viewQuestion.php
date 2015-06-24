@@ -9,10 +9,15 @@ require ('../Model/Models.php');
  */
 
 //isset($_GET['qusetionId'])
-if ($_SERVER['REQUEST_METHOD'] == 'GET' && !empty($_GET['questionId']) && Question::validateQuestionId($_GET['questionId'])) {
-	$ques = new Question();
-	$ques = Question::getQuestion($_GET['questionId']);
-	$dir = "../View";
-	require($dir . 'viewAQuestion.php');
+if (($_SERVER['REQUEST_METHOD'] == 'GET') && (isset($_GET['questionId'])) && !(empty($_GET['questionId'])) && Question::validateQuestionId($_GET['questionId'])) {
+	if (Question::validateQuestionId($_GET['questionId'])){
+		$question = Question::getQuestion($_GET['questionId']);
+		$user = Auth::getUser($question->userID);
+		$dir = "../View/";
+		require($dir . 'viewQuestion.php');
+	} else {
+		die("Invalid question id");
+	}
+	
 }
  ?>

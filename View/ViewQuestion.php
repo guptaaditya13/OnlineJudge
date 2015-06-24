@@ -118,21 +118,21 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="alert alert-warning">
-                        <p><strong>PROBLEM LINK:</strong></p>
-                        <p>Author: </p>
+                        <p><strong>PROBLEM TAG: </strong></p>
+                        <p>Author: <b><?php echo $user->name; ?></b></p>
                         <p>Tester: </p>
-                        <p><strong>DIFFICULTY:</strong></p>
+                        <p><strong>DIFFICULTY: <?php echo $question->difficulty; ?></strong></p>
 
 
 
-                        <p><strong>START TIME</strong></p>
+                        <p><strong>START TIME :</strong></p>
                         <!-- <input type="time" value="12:01:00;"> -->
-                        <input type="datetime-local" name="StartTime" placeholder="hrs:mins"  class="inputs time" disabled>
-                        <p><strong>END TIME</strong></p>
+                        <input type="datetime-local" name="StartTime" value = "<?php echo $question->startTime; ?>" class="inputs time" disabled>
+                        <p><strong>END TIME :</strong></p>
                         <!-- <input type="time" value="12:01:00;"> -->
-                        <input type="datetime-local" name="EndTime" placeholder="hrs:mins"  class="inputs time" disabled>
+                        <input type="datetime-local" name="EndTime" value = "<?php echo $question->endTime; ?>" class="inputs time" disabled>
                         
-                        <p><strong>PROBLEM:</strong></p>
+                        <p><strong>PROBLEM :</strong> <?php echo $question->questionText; ?></p>
 
                         <p><strong>SHORT EXPLANATION</strong></p>
 
