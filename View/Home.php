@@ -193,12 +193,14 @@
                                                 
                                         </tr>
                                         <?php foreach ($arr as $var) {
+
                                             echo '<tr>';
                                             echo '<td>$var->questionText</td>';
                                             echo '<td>$var->startTime</td>';
                                             echo '<td>$var->endTime</td>';
                                             echo '<td>$var-> <a href="#"  class="btn btn-xs btn-danger pull-right"  >View</a> </td>';
                                             echo '</tr>';
+
                                         } ?>
                                     </tbody>
                                 </table>

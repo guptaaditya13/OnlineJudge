@@ -21,14 +21,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$endTime = $_POST['end_date'];
 	$maxMarks = 100;
 	$questionImage = '';
-	if (!Question::validateQuestionTime($startTime, $endTime)) {
-		die("invalid question Text");
-	}
+	// var_dump($startTime);
+	// var_dump($endTime);
+	// if (!Question::validateTime($startTime, $endTime)) {
+	// 	die("invalid question Text");
+	// }
 	$questionText=Question::validateQuestionText($questionText);
-	/**
-	 * Date validation is missing
-	 */
-
+	$startTime = Question::validateTime($startTime);
+	$endTime = Question::validateTime($endTime);
 	if(Question::createNew($questionText, $questionImage, $startTime, $endTime, $maxMarks, $difficulty)){
 		header('Location:' . URL_WEBSITE_HOME);
 		exit();	
