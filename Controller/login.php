@@ -22,30 +22,32 @@ if ($type = Auth::loginStatus()){
 
 } elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if (isset($_POST['username']) && isset($_POST['password']) && !empty($_POST['username']) && !empty($_POST['password']) && Auth::validateCSRF("POST")){
-		die("Username, password or CSRF missing in post request!");
-	}
-	$username = $_POST['username'];
-	$password = $_POST['password'];
-	
-	/**
-	 * Validating the username & password provided
-	 */
-	if($error = Auth::validateData($username, $password)){
-		die($error);
-	}
-	
-	$user = Auth::loginUser($username, sha1($password));
-	
-	if(is_a($user, 'Student')){
-		header('Location: ' . URL_STUDENT_HOME);
-		exit();
-	} elseif (is_a($user, 'Teacher')) {
-		header('Location: ' . URL_TEACHER_HOME);
-		exit();
+			$username = $_POST['username'];
+		$password = $_POST['password'];
+		
+		/**
+		 * Validating the username & password provided
+		 */
+		if($error = Auth::validateData($username, $password)){
+			die($error);
+		}
+		
+		$user = Auth::loginUser($username, sha1($password));
+		
+		if(is_a($user, 'Student')){
+			header('Location: ' . URL_STUDENT_HOME);
+			exit();
+		} elseif (is_a($user, 'Teacher')) {
+			header('Location: ' . URL_TEACHER_HOME);
+			exit();
+		} else {
+			// var_dump(Auth::loginUser($username, sha1($password)));
+			die("User not found! ");
+		}
 	} else {
-		// var_dump(Auth::loginUser($username, sha1($password)));
-		die("User not found! ");
+		die ("Invalid POST request.");
 	}
+	
 
 } else {
 	/**
