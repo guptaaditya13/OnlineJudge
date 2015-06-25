@@ -76,6 +76,7 @@
                                 <?php echo $_SESSION['auth_username']; ?>
                                 <hr />
                                 <a href="#" class="btn btn-info btn-sm">Full Profile</a>&nbsp; <a href="logout.php" class="btn btn-danger btn-sm">Logout</a>
+                                <!-- <a href="#" class="btn btn-success btn-sm">Change password</a> -->
 
                             </div>
                         </li>
@@ -194,15 +195,16 @@
                                         </tr>
                                         <?php foreach ($arr as $var) {
 
-                                            echo '<tr>';
-                                            echo '<td>$var->questionText</td>';
-                                            echo '<td>$var->startTime</td>';
-                                            echo '<td>$var->endTime</td>';
-                                            echo '<td>$var-> <a href="#"  class="btn btn-xs btn-danger pull-right"  >View</a> </td>';
-                                            echo '</tr>';
+                                            echo "<tr>";
+                                            echo "<td>$var->questionText</td>";
+                                            echo "<td>$var->startTime</td>";
+                                            echo "<td>$var->endTime</td>";
+                                            echo "<td>$var-> <a href=\"#\"  class=\"btn btn-xs btn-danger pull-right\"  >View</a> </td>";
+                                            echo "</tr>";
 
                                         } ?>
                                     </tbody>
+                                    <a href="#"  class="btn btn-xs btn-success pull-right"  >View All</a>
                                 </table>
                             </div>
                         </div>
