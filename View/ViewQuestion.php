@@ -22,7 +22,7 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body>
+<body onload="checkstatus()">
     <header>
         <div class="container">
             <div class="row">
@@ -162,5 +162,11 @@
     <script src="<?php echo $dir; ?>assets/js/jquery-1.11.1.js"></script>
     <!-- BOOTSTRAP SCRIPTS  -->
     <script src="<?php echo $dir; ?>assets/js/bootstrap.js"></script>
+    <script type="text/javascript">
+        function checkstatus () {
+            
+
+        }
+    </script>
 </body>
 </html>

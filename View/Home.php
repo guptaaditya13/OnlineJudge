@@ -76,6 +76,7 @@
                                 <?php echo $_SESSION['auth_name']; ?>
                                 <hr /> -->
                                 <a href="#" class="btn btn-info btn-sm">Full Profile</a>&nbsp; <a href="logout.php" class="btn btn-danger btn-sm">Logout</a>
+                                <!-- <a href="#" class="btn btn-success btn-sm">Change password</a> -->
 
                             </div>
                         </li>
@@ -203,6 +204,7 @@
 
                                         } ?>
                                     </tbody>
+                                    <a href="#"  class="btn btn-xs btn-success pull-right"  >View All</a>
                                 </table>
                             </div>
                         </div>

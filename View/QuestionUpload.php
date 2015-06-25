@@ -190,9 +190,16 @@
                                 <label>End Date Time&nbsp;&nbsp;(MM-DD-YYYY hh:mm AM/PM)</label>
                                 <input type="datetime-local" class="form-control" id="end_date" onchange='DateValidate()' required value="" name="end_date" placeholder="Select End date">
                                 <p id="end"></p>
-                        
+                                <div class="row">
+                        <div  class="col-md-10">
                         <p><strong>PROBLEM:</strong></p>
-                        <textarea class="form-control" name="question" rows="3" ></textarea>
+                        <textarea class="form-control" name="question" rows="1"  ></textarea>
+                        </div>
+                        <div class="col-md-2">
+                            <p><strong> Max marks<strong/> </p>
+                            <input type="number" class="form-control" name="maxMarks" value="100" required/>
+                        </div>    
+                    </div>
                         <p><strong>SHORT EXPLANATION</strong></p>
                         <textarea class="form-control" name="ShortExplain" rows="3" ></textarea>
                         <p><strong>EXPLANATION:</strong></p>
