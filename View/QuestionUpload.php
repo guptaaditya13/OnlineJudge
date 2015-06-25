@@ -184,10 +184,10 @@
                                 <option  value="challenge">Challenge</option>
                             </select>
                             
-                                <label>Start Date Time&nbsp;&nbsp;(MM/DD/YYYY hh:mm AM/PM)</label>
+                                <label>Start Date Time&nbsp;&nbsp;(MM-DD-YYYY hh:mm AM/PM)</label>
                                 <input type="datetime-local" class="form-control" required value="" id="start_date" name="start_date" placeholder="Select Start date">
                                 <p id="start"></p>
-                                <label>End Date Time&nbsp;&nbsp;(MM/DD/YYYY hh:mm AM/PM)</label>
+                                <label>End Date Time&nbsp;&nbsp;(MM-DD-YYYY hh:mm AM/PM)</label>
                                 <input type="datetime-local" class="form-control" id="end_date" onchange='DateValidate()' required value="" name="end_date" placeholder="Select End date">
                                 <p id="end"></p>
                                 <div class="row">

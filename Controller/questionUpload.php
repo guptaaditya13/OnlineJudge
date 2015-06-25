@@ -21,15 +21,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$endTime = $_POST['end_date'];
 	$maxMarks = 100;
 	$questionImage = '';
-	// var_dump($startTime);
-	// var_dump($endTime);
-	// if (!Question::validateTime($startTime, $endTime)) {
-	// 	die("invalid question Text");
-	// }
+	/**
+	 * All POST parameters have been collected, now sanitizing the data
+	 */
 	$questionText=Question::validateQuestionText($questionText);
+	
+	/**
+	 * converting received date strings in standard date objects
+	*/
 	$startTime = Question::validateTime($startTime);
 	$endTime = Question::validateTime($endTime);
-	if(Question::createNew($questionText, $questionImage, $startTime, $endTime, $maxMarks, $difficulty)){
+	if($startTime == false || $endTime == false){
+		die("Improper date format");
+	}
+	if (!Question::validateDates($startTime,$endTime)){
+		echo "End date exceeded start date";
+	}
+	if(Question::createNew($questionText, $questionImage, $startTime->format('Y-m-d H:i'), $endTime->format('Y-m-d H:i'), $maxMarks, $difficulty)){
 		header('Location:' . URL_WEBSITE_HOME);
 		exit();	
 	} else {

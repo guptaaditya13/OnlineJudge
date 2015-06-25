@@ -142,7 +142,11 @@
                                             echo "<td>$var->questionText</td>";
                                             echo "<td>$var->startTime</td>";
                                             echo "<td>$var->endTime</td>";
+<<<<<<< HEAD
                                             echo "<td>$var-> <a href=\"#\"  class=\"btn btn-xs btn-danger pull-right\"  >View</a> </td>";
+=======
+                                            echo "<td><a href=\"viewQuestion.php?questionId=$var->questionId\" class=\"btn btn-xs btn-danger pull-right\">View</a> </td>";
+>>>>>>> 600fdf13e9f1b97c9da8caebfc35987d4b7223c2
                                             echo "</tr>";
                                         } ?>
                                         </tr>
