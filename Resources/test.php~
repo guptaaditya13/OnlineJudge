@@ -1,6 +1,0 @@
-<?php 
-	
-	exec("java Compile sunnyc.java", $output);
-	print_r($output);
-	
- ?>
