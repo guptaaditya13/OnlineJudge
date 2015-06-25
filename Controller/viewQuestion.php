@@ -8,12 +8,12 @@ require ('../Model/Models.php');
  * Getting questionId through GET request
  */
 
-//isset($_GET['qusetionId'])
 if (($_SERVER['REQUEST_METHOD'] == 'GET') && (isset($_GET['questionId'])) && !(empty($_GET['questionId'])) && Question::validateQuestionId($_GET['questionId'])) {
 	if (Question::validateQuestionId($_GET['questionId'])){
-		$question = new Question();
 		$question = Question::getQuestion($_GET['questionId']);
 		$user = Auth::getUser($question->userID);
+		Auth::joinSession();
+		$_SESSION['questionId'] = $_GET['questionId'];
 		$dir = "../View/";
 		require($dir . "ViewQuestion.php");
 	} else {

@@ -460,5 +460,19 @@ class Question
 		}
 		return $temp;
 	}
+	public function editQuestion($questionId ,$q_text, $q_image, $start_time, $end_time, $max_marks, $difficulty, $sample_inp, $sample_out){
+		if ($difficulty == 0){
+				$temp->difficulty = "Easy";
+			} elseif ($difficulty == 1){
+				$temp->difficulty = "Medium";
+			} elseif ($difficulty == 2){
+				$temp->difficulty = "Hard";
+			} else {
+				$temp->difficulty = "Challenge";
+			}
+		$sql = "UPDATE `questions` SET `q_text`=$q_text,`q_image`=$q_image,`start_time`=$start_time,`end_time`=$end_time,`max_marks`=$max_marks,`difficulty`=$diff,`sample_inp`=$sample_inp,`sample_out`=$sample_out WHERE id = $questionId;";
+		$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
+		$result = mysqli_query($conn,$sql);
+	}
 }
 ?>
