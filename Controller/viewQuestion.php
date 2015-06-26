@@ -12,6 +12,7 @@ if (($_SERVER['REQUEST_METHOD'] == 'GET') && (isset($_GET['questionId'])) && !(e
 	if (Question::validateQuestionId($_GET['questionId'])){
 		$question = Question::getQuestion($_GET['questionId']);
 		$user = Auth::getUser($question->userID);
+		//security
 		Auth::joinSession();
 		$_SESSION['questionId'] = $_GET['questionId'];
 		$dir = "../View/";
