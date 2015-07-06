@@ -2,7 +2,8 @@
 
 require ('../routes.php');
 require ('../Model/Models.php');
-
+// session_start();
+// var_dump($_SESSION); exit();
 if (!Auth::loginStatus()){
 	header('Location:' . URL_LOGIN_PAGE);
 	exit();
@@ -36,8 +37,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	}
 	if (!Question::validateDates($startTime,$endTime)){
 		echo "End date exceeded start date";
-	}
-	if(Question::createNew($questionText, $questionImage, $startTime->format('Y-m-d H:i'), $endTime->format('Y-m-d H:i'), $maxMarks, $difficulty)){
+	}/**
+	 * Change folder permissions later.
+	 */
+	if(Question::createNew($questionText, $questionImage, $startTime->format('Y-m-d H:i'), $endTime->format('Y-m-d H:i'), $maxMarks, $difficulty) && mkdir('../Uploads/Question/'.$_SESSION['qname'], 0777)){
 		header('Location:' . URL_WEBSITE_HOME);
 		exit();	
 	} else {

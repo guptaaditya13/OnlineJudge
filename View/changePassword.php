@@ -1,50 +1,25 @@
 <!DOCTYPE html> <!-- add action to submit -->
-<!-- <html xmlns="http://www.w3.org/1999/xhtml"> -->
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <!--[if IE]>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <![endif
-        ]-->
     <title>Online Judge</title>
-    <!-- BOOTSTRAP CORE STYLE  -->
     <link href="<?php echo $dir; ?>assets/css/bootstrap.css" rel="stylesheet" />
-    <!-- FONT AWESOME ICONS  -->
     <link href="<?php echo $dir; ?>assets/css/font-awesome.css" rel="stylesheet" />
-    <!-- CUSTOM STYLE  -->
     <link href="<?php echo $dir; ?>assets/css/style.css" rel="stylesheet" />
-     <!-- HTML5 Shiv and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    
 </head>
 <body>
     <header>
         <div class="container">
             <div class="row">
-                <!-- <div class="col-lg-12">
-                    <strong>Email: </strong>info@yourdomain.com
-                    &nbsp;&nbsp;
-                    <strong>Support: </strong>+90-897-678-44
-                </div> -->
-
             </div>
         </div>
     </header>
-    <!-- HEADER END-->
     <div class="navbar navbar-inverse set-radius-zero">
         <div class="container">
             <div class="navbar-header">
-                <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button> -->
                 <a class="navbar-brand" href="index.php">
 
                     <img src="<?php echo $dir; ?>assets/img/logo.png" />
@@ -73,14 +48,6 @@
                 <form name="form2" action="" method="POST">
 
                 <div class="col-md-6 col-md-offset-3 alert alert-success">
-                   <!-- <h4> Login with facebook <strong> / </strong>Google :</h4>
-                    <br />
-                    <a href="index.html" class="btn btn-social btn-facebook">
-                            <i class="fa fa-facebook"></i>&nbsp; Facebook Account</a>
-                    &nbsp;OR&nbsp;
-                    <a href="index.html" class="btn btn-social btn-google">
-                            <i class="fa fa-google-plus"></i>&nbsp; Google Account</a>
-                    <hr /> -->
                      <h4>  Enter details of your <strong>Private Account  :</strong></h4>
                     <br />
                         <label>Enter Old Password :  </label>
@@ -100,46 +67,6 @@
                         <button type="submit" id="submitted" name="CHANGE"class="btn btn-info"><span class="glyphicon glyphicon-user"></span>  Change</button>
                 </div>
                 </form>
-                <!-- <div class="col-md-6">
-                    <div class="alert alert-info">
-                        This is a free bootstrap admin template with basic pages you need to craft your project. 
-                        Use this template for free to use for personal and commercial use.
-                        <br />
-                         <strong> Some of its features are given below :</strong>
-                        <ul>
-                            <li>
-                                Responsive Design Framework Used
-                            </li>
-                            <li>
-                                Easy to use and customize
-                            </li>
-                            <li>
-                                Font awesome icons included
-                            </li>
-                            <li>
-                                Clean and light code used.
-                            </li>
-                        </ul>
-                       
-                    </div> -->
-                    <!-- <div class="alert alert-success">
-                         <strong> Instructions To Use:</strong>
-                        <ul>
-                            <li>
-                               Lorem ipsum dolor sit amet ipsum dolor sit ame
-                            </li>
-                            <li>
-                                 Aamet ipsum dolor sit ame
-                            </li>
-                            <li>
-                               Lorem ipsum dolor sit amet ipsum dolor
-                            </li>
-                            <li>
-                                 Cpsum dolor sit ame
-                            </li>
-                        </ul>
-                       
-                    </div> -->
                 </div>
 
             </div>
