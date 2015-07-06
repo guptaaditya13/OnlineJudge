@@ -327,6 +327,16 @@ class Question
 	{
 		return is_numeric($id);
 	}
+
+	public function ifExist($id)
+	{
+		$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
+		$sql = "SELECT COUNT(*) FROM `questions` WHERE id = $id";
+		$result = mysqli_query($conn, $sql);
+		$row = mysqli_fetch_assoc($result);
+		return $row['COUNT(*)'] == 1;
+	}
+
 	/**
 	 * @return boolean
 	 * createNew(...) creates an entry in the table questions. If successful returns TRUE else returns FALSE
