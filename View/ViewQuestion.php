@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php 
+    Auth::joinSession();
+ ?>
 <!-- <html xmlns="http://www.w3.org/1999/xhtml"> -->
 <head>
     <meta charset="utf-8" />
@@ -137,7 +140,23 @@
                         <p><strong>SHORT EXPLANATION</strong></p>
 
                         <p><strong>EXPLANATION:</strong></p>
-                        <div class ="col-md-offset-5"><button type="submit" id="myBtn"  class="btn btn-success" ><p id="check">start</p></button></div>
+                        <div class ="col-md-offset-5">
+<!--  * if student is logged in & question is live then submit answer should be there.
+      * if student is logged in & question has ended then no button should be there besides there must be ranking sidebar and view their answers.
+      * if teacher is logged in there should be start and end button.
+ -->
+<?php 
+    if (Auth::userType() == 'Student'){
+        if (Question::isActive($_SESSION['questionId'])){ ?>
+            <a href="#"><button id="myBtn" class="btn btn-success">Submit Answer</button></a>
+      <?php }else{ ?> 
+
+      <?php } 
+    }else{?>
+     <button type="submit" id="myBtn"  class="btn btn-success" ><p id="check">start</p></button>
+ <?php } ?>
+                            
+                        </div>
 
                     </div>
                 </div>
@@ -150,7 +169,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    &copy; Under: Samrat Mondal | By : Aditya Gupta, Rahul Arya, Sunny Narayan</a>
+                    &copy; Under: Samrat Mondal | By : Aditya Gupta, Rahul Arya, Sunny Narayan
                 </div>
 
             </div>

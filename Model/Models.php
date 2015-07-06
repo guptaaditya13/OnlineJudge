@@ -503,5 +503,14 @@ class Question
 		$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
 		$result = mysqli_query($conn,$sql);
 	}
+
+	public function isActive($questionId){
+		$question = Question::getQuestion($questionId);
+		if ((time() >= (strtotime($question->startTime))) && (time() <= strtotime($question->endTime))){
+			return TRUE;
+		}else{
+			return FALSE;
+		}
+	}
 }
 ?>

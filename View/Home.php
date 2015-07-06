@@ -148,13 +148,27 @@
                                                 
                                         </tr>
                                         <?php foreach ($arr as $var) {
+/**
+ * If condition for checking if the question is live or not
+ */
 
+                                    if (Question::isActive($var->questionId)){
+                                            echo "<tr>";
+                                            echo "<td>$var->questionText</td>";
+                                            echo "<td>$var->startTime</td>";
+                                            echo "<td>$var->endTime</td>";
+                                            echo "<td><a href=\"viewQuestion.php?questionId=$var->questionId\"  class=\"btn btn-xs btn-success pull-right\" >View</a> </td>";
+                                            echo "</tr>";
+                                    }else{
                                             echo "<tr>";
                                             echo "<td>$var->questionText</td>";
                                             echo "<td>$var->startTime</td>";
                                             echo "<td>$var->endTime</td>";
                                             echo "<td><a href=\"viewQuestion.php?questionId=$var->questionId\"  class=\"btn btn-xs btn-danger pull-right\" >View</a> </td>";
                                             echo "</tr>";
+                                    }
+
+                                            
 
                                         } ?>
                                     </tbody>
