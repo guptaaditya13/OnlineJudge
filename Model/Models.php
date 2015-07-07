@@ -27,28 +27,36 @@ class Auth
 	}
 	/**
 	 *@return User class (Student or Techer class)
-	 * This method is used to get the user instance object, it also sets th data in the sessions.
+	 * This method is used to get the user instance object, it also sets the data in the sessions.
 	*/
 	public function loginUser($username, $password){
-		$sql = "SELECT * FROM user_table WHERE username = '$username' AND password = '$password'";
+		$sql = "SELECT COUNT(*) FROM user_table WHERE username = '$username' AND password = '$password'";
 		$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
 		$result = mysqli_query($conn,$sql);
-		if ($result != null){
+		$row = mysqli_fetch_assoc($result);
+		// var_dump($row);exit();
+		if ($row['COUNT(*)'] == 1){
+			$sql = "SELECT * FROM user_table WHERE username = '$username'";
+			$result = mysqli_query($conn,$sql);
 			$row = mysqli_fetch_assoc($result);
+			// var_dump($row);exit();
+			$sql2 = "UPDATE user_table SET total_logins = total_logins + 1, last_login = CURTIME() WHERE id = " . $row['id']. ";";
+			mysqli_query($conn,$sql2);
 			Auth::joinSession();
 			$_SESSION['auth_logged_in'] = True;
 			$_SESSION['auth_username'] = $username;
 			$_SESSION['auth_name'] = $row['name'];
 			$_SESSION['auth_id'] = $row['id'];
 			$_SESSION['auth_email'] = $row['email'];
+			$_SESSION['auth_nick_name'] = $row['nick_name'];
 			if ($row['type'] == 1){
 				$_SESSION['auth_type'] = 'Teacher';
-				$obj = new Teacher($row['name'],$row['username'],$row['id'],$row['email']);
+				$obj = new Teacher($row['name'],$row['username'],$row['id'],$row['email'],$row['nick_name']);
 				mysqli_close($conn);
 				return $obj;
 			} else {
 				$_SESSION['auth_type'] = 'Student';
-				$obj = new Student($row['name'],$row['username'],$row['id'],$row['email']);
+				$obj = new Student($row['name'],$row['username'],$row['id'],$row['email'],$row['nick_name']);
 				mysqli_close($conn);
 				return $obj;
 			}
@@ -66,10 +74,11 @@ class Auth
 			$name = $_SESSION['auth_name'];
 			$id = $_SESSION['auth_id'];
 			$email = $_SESSION['auth_email'];
+			$nickName = $_SESSION['auth_nick_name'];
 			if ($_SESSION['auth_type'] == 'Teacher'){
-				$obj = new Teacher($name,$username,$id,$email);
+				$obj = new Teacher($name,$username,$id,$email,$nickName);
 			} else {
-				$obj = new Student($name,$username,$id,$email);
+				$obj = new Student($name,$username,$id,$email,$nickName);
 			}
 			return $obj;
 		} else {
@@ -86,13 +95,14 @@ class Auth
 			$name = $row['name'];
 			$username = $row['username'];
 			$email = $row['email'];
+			$nickName = $row['nick_name'];
 			$clss;
 			if ($row['type'] == 1){
 				$clss = "Teacher";
 			} else {
 				$clss = "Student";
 			}
-			$obj = new $clss($name,$username,$id,$email);
+			$obj = new $clss($name,$username,$id,$email,$nickName);
 			return $obj;
 
 		} else {
@@ -215,18 +225,19 @@ class User
 	var $username;
 	var $id;
 	var $email;
-
+	var $nickName;
 	/**
 	 * @return instance of User class
 	 * 
 	 * Parameterized constructor of User class
 	 */
-	function __construct($name, $username, $id, $email)
+	function __construct($name, $username, $id, $email, $nickName)
 	{
 		$this->name = $name;
 		$this->username = $username;
 		$this->id = $id;
 		$this->email = $email;
+		$this->nickName = $nickName;
 	}
 }
 
@@ -248,8 +259,8 @@ class Student extends User
 	 * 
 	 * Parameterized constructor of Student class
 	 */
-	function __construct($name, $username, $id, $email){
-		parent::__construct($name, $username, $id, $email);
+	function __construct($name, $username, $id, $email, $nickName){
+		parent::__construct($name, $username, $id, $email, $nickName);
 	}
 }
 
@@ -268,8 +279,8 @@ class Teacher extends User
 	 * 
 	 * Parameterized constructor of Teacher class
 	 */
-	function __construct($name, $username, $id, $email){
-		parent::__construct($name, $username, $id, $email);
+	function __construct($name, $username, $id, $email, $nickName){
+		parent::__construct($name, $username, $id, $email, $nickName);
 	}
 }
 
@@ -355,11 +366,19 @@ class Question
 		}else{
 			$diff = 3;
 		}
-		$sql = "INSERT INTO `online_judge`.`questions` (`user_id`, `q_text`, `start_time`, ".
-			"`end_time`, `max_marks`, `difficulty`, `timestamps`) VALUES ".
-			"('$userID', '$questionText', '$startTime', '$endTime', '$maxMarks','$diff', CURRENT_TIMESTAMP);";
+		$sql = "SELECT COUNT(*) FROM questions WHERE user_id = $userID;";
 		// var_dump($sql);
 		$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
+		$result = mysqli_query($conn,$sql);
+		$row = mysqli_fetch_assoc($result);
+		$count = $row['COUNT(*)'] + 1;
+		$qname = $_SESSION['auth_nick_name'] .'_'. $count;
+		// var_dump($qname);exit();
+		$_SESSION['qname'] = $qname;
+		$sql = "INSERT INTO `online_judge`.`questions` (`user_id`, `q_text`, `start_time`, ".
+			"`end_time`, `max_marks`, `difficulty`, `timestamps`, `name`) VALUES ".
+			"('$userID', '$questionText', '$startTime', '$endTime', '$maxMarks','$diff', CURRENT_TIMESTAMP, '$qname');";
+		// var_dump($sql);
 		$result = mysqli_query($conn,$sql);
 		if ($result == true){
 			return true;
@@ -483,6 +502,15 @@ class Question
 		$sql = "UPDATE `questions` SET `q_text`=$q_text,`q_image`=$q_image,`start_time`=$start_time,`end_time`=$end_time,`max_marks`=$max_marks,`difficulty`=$diff,`sample_inp`=$sample_inp,`sample_out`=$sample_out WHERE id = $questionId;";
 		$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
 		$result = mysqli_query($conn,$sql);
+	}
+
+	public function isActive($questionId){
+		$question = Question::getQuestion($questionId);
+		if ((time() >= (strtotime($question->startTime))) && (time() <= strtotime($question->endTime))){
+			return TRUE;
+		}else{
+			return FALSE;
+		}
 	}
 }
 ?>

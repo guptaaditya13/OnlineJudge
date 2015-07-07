@@ -23,7 +23,7 @@ if ($type = Auth::loginStatus()){
 } elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if (isset($_POST['username']) && isset($_POST['password']) && !empty($_POST['username']) && !empty($_POST['password']) && Auth::validateCSRF("POST")){
 			$username = $_POST['username'];
-		$password = $_POST['password'];
+			$password = $_POST['password'];
 		
 		/**
 		 * Validating the username & password provided
@@ -33,7 +33,7 @@ if ($type = Auth::loginStatus()){
 		}
 		
 		$user = Auth::loginUser($username, sha1($password));
-		
+		// var_dump($user);exit();
 		if(is_a($user, 'Student')){
 			header('Location: ' . URL_STUDENT_HOME);
 			exit();
@@ -47,8 +47,6 @@ if ($type = Auth::loginStatus()){
 	} else {
 		die ("Invalid POST request.");
 	}
-	
-
 } else {
 	/**
 	 * Else he is served the login page!
