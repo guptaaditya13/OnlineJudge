@@ -118,14 +118,14 @@
                      <?php 
                         if (Auth::userType() == 'Student'){
                             if (Question::isActive($_SESSION['questionId'])){ ?>
-                     <a href="#"><button id="myBtn" class="btn btn-success">Submit Answer</button></a>
+                                <a href="submitAnswer.php"><button id="myBtn" class="btn btn-success">Submit Answer</button></a>
                      <?php }else{ ?> 
                      <?php } 
                         }else{?>
-                     <button type="submit" id="myBtn"  class="btn btn-success" >
-                        <p id="check">start</p>
-                     </button>
-                     <?php } ?>
+                            <button type="submit" id="myBtn"  class="btn btn-success" >
+                                <p id="check">start</p>
+                            </button>
+                  <?php } ?>
                   </div>
                </div>
             </div>
