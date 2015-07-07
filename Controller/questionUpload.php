@@ -2,16 +2,22 @@
 
 require ('../routes.php');
 require ('../Model/Models.php');
-// session_start();
-// var_dump($_SESSION); exit();
+/**
+ * Check if user is logged in or not to access the page
+ * Logged in user should be a teacher.
+ */
+Auth::joinSession();
 if (!Auth::loginStatus()){
 	header('Location:' . URL_LOGIN_PAGE);
 	exit();
-} elseif(Auth::userType() != 'Teacher')  {
+} 
+if(Auth::userType() != 'Teacher')  {
 	header('Location:' . URL_WEBSITE_HOME);
 	exit();
 }
-Auth::joinSession();
+/**
+ * If request method is post then process the data received by post.
+ */
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if (!isset($_POST['difficulty']) || !isset($_POST['question']) || !isset($_POST['start_date']) || !isset($_POST['end_date']) || empty($_POST['difficulty']) || empty($_POST['question']) || empty($_POST['start_date']) || empty($_POST['end_date'])){
 		die("Something missing in post request!");
@@ -40,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	}/**
 	 * Change folder permissions later.
 	 */
-	if(Question::createNew($questionText, $questionImage, $startTime->format('Y-m-d H:i'), $endTime->format('Y-m-d H:i'), $maxMarks, $difficulty) && mkdir('../Uploads/Question/'.$_SESSION['qname'], 0777)){
+	if(Question::createNew($questionText, $questionImage, $startTime->format('Y-m-d H:i'), $endTime->format('Y-m-d H:i'), $maxMarks, $difficulty) && Question::createDirectoryForQuestion($_SESSION['qname'], 0777)){
 		header('Location:' . URL_WEBSITE_HOME);
 		exit();	
 	} else {

@@ -5,7 +5,8 @@ require ('../Model/Models.php');
 if (!Auth::loginStatus()){
 	header('Location:' . URL_LOGIN_PAGE);
 	exit();
-} elseif(Auth::userType() != 'Student')  {
+} 
+if(Auth::userType() != 'Student')  {
 	header('Location:' . URL_WEBSITE_HOME);
 	exit();
 }
@@ -30,6 +31,6 @@ if (!(strtotime($question.starTime) < time() && strtotime($question.endTime) > t
  * get user id from session, and upload the file in the directory.
  */
 /**
- * reirect to check compiling page.
+ * redirect to check compiling page.
  */
 ?>
