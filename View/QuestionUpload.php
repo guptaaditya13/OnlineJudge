@@ -72,6 +72,10 @@
     }
 
 </script>
+<style type="text/css" media="all">
+
+    @import "<?php echo $dir; ?>assets/css/widgEditor.css";
+</style>
 </head>
 <body>
     <header>
@@ -203,9 +207,7 @@
                         <p><strong>SHORT EXPLANATION</strong></p>
                         <textarea class="form-control" name="ShortExplain" rows="3" ></textarea>
                         <p><strong>EXPLANATION:</strong></p>
-                        <textarea class="form-control" name="FullExplain" rows="3" ></textarea>
-                        Select images <input type="file" name="img" multiple>
-                        <br>
+                        <textarea id="noise" name="FullExplain" class="widgEditor nothing"></textarea>
                         <div class ="col-md-offset-5"><button type="submit" id="myBtn" onclick='TimeValidate()' class="btn btn-success" disabled>Submit</button></div>
                     </div>
                 </div>
@@ -228,7 +230,7 @@
     <!-- FOOTER SECTION END-->
     <!-- JAVASCRIPT AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
     <!-- CORE JQUERY SCRIPTS -->
-
+    <script type="text/javascript" src="<?php echo $dir; ?>assets/js/widgEditor.js"></script>
     <script src="<?php echo $dir; ?>assets/js/jquery-1.11.1.js"></script>
     <!-- BOOTSTRAP SCRIPTS  -->
     <script src="<?php echo $dir; ?>assets/js/bootstrap.js"></script>
