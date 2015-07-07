@@ -31,6 +31,6 @@ if (!(strtotime($question.starTime) < time() && strtotime($question.endTime) > t
  * get user id from session, and upload the file in the directory.
  */
 /**
- * reirect to check compiling page.
+ * redirect to check compiling page.
  */
 ?>

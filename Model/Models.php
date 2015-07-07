@@ -542,6 +542,11 @@ class Question
 		$result = mysqli_query($conn,$sql);
 	}
 
+	/**
+	 * @return boolean
+	 * 
+	 * if userId given is listed in either question's userId or in question's tester's id then the user has access to question.
+	 */
 	public function checkAccess($userId)
 	{
 		if($this->userID == $userId){
@@ -556,6 +561,53 @@ class Question
             }
 		}
         return false;
+	}
+	/**
+	 * @return boolean
+	 * 
+	 * This function creates the directory structure for the question and return true on success
+	 */
+	public function createDirectoryForQuestion($directoryName, $mode)
+	{	
+		$var = true;
+		/**
+		 * check if that directory already exists
+		 */
+		if(file_exists('../Uploads/Question/' . $directoryName)){
+			clearstatcache();
+			/**
+			 * As directory exists, recursively deleting the directory
+			 */
+			$var = $var && Delete('../Uploads/Question/' . $directoryName);
+		}
+		/**
+		 * now creating the directory again
+		 */
+		return $var && mkdir('../Uploads/' . $directoryName , $mode) && mkdir('../Uploads/' . $directoryName . '/image' , $mode) && mkdir('../Uploads/' . $directoryName . '/sample' , $mode) && mkdir('../Uploads/' . $directoryName . '/test_case' , $mode) && mkdir('../Uploads/' . $directoryName . '/Response' , $mode);
+	}
+
+	
+	/**
+	 * @return bool
+	 * 
+	 * Deletes the file/directory whose path is given
+	 */
+	function Delete($path){
+	    if (is_dir($path)){
+	        $files = array_diff(scandir($path), array('.', '..'));
+
+	        foreach ($files as $file){
+	            Delete(realpath($path) . '/' . $file);
+	        }
+
+	        return rmdir($path);
+	    }
+
+	    else if (is_file($path)){
+	        return unlink($path);
+	    }
+
+	    return false;
 	}
 }
 ?>

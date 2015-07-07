@@ -15,14 +15,18 @@ if (!(isset($_GET['qno']) && !empty($_GET['qno']) && Question::validateQuestionI
 	die('Invalid Request');
 }
 
-/**
- * Check if question is live or not
- */
 $question = Question::getQuestion($_POST['qno']);
+/**
+ * Checking if user has access to perform the task or not.
+ */
 if(!$question->checkAccess($_SESSION['auth_id'])){
 	die("You don't have required access to perform the task.");
 }
 $time = time();
+
+/**
+ * Check if question is live or not
+ */
 if (strtotime($question.starTime) < $time && strtotime($question.endTime) > $time){
 	if (Question::endQuestion($question->questionId,$time)) {
 		die("Question ended successfully");
