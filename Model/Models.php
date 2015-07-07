@@ -304,6 +304,7 @@ class Question
 	public $maxMarks;
 	public $time;
 	public $difficulty;
+	public $tester;
 	public function validateQuestionText($questionText)
 	{
 		$qText = htmlspecialchars(strip_tags($questionText));
@@ -352,7 +353,7 @@ class Question
 	 * @return boolean
 	 * createNew(...) creates an entry in the table questions. If successful returns TRUE else returns FALSE
 	 */
-	public function createNew($questionText, $questionImage, $startTime, $endTime, $maxMarks, $difficulty)
+	public function createNew($questionText, $questionImage, $startTime, $endTime, $maxMarks, $difficulty, $tester=null)
 	{
 		Auth::joinSession();
 		$diff = 0;
@@ -451,12 +452,15 @@ class Question
 			$temp->maxMarks = $row['max_marks'];
 			$temp->time = $row['timestamps'];
 			$temp->difficulty = $row['difficulty'];
+			$temp->tester = $row['tester'];
 			$res[] = $temp;
 		}
 		return $res;
 	}
 	/**
+	 * @return Question instance
 	 * 
+	 * Takes question Id as input and returns the question object.
 	 */
 	public function getQuestion($questionId)
 	{
@@ -476,6 +480,7 @@ class Question
 			$temp->endTime = $row['end_time'];
 			$temp->maxMarks = $row['max_marks'];
 			$temp->time = $row['timestamps'];
+			$temp->tester = $row['tester'];
 			$difficulty = $row['difficulty'];
 			if ($difficulty == 0){
 				$temp->difficulty = "Easy";
@@ -489,7 +494,7 @@ class Question
 		}
 		return $temp;
 	}
-	public function editQuestion($questionId ,$q_text, $q_image, $start_time, $end_time, $max_marks, $difficulty, $sample_inp, $sample_out){
+	public function editQuestion($questionId ,$q_text, $q_image, $start_time, $end_time, $max_marks, $difficulty, $sample_inp, $sample_out, $tester = NULL){
 		if ($difficulty == 0){
 				$temp->difficulty = "Easy";
 			} elseif ($difficulty == 1){
@@ -499,11 +504,16 @@ class Question
 			} else {
 				$temp->difficulty = "Challenge";
 			}
-		$sql = "UPDATE `questions` SET `q_text`=$q_text,`q_image`=$q_image,`start_time`=$start_time,`end_time`=$end_time,`max_marks`=$max_marks,`difficulty`=$diff,`sample_inp`=$sample_inp,`sample_out`=$sample_out WHERE id = $questionId;";
+		$sql = "UPDATE `questions` SET `q_text`=$q_text,`q_image`=$q_image,`start_time`=$start_time,`end_time`=$end_time,`max_marks`=$max_marks,`difficulty`=$diff,`sample_inp`=$sample_inp,`sample_out`=$sample_out, `tester`=$tester WHERE id = $questionId;";
 		$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
 		$result = mysqli_query($conn,$sql);
 	}
-
+	/**
+	 * @return boolean
+	 * @param int
+	 * 
+	 * Checks whether the current time lies between the start and end time of the question
+	 * 	 */
 	public function isActive($questionId){
 		$question = Question::getQuestion($questionId);
 		if ((time() >= (strtotime($question->startTime))) && (time() <= strtotime($question->endTime))){
@@ -511,6 +521,41 @@ class Question
 		}else{
 			return FALSE;
 		}
+	}
+	/**
+	 * changes the start time of the question to given time.
+	 */
+	public function startQuestion($questionId, $time)
+	{
+		$sql = "UPDATE questions SET start_time = $time WHERE id = $questionId";
+		$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
+		$result = mysqli_query($conn,$sql);
+	}
+
+	/**
+	 * changes the end time of the question to given time.
+	 */
+	public function endQuestion($questionId, $time)
+	{
+		$sql = "UPDATE questions SET end_time = $time WHERE id = $questionId";
+		$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
+		$result = mysqli_query($conn,$sql);
+	}
+
+	public function checkAccess($userId)
+	{
+		if($this->userID == $userId){
+			return true;
+		}
+		if ($this->tester) {
+			$testers = explode(",",$this->tester);
+            foreach($testers as $x){
+                if ($x == $userId){
+                    return true;
+                }
+            }
+		}
+        return false;
 	}
 }
 ?>

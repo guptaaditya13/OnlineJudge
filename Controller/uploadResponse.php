@@ -5,7 +5,8 @@ require ('../Model/Models.php');
 if (!Auth::loginStatus()){
 	header('Location:' . URL_LOGIN_PAGE);
 	exit();
-} elseif(Auth::userType() != 'Student')  {
+} 
+if(Auth::userType() != 'Student')  {
 	header('Location:' . URL_WEBSITE_HOME);
 	exit();
 }
