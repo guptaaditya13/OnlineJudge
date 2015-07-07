@@ -305,6 +305,7 @@ class Question
 	public $time;
 	public $difficulty;
 	public $tester;
+	public $name;
 	public function validateQuestionText($questionText)
 	{
 		$qText = htmlspecialchars(strip_tags($questionText));
@@ -414,8 +415,9 @@ class Question
 		}
 		return createNew($this->userID,$this->questionId,$this->questionText,$this->questionImage,$this->startTime,$this->endTime,$this->maxMarks,$this->time,$this->difficulty);
 	}
+
 	/**
-	 * @return Question array
+	 * @return array
 	 * returns all the questions available in the database according to the type of user
 	 * example : 
 	 * 1. If requested by student, it will only show questions whose submission is going on, or completed
@@ -453,6 +455,7 @@ class Question
 			$temp->time = $row['timestamps'];
 			$temp->difficulty = $row['difficulty'];
 			$temp->tester = $row['tester'];
+			$temp->name = $row['name'];
 			$res[] = $temp;
 		}
 		return $res;
@@ -481,6 +484,7 @@ class Question
 			$temp->maxMarks = $row['max_marks'];
 			$temp->time = $row['timestamps'];
 			$temp->tester = $row['tester'];
+			$temp->name = $row['name'];
 			$difficulty = $row['difficulty'];
 			if ($difficulty == 0){
 				$temp->difficulty = "Easy";
@@ -494,7 +498,7 @@ class Question
 		}
 		return $temp;
 	}
-	public function editQuestion($questionId ,$q_text, $q_image, $start_time, $end_time, $max_marks, $difficulty, $sample_inp, $sample_out, $tester = NULL){
+	public function editQuestion($questionId ,$q_text, $q_image, $start_time, $end_time, $max_marks, $difficulty, $tester = NULL){
 		if ($difficulty == 0){
 				$temp->difficulty = "Easy";
 			} elseif ($difficulty == 1){
@@ -504,7 +508,7 @@ class Question
 			} else {
 				$temp->difficulty = "Challenge";
 			}
-		$sql = "UPDATE `questions` SET `q_text`=$q_text,`q_image`=$q_image,`start_time`=$start_time,`end_time`=$end_time,`max_marks`=$max_marks,`difficulty`=$diff,`sample_inp`=$sample_inp,`sample_out`=$sample_out, `tester`=$tester WHERE id = $questionId;";
+		$sql = "UPDATE `questions` SET `q_text`=$q_text,`q_image`=$q_image,`start_time`=$start_time,`end_time`=$end_time,`max_marks`=$max_marks,`difficulty`=$diff,`tester`=$tester WHERE id = $questionId;";
 		$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
 		$result = mysqli_query($conn,$sql);
 	}
@@ -586,7 +590,7 @@ class Question
 		return $var && mkdir('../Uploads/' . $directoryName , $mode) && mkdir('../Uploads/' . $directoryName . '/image' , $mode) && mkdir('../Uploads/' . $directoryName . '/sample' , $mode) && mkdir('../Uploads/' . $directoryName . '/test_case' , $mode) && mkdir('../Uploads/' . $directoryName . '/Response' , $mode);
 	}
 
-	
+
 	/**
 	 * @return bool
 	 * 
@@ -608,6 +612,30 @@ class Question
 	    }
 
 	    return false;
+	}
+	/**
+	 * @return int
+	 * returns total sample input for the question
+	 */
+	public function getSampleInput()
+	{
+		$id = $this->questionId;
+		$sql = "SELECT sample_inp FROM questions WHERE id = $id";
+		$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
+		$result = mysqli_query($conn,$sql);
+		$row = mysqli_fetch_assoc($result);
+		return $row['sample_inp'];
+	}
+	/**
+	 * @return void
+	 * sets the sample_input value in database table to new value
+	 */
+	public function setSampleInput($newSI)
+	{
+		$id = $this->questionId;
+		$sql = "UPDATE questions SET sample_inp = $newSI WHERE id = $id";
+		$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
+		$result = mysqli_query($conn,$sql);
 	}
 }
 ?>
