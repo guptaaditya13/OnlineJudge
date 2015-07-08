@@ -25,7 +25,7 @@
       <div class="container">
          <div class="navbar-header">
             <a class="navbar-brand" href="index.php">
-            <img src="<?php echo $dir; ?>assets/img/logo.png" />
+            <img src="<?php echo $dir; ?>assets/img/logo.png" height="101" width="230" />
             </a>
          </div>
          <div class="left-div">

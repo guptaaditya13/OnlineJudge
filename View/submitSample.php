@@ -15,6 +15,23 @@
    <!-- CUSTOM STYLE  -->
    <link href="<?php echo $dir; ?>assets/css/style.css" rel="stylesheet" />
    <script src="<?php echo $dir ?>assets/js/jquery-1.11.1.js"></script>
+   <script type="text/javascript">
+var countIn = 1;
+var countOut = 1;
+function addInput(divName){
+   var newdiv = document.createElement('div');
+   newdiv.innerHTML = "Input " + (countIn + 1) + " <br><textarea name='myInputs[]'></textarea>";
+   document.getElementById(divName).appendChild(newdiv);
+   countIn++;
+    
+}
+function addOutput(divName){
+   var newdiv = document.createElement('div');
+   newdiv.innerHTML = "Output " + (countOut + 1) + " <br><textarea name='myOutputs[]'></textarea>";
+   document.getElementById(divName).appendChild(newdiv);
+   countOut++;
+}  
+</script>
 </head>
 <body>
    <header>
@@ -84,82 +101,27 @@
    <!-- MENU SECTION END-->
    <div class="content-wrapper">
       <div class="container">
-         <div class="row">
-            <div class="col-md-12">
-               <h1 class="page-head-line">Welcome</h1>
+         <div class="alert alert-warning">
+            <select id= "sampleOrTest" onclick="changeAction()">
+               <option value="submitSample.php">Sample input</option>
+               <option value="submitTestCase.php">Test Cases</option>
+            </select>
+          <form action="" method="POST" id="myform">            <!-- add action for submitSample.php   -->
+            <label>Question Name:</label>
+            <input style="position: absolute;left: 400px;" type="text" name="sample">
+            <div id="dynamicInput">
+               Input 1<br><textarea name="myInputs[]"></textarea>
             </div>
-         </div>
-         <div class="col-md-5">
-            <div class="notice-board">
-               <div class="panel panel-default">
-                  <div class="panel-heading">
-                     Active  Notice Panel 
-                     <div class="pull-right" >
-                        <div class="dropdown">
-                           <button class="btn btn-success dropdown-toggle btn-xs" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-                           <span class="glyphicon glyphicon-cog"></span>
-                           <span class="caret"></span></button>
-                           <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Refresh</a></li>
-                           </ul>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="panel-body">
-                  </div>
-                  <div class="panel-footer">
-                     <a href="#" class="btn btn-default btn-block"> <i class="glyphicon glyphicon-repeat"></i> Just A Small Footer Button</a>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="col-md-7">
-            <!--   Kitchen Sink -->
-            <div class="panel panel-default">
-               <div class="panel-heading">
-                  Recent Question
-               </div>
-               <div class="panel-body">
-                  <div class="table-responsive">
-                     <table class="table table-striped table-hover">
-                        <tbody>
-                           <tr>
-                              <th>Question</th>
-                              <th>Start time</th>
-                              <th>End time</th>
-                           </tr>
-                           <?php foreach ($arr as $var) {
-                              /**
- * If condition for checking if the question is live or not
- */
-
-                                    if (Question::isActive($var->questionId)){
-                                            echo "<tr>";
-                                            echo "<td>$var->questionText</td>";
-                                            echo "<td>$var->startTime</td>";
-                                            echo "<td>$var->endTime</td>";
-                                            echo "<td><a href=\"viewQuestion.php?questionId=$var->questionId\"  class=\"btn btn-xs btn-success pull-right\" >View</a> </td>";
-                                            echo "</tr>";
-                                    }else{
-                                            echo "<tr>";
-                                            echo "<td>$var->questionText</td>";
-                                            echo "<td>$var->startTime</td>";
-                                            echo "<td>$var->endTime</td>";
-                                            echo "<td><a href=\"viewQuestion.php?questionId=$var->questionId\"  class=\"btn btn-xs btn-danger pull-right\" >View</a> </td>";
-                                            echo "</tr>";
-                                    }
-
-                              
-                              } ?>
-                        </tbody>
-                        <a href="#"  class="btn btn-xs btn-success pull-right"  >View All</a>
-                     </table>
-                  </div>
-               </div>
-            </div>
-            <!-- End  Kitchen Sink -->
-         </div>
+            <span style="position: absolute;left: 400px;top:283px;"  ><div id="dynamicOutput">
+               Output 1<br><textarea name="myOutputs[]"></textarea>
+            </div></span>
+            <div>
+            <input type="button" value="Add another text input" onClick="addInput('dynamicInput');addOutput('dynamicOutput');">
+            <input type="button" name= "submit"></div>
+         </form>
+           
          <!--  end  Context Classes  -->
+         </div>
       </div>
    </div>
    <!-- CONTENT-WRAPPER SECTION END-->
@@ -177,5 +139,13 @@
    <!-- CORE JQUERY SCRIPTS -->
    <!-- BOOTSTRAP SCRIPTS  -->
    <script src="<?php echo $dir ?>assets/js/bootstrap.js"></script>
+   <script type="text/javascript">
+   function changeAction () {
+      var val = document.getElementById("sampleOrTest").value;
+      document.getElementById("myform").action= val;
+
+
+      // body...
+   }</script>
 </body>
 </html>

@@ -148,7 +148,7 @@
                <h4 class="page-head-line">Upload Question</h4>
             </div>
          </div>
-         <form action="questionUpload.php" method="POST">
+         <form action="questionUpload.php" method="POST" enctype="multipart/form-data">
             <div class="row">
                <div class="col-md-12">
                   <div class="alert alert-warning">
@@ -183,7 +183,8 @@
                      </div>
                      <p><strong>EXPLANATION:</strong></p>
                      <textarea id="noise" name="FullExplain" class="widgEditor nothing"></textarea>
-                     <div class ="col-md-offset-5"><button type="submit" id="myBtn" onclick='TimeValidate()' class="btn btn-success" disabled>Submit</button></div>
+                     <input type="file" name="fileToUpload" id="fileToUpload" multiple >
+                      <div class ="col-md-offset-5"><button type="submit" id="myBtn" onclick='TimeValidate()' class="btn btn-success" disabled>Submit</button></div>
                   </div>
                </div>
             </div>
@@ -206,6 +207,16 @@
    <!-- CORE JQUERY SCRIPTS -->
    <script type="text/javascript" src="<?php echo $dir; ?>assets/js/widgEditor.js"></script>
    <script src="<?php echo $dir; ?>assets/js/jquery-1.11.1.js"></script>
+   <script type="text/javascript">
+    var countImg = 1;
+    function addInput(divName){
+       var newdiv = document.createElement('div');
+       newdiv.innerHTML = "Input " + (countImg + 1) + " <br><input type='file' accept='image/*' name='myImages[]' />";
+       document.getElementById(divName).appendChild(newdiv);
+       countImg++;
+        
+    }
+   </script>
    <!-- BOOTSTRAP SCRIPTS  -->
    <script src="<?php echo $dir; ?>assets/js/bootstrap.js"></script>
 </body>

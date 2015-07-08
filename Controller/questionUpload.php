@@ -19,6 +19,7 @@ if(Auth::userType() != 'Teacher')  {
  * If request method is post then process the data received by post.
  */
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+	var_dump($_POST);echo"<br><br><br><br><br>";var_dump($_FILES);exit();
 	if (!isset($_POST['difficulty']) || !isset($_POST['question']) || !isset($_POST['start_date']) || !isset($_POST['end_date']) || empty($_POST['difficulty']) || empty($_POST['question']) || empty($_POST['start_date']) || empty($_POST['end_date'])){
 		die("Something missing in post request!");
 	}
@@ -26,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$questionText = $_POST['question'];
 	$startTime = $_POST['start_date'];
 	$endTime = $_POST['end_date'];
-	$maxMarks = 100;
+	$maxMarks = $_POST['maxMarks'];
 	$questionImage = '';
 	/**
 	 * All POST parameters have been collected, now sanitizing the data

@@ -532,9 +532,11 @@ class Question
 	 */
 	public function startQuestion($questionId, $time)
 	{
-		$sql = "UPDATE questions SET start_time = $time WHERE id = $questionId";
-		$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
-		$result = mysqli_query($conn,$sql);
+		if (!isActive($questionId)){
+			$sql = "UPDATE questions SET start_time = $time WHERE id = $questionId";
+			$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
+			$result = mysqli_query($conn,$sql);
+		}
 	}
 
 	/**
@@ -588,7 +590,7 @@ class Question
 		/**
 		 * now creating the directory again
 		 */
-		return $var && mkdir('../Uploads/' . $directoryName , $mode) && mkdir('../Uploads/' . $directoryName . '/image' , $mode) && mkdir('../Uploads/' . $directoryName . '/sample' , $mode) && mkdir('../Uploads/' . $directoryName . '/test_case' , $mode) && mkdir('../Uploads/' . $directoryName . '/Response' , $mode);
+		return $var && mkdir('../Uploads/Question/' . $directoryName , $mode) && mkdir('../Uploads/Question/' . $directoryName . '/image' , $mode) && mkdir('../Uploads/Question/' . $directoryName . '/sample' , $mode) && mkdir('../Uploads/Question/' . $directoryName . '/test_case' , $mode) && mkdir('../Uploads/Question/' . $directoryName . '/Response' , $mode);
 	}
 
 
@@ -646,52 +648,4 @@ class Question
 //                      RRRRRR  EEEEE    SSSSS  PPPPPP  OO   OO NN N NN  SSSSS  EEEEE   
 //                      RR  RR  EE           SS PP      OO   OO NN  NNN      SS EE      
 //                      RR   RR EEEEEEE  SSSSS  PP       OOOO0  NN   NN  SSSSS  EEEEEEE 
-
-/**
-* This class is for the response code submitted to a question
-*/
-class Response
-{
-	public $responseId;
-	public $question;
-	public $student;
-	public $address;
-
-	/**
-	 * @return Question
-	 * 
-	 * returns the question variable this response was associated with.
-	 */
-	public function getQuestion()
-	{
-		return Question::getQuestion($this->question);
-	}
-	/**
-	 * @return Response
-	 * 
-	 * Creates a new entry in the databse, and also uploads the reponse to the directory.
-	 */
-	public function createNewResponse()
-	{
-
-	}
-	/**
-	 * @return String
-	 * 
-	 * Compiles the respose and returns the compile status, also makes the entry in the databse
-	 */
-	public function compile()
-	{
-		
-	}
-
-	/**
-	 * @return String
-	 * returns the current compile status of the file.
-	 */
-	public function compileStatus()
-	{
-		# code...
-	}
-}
 ?>
