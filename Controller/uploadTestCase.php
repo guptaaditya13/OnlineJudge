@@ -59,6 +59,8 @@ if (isset($_POST['sample']) && !empty($_POST['sample']) && is_numeric($_POST['sa
 		}
 	}
 	$question->setSampleInput($n);
+	header('Location:' . URL_WEBSITE_HOME .'../viewQuestion.php?questionId='.$_GET['qno']);
+	exit();
 }
 /**
  * If no request through POST then Server the upload question page.

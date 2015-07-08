@@ -117,15 +117,16 @@
                         -->
                      <?php 
                         if (Auth::userType() == 'Student'){
-                            if (Question::isActive($_SESSION['questionId'])){ ?>
+                            if (Question::isActive($_GET['questionId'])){ ?>
                      <a href="#"><button id="myBtn" class="btn btn-success">Submit Answer</button></a>
                      <?php }else{ ?> 
                      <?php } 
-                        }else{?>
-                     <button type="submit" id="myBtn"  class="btn btn-success" >
+                        }elseif(Auth::userType() == 'Teacher'){
+                           if (!Question::isActive($_GET['questionId'])) {?>
+                     <button type="submit" id="myBtn"  class="btn btn-success" action="startQuestionNow.php?qno=<?php echo $_GET['questionId'] ?>">
                         <p id="check">start</p>
                      </button>
-                     <?php } ?>
+                     <?php }} ?>
                   </div>
                </div>
             </div>

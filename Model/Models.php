@@ -496,6 +496,7 @@ class Question
 				$temp->difficulty = "Challenge";
 			}
 		}
+		mysqli_close($conn);
 		return $temp;
 	}
 	public function editQuestion($questionId ,$q_text, $q_image, $start_time, $end_time, $max_marks, $difficulty, $tester = NULL){
@@ -636,6 +637,61 @@ class Question
 		$sql = "UPDATE questions SET sample_inp = $newSI WHERE id = $id";
 		$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
 		$result = mysqli_query($conn,$sql);
+	}
+}
+
+
+//                      RRRRRR  EEEEEEE  SSSSS  PPPPPP   OOOOO  NN   NN  SSSSS  EEEEEEE 
+//                      RR   RR EE      SS      PP   PP OO   OO NNN  NN SS      EE      
+//                      RRRRRR  EEEEE    SSSSS  PPPPPP  OO   OO NN N NN  SSSSS  EEEEE   
+//                      RR  RR  EE           SS PP      OO   OO NN  NNN      SS EE      
+//                      RR   RR EEEEEEE  SSSSS  PP       OOOO0  NN   NN  SSSSS  EEEEEEE 
+
+/**
+* This class is for the response code submitted to a question
+*/
+class Response
+{
+	public $responseId;
+	public $question;
+	public $student;
+	public $address;
+
+	/**
+	 * @return Question
+	 * 
+	 * returns the question variable this response was associated with.
+	 */
+	public function getQuestion()
+	{
+		return Question::getQuestion($this->question);
+	}
+	/**
+	 * @return Response
+	 * 
+	 * Creates a new entry in the databse, and also uploads the reponse to the directory.
+	 */
+	public function createNewResponse()
+	{
+
+	}
+	/**
+	 * @return String
+	 * 
+	 * Compiles the respose and returns the compile status, also makes the entry in the databse
+	 */
+	public function compile()
+	{
+		
+	}
+
+	/**
+	 * @return String
+	 * returns the current compile status of the file.
+	 */
+	public function compileStatus()
+	{
+		# code...
 	}
 }
 ?>
