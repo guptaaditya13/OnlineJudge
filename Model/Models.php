@@ -531,9 +531,11 @@ class Question
 	 */
 	public function startQuestion($questionId, $time)
 	{
-		$sql = "UPDATE questions SET start_time = $time WHERE id = $questionId";
-		$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
-		$result = mysqli_query($conn,$sql);
+		if (!isActive($questionId)){
+			$sql = "UPDATE questions SET start_time = $time WHERE id = $questionId";
+			$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
+			$result = mysqli_query($conn,$sql);
+		}
 	}
 
 	/**

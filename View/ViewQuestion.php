@@ -161,7 +161,8 @@
                             <?php }else{ ?> 
                             <?php } 
                                 }else{?>
-                            <button type="submit" id="myBtn"  class="btn btn-success" style="min-height: 50px;min-width: 100px;border-radius: 40px;" >
+                                <form method="POST" action="startQuestion.php"></form>
+                            <button  type="submit" id="myBtn"  class="btn btn-success" style="min-height: 50px;min-width: 100px;border-radius: 40px;" >
                                 <b><p id="check">start</p></b>
                             </button>
                             <?php } ?>
