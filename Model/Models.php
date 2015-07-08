@@ -531,11 +531,9 @@ class Question
 	 */
 	public function startQuestion($questionId, $time)
 	{
-		if (!isActive($questionId)){
-			$sql = "UPDATE questions SET start_time = $time WHERE id = $questionId";
-			$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
-			$result = mysqli_query($conn,$sql);
-		}
+		$sql = "UPDATE questions SET start_time = $time WHERE id = $questionId";
+		$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
+		$result = mysqli_query($conn,$sql);
 	}
 
 	/**
@@ -584,7 +582,7 @@ class Question
 			/**
 			 * As directory exists, recursively deleting the directory
 			 */
-			$var = $var && Delete('../Uploads/Question/' . $directoryName);
+			$var = $var && Question::Delete('../Uploads/Question/' . $directoryName);
 		}
 		/**
 		 * now creating the directory again
@@ -639,5 +637,79 @@ class Question
 		$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
 		$result = mysqli_query($conn,$sql);
 	}
+
 }
+
+/**
+ * This class is for the response code submitted to a question
+ */
+ class Response
+ {
+ 	
+ 	public $responseId;
+ 	public $questionId;
+ 	public $student;
+ 	public $address;
+	
+	/**
+	 * @return Question
+	 * 
+	 * returns the question variable with which the reposnse is associated
+	 */
+ 	public function getQuestion(){
+ 		return Question::getQuestion($this->questionId);
+ 	}
+
+ 	/**
+ 	 * @return Compile status
+ 	 *
+ 	 * This function will compile the response(program) of the user
+ 	 */
+ 	public function compile($questionId, $username){
+ 		$question = getQuestion($questionId);
+ 		$quesName = $question->name;
+ 		chdir("../Resources");
+ 		$codeAdd = "../Uploads/Question/".$quesName."/Response/".$username."/".$fileName.".java"; 
+ 		exec("java Compile ".$codeAdd, $output);
+		print_r($output);
+		//delete the file if compilation error
+ 	}
+
+ 	/**
+ 	 * @return Execute status
+ 	 * 
+ 	 * This function will return the execution status.
+ 	 * filename should be without extension
+ 	 * username is required
+ 	 */
+ 	public function execute($questionId, $username, $fileName){
+ 		$question = getQuestion($questionId);
+ 		$quesName = $question->name;
+ 		chdir("../Resources");
+ 		$codeAdd = "../Uploads/Question/".$quesName."/Response/".$username."/".$fileName.".class";
+ 		if (file_exists($codeAdd)){
+ 			exec("java Execute ". $fileName . " " . $quesName . " ". $username . "1", $output)
+ 			print_r($output); //it's printing the whole array....we don't want this
+ 		}
+ 	}
+
+ 	/**
+ 	 * @return Response
+ 	 *
+ 	 * Creates a new entry to the in the database
+ 	 */
+ 	public function createResponse($questionId, $studId, $fileAdd, $compileStat, $sample_inp){
+ 		$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
+ 		$sql = "INSERT INTO `response`(`question_id`, `stud_id`, `file_address`, `compile_status`, `sample_inputs`, `timestamps`) VALUES ('$questionId','$studId','$fileAdd','$compileStat','$sample_inp', CURRENT_TIMESTAMP)";
+ 		$result = mysqli_query($conn,$sql);
+		// var_dump($sql);
+		if ($result == true){
+			return true;
+			
+ 		}else{
+ 			return false;
+ 		}
+ } 
+}
+
 ?>
