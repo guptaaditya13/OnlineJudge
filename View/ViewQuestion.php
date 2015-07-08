@@ -118,31 +118,53 @@
                 <div class="col-md-5">
                     <div class="alert alert-warning">
                         <div class="panel-body">
-                  <div class="table-responsive">
-                     <table class="table table-striped table-hover">
-                        <tbody>
-                           <tr>
-                              <th>User</th>
-                              <th>Score</th>
-                              <th>Memory</th>
-                              <th>Lang</th>
-                              <th>Solution</th>
-                           </tr>
-                           <?php foreach ($arr as $var) {
-                              echo "<tr>";
-                              echo "<td>$var->name</td>";
-                              echo "<td>$var->marks</td>";
-                              echo "<td>$var->memory</td>";
-                              echo "<td>$var->language</td>";
-                              echo "<td><a href=\"\"  class=\"btn btn-xs btn-danger pull-right\" >View</a> </td>";
-                              echo "</tr>";
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover">
+                                    <tbody>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Score</th>
+                                        <th>Memory</th>
+                                        <th>Lang</th>
+                                        <th>Solution</th>
+                                    </tr>
+                                    <?php foreach ($arr as $var) {
+                                        echo "<tr>";
+                                        echo "<td>$var->title</td>";
+                                        echo "<td>$var->marks</td>";
+                                        echo "<td>$var->memory</td>";
+                                        echo "<td>$var->language</td>";
+                                        echo "<td><a href=\"\"  class=\"btn btn-xs btn-danger pull-right\" >Comp. & Exec.</a> </td>";
+                                        echo "</tr>";
                               
-                              } ?>
-                        </tbody>
+                                        } ?>
+                                    </tbody>
                         
-                     </table>
-                  </div>
-               </div>
+                                </table> 
+                                <table class="table table-striped table-hover">
+                                    <tbody>
+                                    <tr>
+                                        <th>User</th>
+                                        <th>Score</th>
+                                        <th>Memory</th>
+                                        <th>Lang</th>
+                                        <th>Solution</th>
+                                    </tr>
+                                    <?php foreach ($arr as $var) {
+                                        echo "<tr>";
+                                        echo "<td>$var->name</td>";
+                                        echo "<td>$var->marks</td>";
+                                        echo "<td>$var->memory</td>";
+                                        echo "<td>$var->language</td>";
+                                        echo "<td><a href=\"\"  class=\"btn btn-xs btn-danger pull-right\" >View</a> </td>";
+                                        echo "</tr>";
+                              
+                                        } ?>
+                                    </tbody>
+                        
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
