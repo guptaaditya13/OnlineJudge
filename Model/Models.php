@@ -589,7 +589,7 @@ class Question
 		/**
 		 * now creating the directory again
 		 */
-		return $var && mkdir('../Uploads/' . $directoryName , $mode) && mkdir('../Uploads/' . $directoryName . '/image' , $mode) && mkdir('../Uploads/' . $directoryName . '/sample' , $mode) && mkdir('../Uploads/' . $directoryName . '/test_case' , $mode) && mkdir('../Uploads/' . $directoryName . '/Response' , $mode);
+		return $var && mkdir('../Uploads/Question/' . $directoryName , $mode) && mkdir('../Uploads/Question/' . $directoryName . '/image' , $mode) && mkdir('../Uploads/Question/' . $directoryName . '/sample' , $mode) && mkdir('../Uploads/Question/' . $directoryName . '/test_case' , $mode) && mkdir('../Uploads/Question/' . $directoryName . '/Response' , $mode);
 	}
 
 
