@@ -9,11 +9,11 @@
    <![endif]-->
    <title>Online Judge</title>
    <!-- BOOTSTRAP CORE STYLE  -->
-   <link href="assets/css/bootstrap.css" rel="stylesheet" />
+   <link href="<?php echo $dir; ?>assets/css/bootstrap.css" rel="stylesheet" />
    <!-- FONT AWESOME ICONS  -->
-   <link href="assets/css/font-awesome.css" rel="stylesheet" />
+   <link href="<?php echo $dir; ?>assets/css/font-awesome.css" rel="stylesheet" />
    <!-- CUSTOM STYLE  -->
-   <link href="assets/css/style.css" rel="stylesheet" />
+   <link href="<?php echo $dir; ?>assets/css/style.css" rel="stylesheet" />
 </head>
 <body>
    <header>
@@ -26,8 +26,8 @@
    <div class="navbar navbar-inverse set-radius-zero">
       <div class="container">
          <div class="navbar-header">
-            <a class="navbar-brand" href="index.html">
-            <img src="assets/img/logo.png" height="101" width="230" />
+            <a class="navbar-brand" href="index.php">
+            <img src="<?php echo $dir; ?>assets/img/logo.png" height="101" width="230" />
             </a>
          </div>
          <div class="left-div">
@@ -101,8 +101,8 @@
    <!-- FOOTER SECTION END-->
    <!-- JAVASCRIPT AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
    <!-- CORE JQUERY SCRIPTS -->
-   <script src="assets/js/jquery-1.11.1.js"></script>
+   <script src="<?php echo $dir; ?>assets/js/jquery-1.11.1.js"></script>
    <!-- BOOTSTRAP SCRIPTS  -->
-   <script src="assets/js/bootstrap.js"></script>
+   <script src="<?php echo $dir; ?>assets/js/bootstrap.js"></script>
 </body>
 </html>
