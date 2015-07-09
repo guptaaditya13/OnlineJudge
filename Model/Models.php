@@ -615,10 +615,10 @@ class Question
 	 */
 	public function addImageToText($imageName,$dir, $questionText)
 	{
-		var_dump($imageName); echo "<br>";
-		var_dump($dir); echo "<br>";
-		var_dump($questionText); echo "<br>";
-		exit();
+		// var_dump($imageName); echo "<br>";
+		// var_dump($dir); echo "<br>";
+		// var_dump($questionText); echo "<br>";
+		// exit();
 		$img = preg_replace("/./","\\.",$imageName);
 		$re = "/<img\\ src=\"[A-Za-z0-9:_\\s\\\\\\/,`~!@#$%^&*\\(\\)-=+|\\[\\]\\{\\}]*\\\\" . $img . "\"\\ alt=\"[\\w\\s]*\"\\ \\/>/";
 		/** Add alternate text later*/
