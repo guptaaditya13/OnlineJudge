@@ -1,59 +1,39 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-import java.io.*;
-import java.lang.*;
-import java.util.concurrent.TimeUnit;
-/**
- *
- * @author sunny
- */
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+
 public class Execute {
-    
-    public static void main(String[] args){
-        String l = args[1];
-        String n = args[2];
-        long timeInMillis = Long.valueOf(args[3]);
-        System.out.println("Code started executing.");
-        ProcessBuilder p = new ProcessBuilder("java", "Main");
-        p.directory();
-        File in = new File(n);
-        p.redirectInput(in);
-        if(in.exists())
-            System.out.println("Input file " + in.getAbsolutePath());
-        p.redirectErrorStream(true);
-        System.out.println("Current directory " + System.getProperty("dir"));
-        File out = new File("out.txt");
-
-        p.redirectOutput(out);
-        if(out.exists())
-            System.out.println("Output file generated " + out.getAbsolutePath());
-        try {
-
-            Process pp = p.start();
-            if (!(pp.waitFor(timeInMillis, TimeUnit.MILLISECONDS))) {
-                System.out.println("TLE");
+    /** 
+     * args[1] => question name
+     * args[2] => username
+     * args[3] to end => name of testcase file
+     */
+    public static void main(String[] args) {
+//        BufferedReader reader;
+//        System.out.println(args.length);
+        String fileName = args[0];
+//        for (int i = 0; i < args.length; i++) {
+//            String tc = args[1];
+            /**
+             * java filename < tc >tcout.txt
+             */
+            ProcessBuilder p = new ProcessBuilder("java", fileName);
+//            ProcessBuilder p = new ProcessBuilder("java " + fileName);
+            System.out.println(p.command());
+            p.directory(new File("../Uploads/Question/" + args[1] + "/Response/" + args[2] + "/"));
+            p.redirectInput(new File ("../Uploads/Question/" + args[1] + "/sample/" + args[3] + ".txt"));
+            p.redirectOutput(new File ("../Uploads/Question/" + args[1] + "/Response/" + args[2] + "/sample/" + args[3] +"out.txt"));
+           
+//            p.redirectErrorStream(true);
+            try{
+                Process x = p.start();
+                x.waitFor();
+            } catch (Exception e){
+                System.out.println("Encountered error in p.start()");
+                System.out.println(e);
+                e.printStackTrace();
             }
-            int exitCode = pp.exitValue();
-            System.out.println("Exit Value = " + pp.exitValue());
-            if(exitCode != 0){
-        
-                System.out.println("Time limit exceeded");
-                System.exit(0);
-            }
-                
-        } catch (IOException ioe) {
-            System.err.println("in execute() "+ioe);
-//        } catch (InterruptedException ex) {
-//            System.err.println(ex);
 //        }
-        System.out.println("Code execution finished!");
-        //delete executables
-        System.out.println("Successfully executed");
     }
-    
-}
 }
