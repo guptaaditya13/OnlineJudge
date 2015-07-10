@@ -49,8 +49,8 @@ if (isset($_POST['submit']) && !empty($_POST['submit']) && isset($_POST['myInput
 			 * if available then create a file for it.
 			 */
 			$n = $n + 1;
-			$sample_inp = nl2br($_POST['myInputs'][$i]);
-			$sample_out = nl2br($_POST['myOutputs'][$i]);
+			$sample_inp = $_POST['myInputs'][$i];
+			$sample_out = $_POST['myOutputs'][$i];
 			$inpFile = fopen($fdir . "$n.txt", "w") or die("failed to create $n.txt the file");
 			fwrite($inpFile, $sample_inp);
 			fclose($inpFile);
