@@ -129,7 +129,7 @@ echo "The current server timezone is: " . $timezone;
                 <div class="col-md-7">
                     <div class="alert alert-warning">
                         <p><strong>PROBLEM TAG: </strong></p>
-                        <p><strong>PROBLEM :</strong> <span style="position: absolute;left: 300px;"  ><?php echo $question->questionText; ?></span></p>
+                        <p><strong>PROBLEM :</strong> <span style="position: absolute;left: 300px;"  ><?php echo $question->questionTitle; ?></span></p>
                         <p><strong>EXPLANATION:</strong></p><pre></pre>
                         <p><strong>DIFFICULTY:</strong> <span style="position: absolute;left: 300px;"  ><?php echo $question->difficulty; ?></span></p>
                         <strong>START TIME :</strong><span style="position: absolute;left: 300px;"  ><?php echo $question->startTime; ?></span><br>

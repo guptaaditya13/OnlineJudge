@@ -297,8 +297,8 @@ class Question
 {
 	public $userID;
 	public $questionId;
+	public $questionTitle;
 	public $questionText;
-	public $questionImage;
 	public $startTime;
 	public $endTime;
 	public $maxMarks;
@@ -308,7 +308,7 @@ class Question
 	public $name;
 	public function validateQuestionText($questionText)
 	{
-		$qText = htmlspecialchars(strip_tags($questionText));
+		$qText = htmlspecialchars($questionText);
 		$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
 		$qText = mysqli_real_escape_string($conn,$qText);
 		return $qText;
@@ -354,7 +354,7 @@ class Question
 	 * @return boolean
 	 * createNew(...) creates an entry in the table questions. If successful returns TRUE else returns FALSE
 	 */
-	public function createNew($questionText, $questionImage, $startTime, $endTime, $maxMarks, $difficulty, $tester=null)
+	public function createNew($questionTitle, $question, $startTime, $endTime, $maxMarks, $difficulty, $tester=null, $upload, $arr)
 	{
 		Auth::joinSession();
 		$diff = 0;
@@ -375,11 +375,32 @@ class Question
 		$row = mysqli_fetch_assoc($result);
 		$count = $row['COUNT(*)'] + 1;
 		$qname = $_SESSION['auth_nick_name'] .'_'. $count;
-		// var_dump($qname);exit();
-		$_SESSION['qname'] = $qname;
-		$sql = "INSERT INTO `online_judge`.`questions` (`user_id`, `q_text`, `start_time`, ".
+		if(Question::createDirectoryForQuestion($qname, 0777)){
+		} else {
+			return false;
+		}
+		if(!$upload){
+			$dir = "../Uploads/Question/$qname/image/";
+			if($arr){
+				for ($i=0; $i < count($_FILES['fileToUpload']['name']); $i++) { 
+					if (Question::addImageToText(basename($_FILES["fileToUpload"]["name"][$i]),$dir, $question) && Question::uploadImage($_FILES["fileToUpload"]["tmp_name"][$i],$dir.basename($_FILES["fileToUpload"]["name"][$i]))){
+
+					} else {
+						return false;
+					}
+				}
+			} else {
+				if (Question::addImageToText(basename($_FILES["fileToUpload"]["name"]),$dir, $question) && Question::uploadImage($_FILES["fileToUpload"]["tmp_name"],$dir.basename($_FILES["fileToUpload"]["name"]))){
+
+				} else {
+					return false;
+				}
+			}
+		}
+		$questionText=Question::validateQuestionText($questionText);
+		$sql = "INSERT INTO `online_judge`.`questions` (`user_id`,`q_title` ,`q_text`, `start_time`, ".
 			"`end_time`, `max_marks`, `difficulty`, `timestamps`, `name`) VALUES ".
-			"('$userID', '$questionText', '$startTime', '$endTime', '$maxMarks','$diff', CURRENT_TIMESTAMP, '$qname');";
+			"('$userID', '$questionTitle','$question', '$startTime', '$endTime', '$maxMarks','$diff', CURRENT_TIMESTAMP, '$qname');";
 		// var_dump($sql);
 		$result = mysqli_query($conn,$sql);
 		if ($result == true){
@@ -399,7 +420,7 @@ class Question
 		if ($this->userID == NULL) {
 			return FALSE;
 		}
-		if ($this->questionText == NULL) {
+		if ($this->questionTitle == NULL) {
 			return FALSE;
 		}
 		if ($this->maxMarks == NULL) {
@@ -413,7 +434,7 @@ class Question
 		if ($this->difficulty == NULL) {
 			$this->difficulty = 0;
 		}
-		return createNew($this->userID,$this->questionId,$this->questionText,$this->questionImage,$this->startTime,$this->endTime,$this->maxMarks,$this->time,$this->difficulty);
+		return createNew($this->userID,$this->questionId,$this->questionTitle,$this->questionImage,$this->startTime,$this->endTime,$this->maxMarks,$this->time,$this->difficulty);
 	}
 
 	/**
@@ -447,8 +468,8 @@ class Question
 			$temp = new Question();
 			$temp->userID = $row['user_id'];
 			$temp->questionId = $row['id'];
+			$temp->questionTitle = $row['q_title'];
 			$temp->questionText = $row['q_text'];
-			$temp->questionImage = $row['q_image'];
 			$temp->startTime = $row['start_time'];
 			$temp->endTime = $row['end_time'];
 			$temp->maxMarks = $row['max_marks'];
@@ -477,8 +498,8 @@ class Question
 			$temp = new Question();
 			$temp->userID = $row['user_id'];
 			$temp->questionId = $row['id'];
+			$temp->questionTitle = $row['q_title'];
 			$temp->questionText = $row['q_text'];
-			$temp->questionImage = $row['q_image'];
 			$temp->startTime = $row['start_time'];
 			$temp->endTime = $row['end_time'];
 			$temp->maxMarks = $row['max_marks'];
@@ -496,6 +517,7 @@ class Question
 				$temp->difficulty = "Challenge";
 			}
 		}
+		mysqli_close($conn);
 		return $temp;
 	}
 	public function editQuestion($questionId ,$q_text, $q_image, $start_time, $end_time, $max_marks, $difficulty, $tester = NULL){
@@ -567,6 +589,101 @@ class Question
         return false;
 	}
 	/**
+	 * @return String
+	 * 
+	 * returns null if everything is perfect else returns the error.
+	 */
+	public function checkImageAttachment($file_name, $file_type, $file_tmp_name, $file_error, $file_size)
+	{
+		if($var = Question::verifyUploadedImage($file_tmp_name)){
+			return $var;
+		}
+		if ($var = Question::checkFileSize($file_size)) {
+			return $var;
+		}
+		$target_file = basename($file_name);
+		$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+		if ($var = Question::checkFileFormat($imageFileType)){
+			return $var;
+		}
+		return null;
+	}
+	/**
+	 * @return String
+	 * 
+	 * Formats the text to add support for the image.
+	 */
+	public function addImageToText($imageName,$dir, $questionText)
+	{
+		// var_dump($imageName); echo "<br>";
+		// var_dump($dir); echo "<br>";
+		// var_dump($questionText); echo "<br>";
+		// exit();
+		$img = preg_replace("/./","\\.",$imageName);
+		$re = "/<img\\ src=\"[A-Za-z0-9:_\\s\\\\\\/,`~!@#$%^&*\\(\\)-=+|\\[\\]\\{\\}]*\\\\" . $img . "\"\\ alt=\"[\\w\\s]*\"\\ \\/>/";
+		/** Add alternate text later*/
+		$replacement = '<img src="'.$dir.$imageName.'">';
+		return preg_replace($re, $replacement , $questionText);
+	}
+
+	/**
+	 * @return String
+	 * 
+	 * argument1 is $_FILE["fileToUpload"]["tmp_name"]
+	 * i.e. temporary address of the file.
+	 */
+	public function verifyUploadedImage($tempName)
+	{
+		$check = getimagesize($tempName);
+    	if($check !== false) {
+    		return null;
+    	} else {
+	        return "File not an image";
+	    }
+	}
+	/**
+	 * @return String
+	 * 
+	 * parameter 1 is $_FILES["fileToUpload"]["size"]
+	 */
+	public function checkFileSize($file)
+	{
+		if ($file > 5242880) {
+			return "File is larger than 5 MB";
+		}
+		return null;
+	}
+	/**
+	 * @return String
+	 * 
+	 * parameter 1 is $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+	 * $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+	 */
+	public function checkFileFormat($imageFileType)
+	{
+		if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
+    	
+    	return "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+    	}
+
+    	return null;
+	}
+
+	/**
+	 * @return boolean
+	 * 
+	 * first parameter is $_FILES['fileToUpload']['tmp_name']
+	 */
+	public function uploadImage($file_temp_name,$target_file)
+	{
+		if (move_uploaded_file($file_temp_name, $target_file)) {
+	        return true;
+	    } else {
+	        return false;
+	    }
+	}
+
+	/**
 	 * @return boolean
 	 * 
 	 * This function creates the directory structure for the question and return true on success
@@ -601,7 +718,7 @@ class Question
 	        $files = array_diff(scandir($path), array('.', '..'));
 
 	        foreach ($files as $file){
-	            Delete(realpath($path) . '/' . $file);
+	            Question::Delete(realpath($path) . '/' . $file);
 	        }
 
 	        return rmdir($path);
@@ -639,6 +756,13 @@ class Question
 	}
 
 }
+
+
+//                      RRRRRR  EEEEEEE  SSSSS  PPPPPP   OOOOO  NN   NN  SSSSS  EEEEEEE 
+//                      RR   RR EE      SS      PP   PP OO   OO NNN  NN SS      EE      
+//                      RRRRRR  EEEEE    SSSSS  PPPPPP  OO   OO NN N NN  SSSSS  EEEEE   
+//                      RR  RR  EE           SS PP      OO   OO NN  NNN      SS EE      
+//                      RR   RR EEEEEEE  SSSSS  PP       OOOO0  NN   NN  SSSSS  EEEEEEE 
 
 /**
  * This class is for the response code submitted to a question
@@ -690,6 +814,7 @@ class Question
  		if (file_exists($codeAdd)){
  			exec("java Execute ". $fileName . " " . $quesName . " ". $username . "1", $output);
  			print_r($output); //it's printing the whole array....we don't want this
+
  		}
  	}
 

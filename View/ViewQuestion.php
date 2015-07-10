@@ -102,9 +102,8 @@
             <div class="row">
                 <div class="col-md-7">
                     <div class="alert alert-warning">
-                        <p><strong>PROBLEM TAG: </strong></p>
-                        <p><strong>PROBLEM :</strong> <span style="position: absolute;left: 300px;"  ><?php echo $question->questionText; ?></span></p>
-                        <p><strong>EXPLANATION:</strong></p><pre></pre>
+                        <p><strong>PROBLEM TITLE: </strong><span style="position: absolute;left: 300px;"  ><?php echo $question->questionTitle; ?></span></p>
+                        <p><strong>PROBLEM :</strong> <span style="position: absolute;left: 300px;"  ><pre><?php echo htmlspecialchars_decode($question->questionText); ?></pre></span></p>
                         <p><strong>DIFFICULTY:</strong> <span style="position: absolute;left: 300px;"  ><?php echo $question->difficulty; ?></span></p>
                         <strong>START TIME :</strong><span style="position: absolute;left: 300px;"  ><?php echo $question->startTime; ?></span><br>
                         <!-- <input type="time" value="12:01:00;"> -->
@@ -112,7 +111,7 @@
                         <!-- <input type="time" value="12:01:00;"> -->
                         <h5 style=" border-bottom: 1px dashed;"></h5>
                         <p>Author: <b><?php echo $user->name; ?></b></p>
-                        <p>Tester: </p>
+                        <p>Tester: <b><?php echo $question->tester; ?></b></p>
                     </div>
                 </div>
                 <div class="col-md-5">
@@ -178,8 +177,9 @@
                                 -->
                             <?php 
                                 if (Auth::userType() == 'Student'){
-                                    if (Question::isActive($_SESSION['questionId'])){ ?>
-                            <a href=<?php echo "submitAnswer.php?questionId=".$_SESSION['questionId'] ?>><button id="myBtn" class="btn btn-success">Submit Answer</button></a>
+
+                                    if (Question::isActive($_GET['questionId'])){ ?>
+                            <a href="submitAnswer.php"><button id="myBtn" class="btn btn-success">Submit Answer</button></a>
                             <?php }else{ ?> 
                             <?php } 
                                 }else{?>

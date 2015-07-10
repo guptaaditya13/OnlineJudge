@@ -148,7 +148,7 @@
                <h4 class="page-head-line">Upload Question</h4>
             </div>
          </div>
-         <form action="questionUpload.php" method="POST">
+         <form action="questionUpload.php" method="POST" enctype="multipart/form-data">
             <div class="row">
                <div class="col-md-12">
                   <div class="alert alert-warning">
@@ -183,10 +183,7 @@
                      </div>
                      <p><strong>EXPLANATION:</strong></p>
                      <textarea id="noise" name="FullExplain" class="widgEditor nothing"></textarea>
-                     
-                     <div id="dynamicInput">
-                         Input 1<br><input type="file" accept="image/*" name="myImages[]" />
-                      </div><input type="button" value="Add another Image" onClick="addInput('dynamicInput');">
+                     <input type="file" name="fileToUpload" id="fileToUpload" multiple >
                       <div class ="col-md-offset-5"><button type="submit" id="myBtn" onclick='TimeValidate()' class="btn btn-success" disabled>Submit</button></div>
                   </div>
                </div>
