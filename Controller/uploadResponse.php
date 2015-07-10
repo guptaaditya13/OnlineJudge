@@ -54,7 +54,9 @@ if (isset($_FILES['code']['type']) && !empty($_FILES['code']['type'])){
 		}
 		if(Response::submitResponse($quesName, $username, $filename, $tmpName)){
 			echo "File uploaded Successfully";
-			header( "refresh:2;url=index.php" );
+			Response::compile($_GET['questionId'], $username, $filename);
+			Response::execute($_GET['questionId'], $username, $filename);
+			//header( "refresh:2;url=index.php" );
 		}else{
 			die("Something went wrong");
 		}

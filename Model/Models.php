@@ -789,11 +789,12 @@ class Question
  	 *
  	 * This function will compile the response(program) of the user
  	 */
- 	public function compile($questionId, $username){
- 		$question = getQuestion($questionId);
+ 	public function compile($questionId, $username, $filename){
+ 		$question = Question::getQuestion($questionId);
  		$quesName = $question->name;
+ 		$file = explode(".", $filename);
  		chdir("../Resources");
- 		$codeAdd = "../Uploads/Question/".$quesName."/Response/".$username."/".$fileName.".java"; 
+ 		$codeAdd = "../Uploads/Question/".$quesName."/Response/".$username."/".$file[0].".java"; 
  		exec("java Compile ".$codeAdd, $output);
 		print_r($output);
 		//delete the file if compilation error
@@ -806,13 +807,18 @@ class Question
  	 * filename should be without extension
  	 * username is required
  	 */
- 	public function execute($questionId, $username, $fileName){
- 		$question = getQuestion($questionId);
+ 	public function execute($questionId, $username, $filename){
+ 		$question = Question::getQuestion($questionId);
  		$quesName = $question->name;
+ 		$file = explode(".", $filename);
+ 		
+ 		$codeAdd = "../Uploads/Question/".$quesName."/Response/".$username."/".$file[0].".class";
  		chdir("../Resources");
- 		$codeAdd = "../Uploads/Question/".$quesName."/Response/".$username."/".$fileName.".class";
  		if (file_exists($codeAdd)){
- 			exec("java Execute ". $fileName . " " . $quesName . " ". $username . "1", $output);
+ 			exec("java Execute ". $file[0] . " " . $quesName . " ". $username . " 1", $output);
+ 			foreach ($output as $x) {
+ 				echo $x."<br>";
+ 			}
  			print_r($output); //it's printing the whole array....we don't want this
 
  		}
