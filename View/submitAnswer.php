@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <!-- <html xmlns="http://www.w3.org/1999/xhtml"> -->
+<?php 
+   Auth::joinSession();
+ ?>
 <head>
    <meta charset="utf-8" />
    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
@@ -50,7 +53,7 @@
                   <ul id="menu-top" class="nav navbar-nav navbar-right">
                      <li><a class="menu-top-active " href="Home.php">Home</a></li>
                      <li><a >||</a></li>
-                     <li><a href="Submission.php">Submit Ques.</a></li>
+                     <li><a href="questionUpload.php">Submit Ques.</a></li>
                      <li><a href="login.php">Login Page</a></li>
                   </ul>
                </div>
@@ -66,24 +69,20 @@
                <h1 class="page-head-line">Welcome To Online Judge</h1>
             </div>
          </div>
-         <p><strong>PROBLEM LINK:</strong></p>
-         <p>Tester: </p>
-         <p><strong>DIFFICULTY:</strong></p>
-         <p><strong>PROBLEM:</strong></p>
-         <p><strong>SHORT EXPLANATION</strong></p>
-         <p><strong>EXPLANATION:</strong></p>
-         <BR>                    
+         <p><strong>Title : </strong></p>
+                   
          <div class="form-group">
-            <label for="exampleInputFile">File input</label>
-            <input type="file" id="exampleInputFile" />
-            <p class="help-block">Example block-level help text here.</p>
+            <form action=<?php echo "uploadResponse.php?questionId=".$_SESSION['questionId'];?> method="POST" enctype="multipart/form-data">
+            <label for="exampleInputFile">File input : </label>
+            <input type="file" id="code" name="code">
+            <button type="submit" name="submit" class="btn btn-default">Submit</button>
+            </form>
          </div>
-         <div class="checkbox">
+         <!-- <div class="checkbox">
             <label>
-               <!-- <input type="checkbox" /> Check me out -->
+               <input type="checkbox" /> Check me out
             </label>
-         </div>
-         <button type="submit" class="btn btn-default">Submit</button>
+         </div> -->
       </div>
    </div>
    </div>

@@ -179,7 +179,7 @@
                             <?php 
                                 if (Auth::userType() == 'Student'){
                                     if (Question::isActive($_SESSION['questionId'])){ ?>
-                            <a href="submitAnswer.php"><button id="myBtn" class="btn btn-success">Submit Answer</button></a>
+                            <a href=<?php echo "submitAnswer.php?questionId=".$_SESSION['questionId'] ?>><button id="myBtn" class="btn btn-success">Submit Answer</button></a>
                             <?php }else{ ?> 
                             <?php } 
                                 }else{?>
