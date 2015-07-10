@@ -103,12 +103,11 @@ function addOutput(divName){
       <div class="container">
          <div class="alert alert-warning">
             <select id= "sampleOrTest" onclick="changeAction()">
-               <option value="submitSample.php">Sample input</option>
-               <option value="submitTestCase.php">Test Cases</option>
+               <option selected value="uploadSample.php?qno=<?php echo $_GET['qno']; ?>">Sample input</option>
+               <option value="submitTestCase.php?qno=<?php echo $_GET['qno']; ?>">Test Cases</option>
             </select>
-          <form action="" method="POST" id="myform">            <!-- add action for submitSample.php   -->
+          <form action="uploadSample.php?qno=<?php echo $_GET['qno']; ?>" method="POST" id="myform">            <!-- add action for submitSample.php   -->
             <label>Question Name:</label>
-            <input style="position: absolute;left: 400px;" type="text" name="sample">
             <div id="dynamicInput">
                Input 1<br><textarea name="myInputs[]"></textarea>
             </div>
@@ -117,7 +116,7 @@ function addOutput(divName){
             </div></span>
             <div>
             <input type="button" value="Add another text input" onClick="addInput('dynamicInput');addOutput('dynamicOutput');">
-            <input type="button" name= "submit"></div>
+            <input type="submit" name= "submit" value="submit"></div>
          </form>
            
          <!--  end  Context Classes  -->
