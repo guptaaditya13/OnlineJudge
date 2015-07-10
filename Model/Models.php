@@ -813,8 +813,8 @@ class Question
  		$codeAdd = "../Uploads/Question/".$quesName."/Response/".$username."/".$fileName.".class";
  		if (file_exists($codeAdd)){
  			exec("java Execute ". $fileName . " " . $quesName . " ". $username . "1", $output);
- 			print_r($output); 
- 			//it's printing the whole array....we don't want this
+ 			print_r($output); //it's printing the whole array....we don't want this
+
  		}
  	}
 
@@ -834,7 +834,78 @@ class Question
  		}else{
  			return false;
  		}
- } 
-}
+ 	}
 
+ 	/**
+ 	 * Check if the file is java type
+ 	 */
+ 	public function checkFileType($fileType){
+ 		if ($fileType == "application/octet-stream"){
+ 			return true;
+ 		}else{
+ 			return false;
+ 		}
+ 	}
+
+ 	/**
+ 	 * Check if file size is less than 100KB
+ 	 */
+ 	public function checkSize($fileSize){
+ 		if ($fileSize < 102400){
+ 			return true;
+ 		}else{
+ 			return false;
+ 		}
+ 	}
+
+ 	/**
+ 	 * Checking if the extension is java
+ 	 */
+ 	public function checkExtension($fileName){
+ 		$extName = explode(".", $fileName);
+ 		$extension = end($extName);
+ 		if ($extension == "java"){
+ 			return true;
+ 		}else{
+ 			return false;
+ 		}
+ 	}
+
+ 	/**
+ 	 * @return true if no error
+ 	 * check if there is error in file
+ 	 */
+ 	public function checkError($error){
+ 		if ($error == 0){
+ 			return true;
+ 		}else{
+ 			return false;
+ 		}
+ 	}
+
+ 	/**
+ 	 * Validate file name
+ 	 */
+ 	public function validateFile(){
+
+ 	}
+ 	
+ 	/**
+ 	 * store the file to its location
+ 	 */
+ 	public function submitResponse($quesName, $username, $filename, $tmpName ){
+ 		$dir = "../Uploads/Question/".$quesName."/Response/".$username;
+		$error = true;
+		$filename = $_FILES['code']['name'];
+		$tmpName = $_FILES['code']['tmp_name'];
+		if(move_uploaded_file($tmpName, $dir . "/" . $filename)){
+			return true;
+		}else{
+			return false;
+		}
+
+	}
+
+	
+}
 ?>

@@ -186,6 +186,7 @@
                                 -->
                             <?php 
                                 if (Auth::userType() == 'Student'){
+
                                     if (Question::isActive($_GET['questionId'])){ ?>
                             <a href="submitAnswer.php"><button id="myBtn" class="btn btn-success">Submit Answer</button></a>
                             <?php }else{ ?> 
