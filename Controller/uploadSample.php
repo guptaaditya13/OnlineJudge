@@ -33,23 +33,24 @@ if (!$question->checkAccess($_SESSION['auth_id'])){
 /**
  * If request carries POST parameters then process the data
  */
-if (isset($_POST['sample']) && !empty($_POST['sample']) && is_numeric($_POST['sample'])) {
+if (isset($_POST['submit']) && !empty($_POST['submit']) && isset($_POST['myInputs']) && !empty($_POST['myInputs']) && isset($_POST['myOutputs']) && !empty($_POST['myOutputs'])) {
 	/**
 	 * Get the number of sample inputs that have already been uploaded
 	 */
+	// var_dump($_POST); exit();
 	$n = $question->getSampleInput();
 	$fdir = '../Uploads/Question/' . $question->name . '/sample/';
-	for ($i=1; $i <= $_POST['sample'] ; $i++) { 
+	for ($i=0; $i <= count($_POST['myInputs']) ; $i++) { 
 		/**
 		 * Check is that sample input is available or not
 		 */
-		if (isset($_POST["inp$i"]) && !empty($_POST["inp$i"]) && isset($_POST["out$i"]) && !empty($_POST["out$i"])) {
+		if (isset($_POST['myInputs'][$i]) && !empty($_POST['myInputs'][$i]) && isset($_POST['myInputs'][$i]) && !empty($_POST['myInputs'][$i])) {
 			/**
 			 * if available then create a file for it.
 			 */
 			$n = $n + 1;
-			$sample_inp = nl2br($_POST["inp$i"]);
-			$sample_out = nl2br($_POST["out$i"]);
+			$sample_inp = nl2br($_POST['myInputs'][$i]);
+			$sample_out = nl2br($_POST['myOutputs'][$i]);
 			$inpFile = fopen($fdir . "$n.txt", "w") or die("failed to create $n.txt the file");
 			fwrite($inpFile, $sample_inp);
 			fclose($inpFile);
@@ -59,7 +60,8 @@ if (isset($_POST['sample']) && !empty($_POST['sample']) && is_numeric($_POST['sa
 		}
 	}
 	$question->setSampleInput($n);
-	header('Location:' . URL_WEBSITE_HOME .'../viewQuestion.php?questionId='.$_GET['qno']);
+	// var_dump($_POST);
+	header('Location:' . URL_WEBSITE_HOME .'/../viewQuestion.php?questionId='.$_GET['qno']);
 	exit();
 }
 /**
@@ -67,6 +69,6 @@ if (isset($_POST['sample']) && !empty($_POST['sample']) && is_numeric($_POST['sa
  */
 else {
 	$dir ='../View/';
-	require($dir . 'UploadTestCase.php');	
+	require($dir . 'submitSample.php');	
 }
 ?>

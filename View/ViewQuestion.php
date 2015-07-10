@@ -112,6 +112,15 @@
                         <h5 style=" border-bottom: 1px dashed;"></h5>
                         <p>Author: <b><?php echo $user->name; ?></b></p>
                         <p>Tester: <b><?php echo $question->tester; ?></b></p>
+                        <ol>
+                        <?php 
+                        for ($i=0; $i < $sample; $i++) { 
+                            ?>
+                        <li><p><strong>SAMPLE INPUT :</strong> <span style="position: absolute;left: 300px;"  ><pre><?php echo $inp[$i]; ?></pre></span></p>
+                        <p><strong>SAMPLE OUTPUT :</strong> <span style="position: absolute;left: 300px;"  ><pre><?php echo $out[$i]; ?></pre></span></p></li>
+                        <?php }
+                         ?>
+                        </ol>
                     </div>
                 </div>
                 <div class="col-md-5">
@@ -187,6 +196,9 @@
                             <button  type="submit" id="myBtn"  class="btn btn-success" style="min-height: 50px;min-width: 100px;border-radius: 40px;" >
                                 <b><p id="check">start</p></b>
                             </button>
+                             <a href = "uploadSample.php?qno=<?php echo $_GET['questionId']; ?>"> <button id="myBtn"   class="btn btn-success" style="min-height: 50px;min-width: 100px;border-radius: 40px;" >
+                                <b><p id="check">Upload sampleInput</p></b>
+                            </button></a>
                             <?php } ?>
                         </div>
                     </div>
