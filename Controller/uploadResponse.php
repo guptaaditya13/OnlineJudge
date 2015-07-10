@@ -48,9 +48,13 @@ if (isset($_FILES['code']['type']) && !empty($_FILES['code']['type'])){
 	if (Response::checkFileType($_FILES['code']['type']) && Response::checkSize($_FILES['code']['size']) && Response::checkExtension($_FILES['code']['name']) && Response::checkError($_FILES['code']['error'])){
 		//add validateFile function
 		// echo "3";
-		if (!mkdir("../Uploads/Question/".$quesName."/Response/".$username."/", 0777, true)) {
-			// echo "4";
-		    die('Failed to create folders...');
+		if (file_exists("../Uploads/Question/".$quesName."/Response/".$username)) {
+			# code...
+		}else{
+			if (!mkdir("../Uploads/Question/".$quesName."/Response/".$username."/sample/", 0777, true)) {
+				// echo "4";
+			    die('Failed to create folders...');
+			}
 		}
 		if(Response::submitResponse($quesName, $username, $filename, $tmpName)){
 			echo "File uploaded Successfully";
