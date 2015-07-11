@@ -111,6 +111,7 @@ class Auth
 	}
 	public function userType()
 	{
+		Auth::joinSession();
 		if(isset($_SESSION['auth_type'])){
 			return $_SESSION['auth_type'];
 		} else {

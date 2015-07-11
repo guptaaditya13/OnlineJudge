@@ -43,6 +43,6 @@ if (isset($_GET['qno']) && !empty($_GET['qno']) && Question::validateQuestionId(
 /**
  * if not then kill the script
  */
-	var_dump($_GET);
+	// var_dump($_GET);
 	die("Improper request parameter.");
 }
