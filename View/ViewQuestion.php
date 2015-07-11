@@ -112,15 +112,32 @@
                         <h5 style=" border-bottom: 1px dashed;"></h5>
                         <p>Author: <b><?php echo $user->name; ?></b></p>
                         <p>Tester: <b><?php echo $question->tester; ?></b></p>
+                        <p>Sample Input &amp; Output: </p>
                         <ol>
                         <?php 
                         for ($i=0; $i < $sample; $i++) { 
                             ?>
-                        <li><p><strong>SAMPLE INPUT :</strong> <span style="position: absolute;left: 300px;"  ><pre><?php echo $inp[$i]; ?></pre></span></p>
-                        <p><strong>SAMPLE OUTPUT :</strong> <span style="position: absolute;left: 300px;"  ><pre><?php echo $out[$i]; ?></pre></span></p></li>
+                        <li><p><strong>INPUT :</strong> <a href="downloadSampleInput.php?qno=<?php echo $_GET['questionId']; ?>&amp;sample=<?php echo $i+1; ?>">download</a><span style="position: absolute;left: 300px;"  ><pre><?php echo $inp[$i]; ?></pre></span></p>
+                        <p><strong>OUTPUT :</strong> <a href="downloadSampleOutput.php?qno=<?php echo $_GET['questionId']; ?>&amp;sample=<?php echo $i+1; ?>">download</a><span style="position: absolute;left: 300px;"  ><pre><?php echo $out[$i]; ?></pre></span></p></li>
                         <?php }
                          ?>
                         </ol>
+                        <?php 
+                        if ($hasAccess){
+                        ?>
+                        <p>Test Cases: </p>
+                        <ol>
+                        <?php
+                        for ($i=0; $i < $tc; $i++) { 
+                            ?>
+                        <li><p><strong>INPUT :</strong> <span style="position: absolute;left: 300px;"  ><pre><?php echo $tinp[$i]; ?></pre></span></p>
+                        <p><strong>OUTPUT :</strong> <span style="position: absolute;left: 300px;"  ><pre><?php echo $tout[$i]; ?></pre></span></p></li>
+                        <?php
+                        } 
+                        ?>
+                        </ol>
+                        <?php } ?>
+                        
                     </div>
                 </div>
                 <div class="col-md-5">

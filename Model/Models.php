@@ -754,6 +754,30 @@ class Question
 		$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
 		$result = mysqli_query($conn,$sql);
 	}
+	/**
+	 * @return int
+	 * returns total test cases for the question
+	 */
+	public function getTestCase()
+	{
+		$id = $this->questionId;
+		$sql = "SELECT test_case FROM questions WHERE id = $id";
+		$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
+		$result = mysqli_query($conn,$sql);
+		$row = mysqli_fetch_assoc($result);
+		return $row['test_case'];
+	}
+	/**
+	 * @return void
+	 * sets the test_case value in database table to new value
+	 */
+	public function setTestCase($newSI)
+	{
+		$id = $this->questionId;
+		$sql = "UPDATE questions SET test_case = $newSI WHERE id = $id";
+		$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
+		$result = mysqli_query($conn,$sql);
+	}
 
 }
 

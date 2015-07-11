@@ -35,14 +35,14 @@ if (!$question->checkAccess($_SESSION['auth_id'])){
  */
 if (isset($_POST['submit']) && !empty($_POST['submit']) && isset($_POST['myInputs']) && !empty($_POST['myInputs']) && isset($_POST['myOutputs']) && !empty($_POST['myOutputs'])) {
 	/**
-	 * Get the number of sample inputs that have already been uploaded
+	 * Get the number of test cases that have already been uploaded
 	 */
 	// var_dump($_POST); exit();
-	$n = $question->getSampleInput();
-	$fdir = '../Uploads/Question/' . $question->name . '/sample/';
+	$n = $question->getTestCase();
+	$fdir = '../Uploads/Question/' . $question->name . '/test_case/';
 	for ($i=0; $i <= count($_POST['myInputs']) ; $i++) { 
 		/**
-		 * Check is that sample input is available or not
+		 * Check if that sample input is available or not
 		 */
 		if (isset($_POST['myInputs'][$i]) && !empty($_POST['myInputs'][$i]) && isset($_POST['myInputs'][$i]) && !empty($_POST['myInputs'][$i])) {
 			/**
@@ -59,7 +59,7 @@ if (isset($_POST['submit']) && !empty($_POST['submit']) && isset($_POST['myInput
 			fclose($outFile);	
 		}
 	}
-	$question->setSampleInput($n);
+	$question->setTestCase($n);
 	// var_dump($_POST);
 	header('Location:' . URL_WEBSITE_HOME .'/../viewQuestion.php?questionId='.$_GET['qno']);
 	exit();
