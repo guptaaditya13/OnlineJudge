@@ -104,7 +104,7 @@ function addOutput(divName){
          <div class="alert alert-warning">
             <select id= "sampleOrTest" onclick="changeAction()">
                <option selected value="uploadSample.php?qno=<?php echo $_GET['qno']; ?>">Sample input</option>
-               <option value="submitTestCase.php?qno=<?php echo $_GET['qno']; ?>">Test Cases</option>
+               <option value="uploadTestCase.php?qno=<?php echo $_GET['qno']; ?>">Test Cases</option>
             </select>
           <form action="uploadSample.php?qno=<?php echo $_GET['qno']; ?>" method="POST" id="myform">            <!-- add action for submitSample.php   -->
             <label>Question Name:</label>

@@ -11,15 +11,23 @@ if (($_SERVER['REQUEST_METHOD'] == 'GET') && (isset($_GET['questionId'])) && !(e
 	if (Question::validateQuestionId($_GET['questionId'])){
 		$question = Question::getQuestion($_GET['questionId']);
 		$sample = $question->getSampleInput();
+		$tc = $question->getTestCase();
 		$inp = array();
 		$out = array();
 		for ($i=1; $i <= $sample; $i++) { 
 			$inp[] = file_get_contents('../Uploads/Question/'.$question->name.'/sample/'.$i.'.txt');
 			$out[] = file_get_contents('../Uploads/Question/'.$question->name.'/sample/'.$i.'out.txt');
 		}
-		// var_dump($inp);
-		// var_dump($out);
-		// exit();
+		$hasAccess = false;
+		if (Auth::userType() == 'Teacher' && $question->checkAccess($_SESSION['auth_id'])){
+			$hasAccess = true;
+		}
+		$tinp = array();
+		$tout = array();
+		for ($i=1; $i <= $tc; $i++) { 
+			$tinp[] = file_get_contents('../Uploads/Question/'.$question->name.'/test_case/'.$i.'.txt');
+			$tout[] = file_get_contents('../Uploads/Question/'.$question->name.'/test_case/'.$i.'out.txt');
+		}
 		$user = Auth::getUser($question->userID);
 		$_SESSION['questionId'] = $_GET['questionId'];
 		$dir = "../View/";
