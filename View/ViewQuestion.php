@@ -117,8 +117,8 @@
                         <?php 
                         for ($i=0; $i < $sample; $i++) { 
                             ?>
-                        <li><p><strong>INPUT :</strong> <span style="position: absolute;left: 300px;"  ><pre><?php echo $inp[$i]; ?></pre></span></p>
-                        <p><strong>OUTPUT :</strong> <span style="position: absolute;left: 300px;"  ><pre><?php echo $out[$i]; ?></pre></span></p></li>
+                        <li><p><strong>INPUT :</strong> <a href="downloadSampleInput.php?qno=<?php echo $_GET['questionId']; ?>&amp;sample=<?php echo $i+1; ?>">download</a><span style="position: absolute;left: 300px;"  ><pre><?php echo $inp[$i]; ?></pre></span></p>
+                        <p><strong>OUTPUT :</strong> <a href="downloadSampleOutput.php?qno=<?php echo $_GET['questionId']; ?>&amp;sample=<?php echo $i+1; ?>">download</a><span style="position: absolute;left: 300px;"  ><pre><?php echo $out[$i]; ?></pre></span></p></li>
                         <?php }
                          ?>
                         </ol>
