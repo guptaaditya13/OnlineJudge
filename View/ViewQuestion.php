@@ -130,8 +130,8 @@
                         <?php
                         for ($i=0; $i < $tc; $i++) { 
                             ?>
-                        <li><p><strong>INPUT :</strong> <span style="position: absolute;left: 300px;"  ><pre><?php echo $tinp[$i]; ?></pre></span></p>
-                        <p><strong>OUTPUT :</strong> <span style="position: absolute;left: 300px;"  ><pre><?php echo $tout[$i]; ?></pre></span></p></li>
+                        <li><p><strong>INPUT :</strong> <a href="downloadTestCaseInput.php?qno=<?php echo $_GET['questionId']; ?>&amp;tc=<?php echo $i+1; ?>">download</a><span style="position: absolute;left: 300px;"  ><pre><?php echo $tinp[$i]; ?></pre></span></p>
+                        <p><strong>OUTPUT :</strong> <a href="downloadTestCaseOutput.php?qno=<?php echo $_GET['questionId']; ?>&amp;tc=<?php echo $i+1; ?>">download</a><span style="position: absolute;left: 300px;"  ><pre><?php echo $tout[$i]; ?></pre></span></p></li>
                         <?php
                         } 
                         ?>
