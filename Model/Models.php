@@ -521,6 +521,28 @@ class Question
 		mysqli_close($conn);
 		return $temp;
 	}
+
+	/**
+	 * get total number of input test cases for compiling and running
+	 */
+	public function getTotalNum($questionId ,$inputType){
+		$sql = "SELECT * FROM questions WHERE id = $questionId;";
+		$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
+		$result = mysqli_query($conn,$sql);
+		$n = mysqli_num_rows($result);
+		if ($n == 1) { 
+			$row = mysqli_fetch_assoc($result);
+			if ($inputType == "sample"){
+				return $row['sample_inp'];
+			}
+			else{
+				return $row['test_case'];
+			}
+		}
+	}
+
+
+
 	public function editQuestion($questionId ,$q_text, $q_image, $start_time, $end_time, $max_marks, $difficulty, $tester = NULL){
 		if ($difficulty == 0){
 				$temp->difficulty = "Easy";
@@ -844,10 +866,10 @@ class Question
  		$codeAdd = "../Uploads/Question/".$quesName."/Response/".$username."/".$file[0].".class";
  		chdir("../Resources");
  		if (file_exists($codeAdd)){
- 			for ($i=0; $i < $totalNum; $i++) { 
- 				exec("java Execute ". $file[0] . " " . $quesName . " ". $username . $i, $output);
+ 			for ($i=1; $i <= $totalNum; $i++) { 
+ 				exec("java Execute ". $file[0] . " " . $quesName . " ". $username ." ". $i, $output);
  			}
- 			
+ 			// exec("java Execute ". $file[0] . " " . $quesName . " ". $username ." 1" , $output);
  			// foreach ($output as $x) {
  			// 	echo $x."<br>";
  			// }
@@ -948,14 +970,23 @@ class Question
 	 * @return true if both file matches.
 	 * Check if the program submitted prodeuced the desired output
 	 */
-	function compareFiles($givenOut, $generOut){
+	public function compareFiles($givenOut, $generOut){
         $fp_a = fopen($givenOut, 'r');
         $fp_b = fopen($generOut, 'r');
+        // readfile($givenOut);
+        // echo "<BR>";
+        // readfile($generOut);
+        // var_dump($givenOut);
+        // var_dump($generOut);
 		$match=true;
 		if ($fp_a && $fp_b) {
     		while (($line1 = fgets($fp_a)) !== false) {
         		if(($line2 = fgets($fp_b)) !== false){
+        			// var_dump($line1);echo"--";
+        			// var_dump($line2);
+        			// echo"<br>";
         			if ($line1 != $line2){
+
         				$match = false;
         				break;
         			}

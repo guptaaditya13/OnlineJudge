@@ -57,9 +57,27 @@ if (isset($_FILES['code']['type']) && !empty($_FILES['code']['type'])){
 			}
 		}
 		if(Response::submitResponse($quesName, $username, $filename, $tmpName)){
-			echo "File uploaded Successfully";
+			echo "File uploaded Successfully</br>";
+			$inputType = "sample";
+			// $totalNum = $question->getTotalNum("sample");
+			$totalNum = $question->getTotalNum($_GET['questionId'] ,"sample");
 			Response::compile($_GET['questionId'], $username, $filename);
-			Response::execute($_GET['questionId'], $username, $filename);
+			echo "</br>";
+			Response::execute($_GET['questionId'], $username, $filename, $totalNum);
+			$match = true;
+			for ($i=1; $i <= $totalNum ; $i++) { 
+				if(!Response::compareFiles('../Uploads/Question/samrat_10/sample/'.$i.'out.txt', '../Uploads/Question/samrat_10/Response/sunny.cs13/sample/'.$i.'out.txt')){
+					echo "comparing  failed ". $i. "</br>"; 
+					$match = false;
+				}else{
+					echo $i." test case executed Successfully</br>";
+				}
+			}
+			// if ($match = true){
+			// 	echo "compiled and executed all test cases Successfully";
+			// }else{
+			// 	echo "error";
+			// }
 			//header( "refresh:2;url=index.php" );
 		}else{
 			die("Something went wrong");
