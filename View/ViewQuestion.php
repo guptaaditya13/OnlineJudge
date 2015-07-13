@@ -214,7 +214,7 @@
                                 <b><p id="check">start</p></b>
                             </button>
                              <a href = "uploadSample.php?qno=<?php echo $_GET['questionId']; ?>"> <button id="myBtn"   class="btn btn-success" style="min-height: 50px;min-width: 100px;border-radius: 40px;" >
-                                <b><p id="check">Upload sampleInput</p></b>
+                                <b><p id="check">Upload testcase </p></b>
                             </button></a>
                             <?php } ?>
                         </div>
