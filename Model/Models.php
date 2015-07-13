@@ -811,7 +811,8 @@ class Question
 
  	/**
  	 * @return Compile status
- 	 *
+ 	 * This function will be called at two situation.. One from the testing the sample test cases
+ 	 * else testing all test cases.
  	 * This function will compile the response(program) of the user
  	 */
  	public function compile($questionId, $username, $filename){
@@ -827,12 +828,15 @@ class Question
 
  	/**
  	 * @return Execute status
- 	 * 
+ 	 * This function will be called at two situation.. One from the testing the sample test cases
+ 	 * else testing all test cases.
  	 * This function will return the execution status.
+ 	 *
  	 * filename should be without extension
  	 * username is required
+ 	 * totalNum will take the number of test cases.
  	 */
- 	public function execute($questionId, $username, $filename){
+ 	public function execute($questionId, $username, $filename, $totalNum){
  		$question = Question::getQuestion($questionId);
  		$quesName = $question->name;
  		$file = explode(".", $filename);
@@ -840,13 +844,17 @@ class Question
  		$codeAdd = "../Uploads/Question/".$quesName."/Response/".$username."/".$file[0].".class";
  		chdir("../Resources");
  		if (file_exists($codeAdd)){
- 			exec("java Execute ". $file[0] . " " . $quesName . " ". $username . " 1", $output);
- 			foreach ($output as $x) {
- 				echo $x."<br>";
+ 			for ($i=0; $i < $totalNum; $i++) { 
+ 				exec("java Execute ". $file[0] . " " . $quesName . " ". $username . $i, $output);
  			}
- 			print_r($output); //it's printing the whole array....we don't want this
-
+ 			
+ 			// foreach ($output as $x) {
+ 			// 	echo $x."<br>";
+ 			// }
+ 			// print_r($output); //it's printing the whole array....we don't want this
+ 			return true;
  		}
+ 		return false;
  	}
 
  	/**
@@ -934,9 +942,36 @@ class Question
 		}else{
 			return false;
 		}
-
 	}
 
-	
-}
+	/**
+	 * @return true if both file matches.
+	 * Check if the program submitted prodeuced the desired output
+	 */
+	function compareFiles($givenOut, $generOut){
+        $fp_a = fopen($givenOut, 'r');
+        $fp_b = fopen($generOut, 'r');
+		$match=true;
+		if ($fp_a && $fp_b) {
+    		while (($line1 = fgets($fp_a)) !== false) {
+        		if(($line2 = fgets($fp_b)) !== false){
+        			if ($line1 != $line2){
+        				$match = false;
+        				break;
+        			}
+    			}else{
+    				$match = false;
+    				break;
+    			}
+        	}
+   		}
+   		fclose($fp_a);
+   		fclose($fp_b);
+   		if ($match){
+   			return true;
+   		}else{
+   			return false;
+   		}
+	}
+}	
 ?>
