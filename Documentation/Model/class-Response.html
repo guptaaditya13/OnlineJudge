@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Class Response</title>
+
+	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+		</div>
+
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Auth.html">Auth</a></li>
+				<li><a href="class-Question.html">Question</a></li>
+				<li class="active"><a href="class-Response.html">Response</a></li>
+				<li><a href="class-Student.html">Student</a></li>
+				<li><a href="class-Teacher.html">Teacher</a></li>
+				<li><a href="class-User.html">User</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text" placeholder="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+		</ul>
+		<ul>
+			<li>
+				<a href="API-documentation.zip" title="Download documentation as ZIP archive"><span>Download</span></a>
+			</li>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class Response</h1>
+
+
+	<div class="description">
+	<p>This class is for the response code submitted to a question</p>
+	</div>
+
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		
+		
+
+			<b>Located at</b> <a href="source-class-Response.html#814-1007" title="Go to source code"></a>
+		<br>
+	</div>
+
+
+
+	<table class="summary methods" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="getQuestion" id="_getQuestion">
+
+		<td class="attributes"><code>
+			 public 
+
+			<code><a href="class-Question.html">Question</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getQuestion">#</a>
+		<code><a href="source-class-Response.html#825-832" title="Go to source code">getQuestion</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-Question.html">Question</a></code><br>returns the question variable with which the reposnse is associated
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="compile" id="_compile">
+
+		<td class="attributes"><code>
+			 public 
+
+			Compile
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_compile">#</a>
+		<code><a href="source-class-Response.html#834-849" title="Go to source code">compile</a>( <span> <var>$questionId</var></span>, <span> <var>$username</var></span>, <span> <var>$filename</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					Compile<br><p>status
+This function will be called at two situation.. One from the testing the sample test cases
+else testing all test cases.
+This function will compile the response(program) of the user</p>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="execute" id="_execute">
+
+		<td class="attributes"><code>
+			 public 
+
+			Execute
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_execute">#</a>
+		<code><a href="source-class-Response.html#851-880" title="Go to source code">execute</a>( <span> <var>$questionId</var></span>, <span> <var>$username</var></span>, <span> <var>$filename</var></span>, <span> <var>$totalNum</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					Execute<br><p>status
+This function will be called at two situation.. One from the testing the sample test cases
+else testing all test cases.
+This function will return the execution status.</p>
+
+<p>filename should be without extension
+username is required
+totalNum will take the number of test cases.</p>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="createResponse" id="_createResponse">
+
+		<td class="attributes"><code>
+			 public 
+
+			<code><a href="class-Response.html">Response</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_createResponse">#</a>
+		<code><a href="source-class-Response.html#882-898" title="Go to source code">createResponse</a>( <span> <var>$questionId</var></span>, <span> <var>$studId</var></span>, <span> <var>$fileAdd</var></span>, <span> <var>$compileStat</var></span>, <span> <var>$sample_inp</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-Response.html">Response</a></code><br>Creates a new entry to the in the database
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="checkFileType" id="_checkFileType">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_checkFileType">#</a>
+		<code><a href="source-class-Response.html#900-909" title="Go to source code">checkFileType</a>( <span> <var>$fileType</var></span> )</code>
+
+		<div class="description short">
+			<p>Check if the file is java type</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Check if the file is java type</p>
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="checkSize" id="_checkSize">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_checkSize">#</a>
+		<code><a href="source-class-Response.html#911-920" title="Go to source code">checkSize</a>( <span> <var>$fileSize</var></span> )</code>
+
+		<div class="description short">
+			<p>Check if file size is less than 100KB</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Check if file size is less than 100KB</p>
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="checkExtension" id="_checkExtension">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_checkExtension">#</a>
+		<code><a href="source-class-Response.html#922-933" title="Go to source code">checkExtension</a>( <span> <var>$fileName</var></span> )</code>
+
+		<div class="description short">
+			<p>Checking if the extension is java</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Checking if the extension is java</p>
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="checkError" id="_checkError">
+
+		<td class="attributes"><code>
+			 public 
+
+			true
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_checkError">#</a>
+		<code><a href="source-class-Response.html#935-945" title="Go to source code">checkError</a>( <span> <var>$error</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					true<br><p>if no error
+check if there is error in file</p>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="validateFile" id="_validateFile">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_validateFile">#</a>
+		<code><a href="source-class-Response.html#947-952" title="Go to source code">validateFile</a>( )</code>
+
+		<div class="description short">
+			<p>Validate file name</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Validate file name</p>
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="submitResponse" id="_submitResponse">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_submitResponse">#</a>
+		<code><a href="source-class-Response.html#954-967" title="Go to source code">submitResponse</a>( <span> <var>$quesName</var></span>, <span> <var>$username</var></span>, <span> <var>$filename</var></span>, <span> <var>$tmpName</var></span> )</code>
+
+		<div class="description short">
+			<p>store the file to its location</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>store the file to its location</p>
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="compareFiles" id="_compareFiles">
+
+		<td class="attributes"><code>
+			 public 
+
+			true
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_compareFiles">#</a>
+		<code><a href="source-class-Response.html#969-1006" title="Go to source code">compareFiles</a>( <span> <var>$givenOut</var></span>, <span> <var>$generOut</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					true<br><p>if both file matches.
+Check if the program submitted prodeuced the desired output</p>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary properties" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="responseId" id="$responseId">
+		<td class="attributes"><code>
+			public  
+			
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Response.html#820" title="Go to source code"><var>$responseId</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$responseId" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="questionId" id="$questionId">
+		<td class="attributes"><code>
+			public  
+			
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Response.html#821" title="Go to source code"><var>$questionId</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$questionId" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="student" id="$student">
+		<td class="attributes"><code>
+			public  
+			
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Response.html#822" title="Go to source code"><var>$student</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$student" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="address" id="$address">
+		<td class="attributes"><code>
+			public  
+			
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Response.html#823" title="Go to source code"><var>$address</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$address" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	</table>
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+</div>
+<script src="resources/combined.js"></script>
+<script src="elementlist.js"></script>
+</body>
+</html>

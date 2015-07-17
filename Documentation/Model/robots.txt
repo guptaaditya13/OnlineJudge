@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: OnlineJudge/doc/model/sitemap.xml

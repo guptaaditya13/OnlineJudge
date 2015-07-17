@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+	<loc>OnlineJudge/doc/model/index.html</loc>
+</url>
+
+
+<url>
+	<loc>OnlineJudge/doc/model/class-Auth.html</loc>
+</url>
+<url>
+	<loc>OnlineJudge/doc/model/class-Question.html</loc>
+</url>
+<url>
+	<loc>OnlineJudge/doc/model/class-Response.html</loc>
+</url>
+<url>
+	<loc>OnlineJudge/doc/model/class-Student.html</loc>
+</url>
+<url>
+	<loc>OnlineJudge/doc/model/class-Teacher.html</loc>
+</url>
+<url>
+	<loc>OnlineJudge/doc/model/class-User.html</loc>
+</url>
+</urlset>

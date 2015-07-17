@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Class Auth</title>
+
+	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+		</div>
+
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li class="active"><a href="class-Auth.html">Auth</a></li>
+				<li><a href="class-Question.html">Question</a></li>
+				<li><a href="class-Response.html">Response</a></li>
+				<li><a href="class-Student.html">Student</a></li>
+				<li><a href="class-Teacher.html">Teacher</a></li>
+				<li><a href="class-User.html">User</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text" placeholder="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+		</ul>
+		<ul>
+			<li>
+				<a href="API-documentation.zip" title="Download documentation as ZIP archive"><span>Download</span></a>
+			</li>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class Auth</h1>
+
+
+	<div class="description">
+	<p>This Model is used to access the Login table for users.</p>
+	</div>
+
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		
+		
+
+			<b>Located at</b> <a href="source-class-Auth.html#8-213" title="Go to source code"></a>
+		<br>
+	</div>
+
+
+
+	<table class="summary methods" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="validateData" id="_validateData">
+
+		<td class="attributes"><code>
+			 public 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_validateData">#</a>
+		<code><a href="source-class-Auth.html#13-27" title="Go to source code">validateData</a>( <span> <var>$username</var></span>, <span> <var>$password</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					string<br>This method checks whether the username is matched the regex or not.
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="loginUser" id="_loginUser">
+
+		<td class="attributes"><code>
+			 public 
+
+			<code><a href="class-User.html">User</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_loginUser">#</a>
+		<code><a href="source-class-Auth.html#28-67" title="Go to source code">loginUser</a>( <span> <var>$username</var></span>, <span> <var>$password</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-User.html">User</a></code><br><p>class (Student or Techer class)
+This method is used to get the user instance object, it also sets the data in the sessions.</p>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getCurrentUser" id="_getCurrentUser">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getCurrentUser">#</a>
+		<code><a href="source-class-Auth.html#69-87" title="Go to source code">getCurrentUser</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getUser" id="_getUser">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getUser">#</a>
+		<code><a href="source-class-Auth.html#88-111" title="Go to source code">getUser</a>( <span> <var>$id</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="userType" id="_userType">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_userType">#</a>
+		<code><a href="source-class-Auth.html#112-120" title="Go to source code">userType</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="loginStatus" id="_loginStatus">
+
+		<td class="attributes"><code>
+			 public 
+
+			String
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_loginStatus">#</a>
+		<code><a href="source-class-Auth.html#122-135" title="Go to source code">loginStatus</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					String<br>This function returns user's class if logged in else returns null
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="changePassword" id="_changePassword">
+
+		<td class="attributes"><code>
+			 public 
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_changePassword">#</a>
+		<code><a href="source-class-Auth.html#136-156" title="Go to source code">changePassword</a>( <span> <var>$id</var></span>, <span> <var>$newpassword</var></span>, <span> <var>$token</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean<br><p>This method inputs user's id, new password and password change token.
+If token is genuine, changes password and returns true
+else returns false</p>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="logout" id="_logout">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_logout">#</a>
+		<code><a href="source-class-Auth.html#158-166" title="Go to source code">logout</a>( <span> <var>$value</var> = <span class="php-quote">''</span></span> )</code>
+
+		<div class="description short">
+			<p>Logout the current logged in user by destroying the session array.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Logout the current logged in user by destroying the session array.</p>
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="joinSession" id="_joinSession">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_joinSession">#</a>
+		<code><a href="source-class-Auth.html#168-175" title="Go to source code">joinSession</a>( )</code>
+
+		<div class="description short">
+			<p>performs session_start() if a session is not already active.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>performs session_start() if a session is not already active.</p>
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="generateCSRFtoken" id="_generateCSRFtoken">
+
+		<td class="attributes"><code>
+			 public 
+
+			String
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_generateCSRFtoken">#</a>
+		<code><a href="source-class-Auth.html#177-185" title="Go to source code">generateCSRFtoken</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					String<br>Generates a random CSRF token of length 44. Does not put that in session array.
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="embedCSRF" id="_embedCSRF">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_embedCSRF">#</a>
+		<code><a href="source-class-Auth.html#187-196" title="Go to source code">embedCSRF</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			<p>This function echo a String containing a HTML code of hidden input box with CSRF token</p>
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="validateCSRF" id="_validateCSRF">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_validateCSRF">#</a>
+		<code><a href="source-class-Auth.html#198-212" title="Go to source code">validateCSRF</a>( <span>boolean <var>$requestMethod</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$requestMethod</var></dt>
+					<dd>input the request method, checks whether the CSRF is valid or not.</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+</div>
+<script src="resources/combined.js"></script>
+<script src="elementlist.js"></script>
+</body>
+</html>
