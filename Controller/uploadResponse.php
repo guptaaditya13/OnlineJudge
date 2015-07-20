@@ -66,7 +66,7 @@ if (isset($_FILES['code']['type']) && !empty($_FILES['code']['type'])){
 			Response::execute($_GET['questionId'], $username, $filename, $totalNum);
 			$match = true;
 			for ($i=1; $i <= $totalNum ; $i++) { 
-				if(!Response::compareFiles('../Uploads/Question/samrat_10/sample/'.$i.'out.txt', '../Uploads/Question/samrat_10/Response/sunny.cs13/sample/'.$i.'out.txt')){
+				if(!Response::compareFiles('../Uploads/Question/'.$quesName.'/sample/'.$i.'out.txt', '../Uploads/Question/'.$quesName.'/Response/'.$username.'/sample/'.$i.'out.txt')){
 					echo "comparing  failed ". $i. "</br>"; 
 					$match = false;
 				}else{
