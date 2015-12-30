@@ -483,7 +483,8 @@ class Question
 			$temp->maxMarks = $row['max_marks'];
 			$temp->time = $row['timestamps'];
 			$temp->difficulty = $row['difficulty'];
-			$temp->tester = $row['tester'];
+			// $temp->tester = $row['tester'];
+			$temp->tester = '';
 			$temp->name = $row['name'];
 			$res[] = $temp;
 		}
@@ -512,7 +513,8 @@ class Question
 			$temp->endTime = $row['end_time'];
 			$temp->maxMarks = $row['max_marks'];
 			$temp->time = $row['timestamps'];
-			$temp->tester = $row['tester'];
+			// $temp->tester = $row['tester'];
+			$temp->tester = '';
 			$temp->name = $row['name'];
 			$difficulty = $row['difficulty'];
 			if ($difficulty == 0){
