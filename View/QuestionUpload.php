@@ -170,11 +170,11 @@
                      <input type="datetime-local" class="form-control" id="end_date" onchange='DateValidate()' required value="" name="end_date" placeholder="Select End date">
                      <p id="end"></p>
                      <div class="row">
-                        <p><strong>Title</strong></p>
-                        <input type ="text "class="form-control" name="title" />
+                        <!-- <p><strong>Title</strong></p>
+                        <input type ="text "class="form-control" name="title" /> -->
                         <div  class="col-md-10">
-                           <p><strong>PROBLEM:</strong></p>
-                           <textarea class="form-control" name="question" rows="1"  ></textarea>
+                           <p><strong>Title:</strong></p>
+                           <textarea class="form-control" name="title" rows="1"  ></textarea>
                         </div>
                         <div class="col-md-2">
                            <p><strong> Max marks<strong/> </p>

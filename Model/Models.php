@@ -369,45 +369,52 @@ class Question
 		}else{
 			$diff = 3;
 		}
-		$sql = "SELECT COUNT(*) FROM questions WHERE user_id = $userID;";
-		// var_dump($sql);
+		/**
+		 * Uncomment to create a directory for the question.
+		 */
+		// if(Question::createDirectoryForQuestion($qname, 0777)){
+		// } else {
+		// 	$_SESSION['questionUploadError'] = 'Unable to create directory for the Question.';
+		// 	return false;
+		// }
+		/**
+		 * uncomment to work on file upload.
+		 */
+		// if(!$upload){
+		// 	$dir = "../Uploads/Question/$qname/image/";
+		// 	if($arr){
+		// 		for ($i=0; $i < count($_FILES['fileToUpload']['name']); $i++) { 
+		// 			if (Question::addImageToText(basename($_FILES["fileToUpload"]["name"][$i]),$dir, $question) && Question::uploadImage($_FILES["fileToUpload"]["tmp_name"][$i],$dir.basename($_FILES["fileToUpload"]["name"][$i]))){
+
+		// 			} else {
+		// 				$_SESSION['questionUploadError'] = 'Unable to add multiple images to Text.';
+		// 				return false;
+		// 			}
+		// 		}
+		// 	} else {
+		// 		if (Question::addImageToText(basename($_FILES["fileToUpload"]["name"]),$dir, $question) && Question::uploadImage($_FILES["fileToUpload"]["tmp_name"],$dir.basename($_FILES["fileToUpload"]["name"]))){
+
+		// 		} else {
+		// 			$_SESSION['questionUploadError'] = "Unable to add image to text.";
+		// 		}
+		// 	}
+		// }
 		$conn = mysqli_connect(SERVER_ADDRESS,USER_NAME,PASSWORD,DATABASE);
-		$result = mysqli_query($conn,$sql);
-		$row = mysqli_fetch_assoc($result);
-		$count = $row['COUNT(*)'] + 1;
-		$qname = $_SESSION['auth_nick_name'] .'_'. $count;
-		if(Question::createDirectoryForQuestion($qname, 0777)){
-		} else {
-			return false;
-		}
-		if(!$upload){
-			$dir = "../Uploads/Question/$qname/image/";
-			if($arr){
-				for ($i=0; $i < count($_FILES['fileToUpload']['name']); $i++) { 
-					if (Question::addImageToText(basename($_FILES["fileToUpload"]["name"][$i]),$dir, $question) && Question::uploadImage($_FILES["fileToUpload"]["tmp_name"][$i],$dir.basename($_FILES["fileToUpload"]["name"][$i]))){
-
-					} else {
-						return false;
-					}
-				}
-			} else {
-				if (Question::addImageToText(basename($_FILES["fileToUpload"]["name"]),$dir, $question) && Question::uploadImage($_FILES["fileToUpload"]["tmp_name"],$dir.basename($_FILES["fileToUpload"]["name"]))){
-
-				} else {
-					return false;
-				}
-			}
-		}
-		$questionText=Question::validateQuestionText($questionText);
-		$sql = "INSERT INTO `online_judge`.`questions` (`user_id`,`q_title` ,`q_text`, `start_time`, ".
-			"`end_time`, `max_marks`, `difficulty`, `timestamps`, `name`) VALUES ".
-			"('$userID', '$questionTitle','$question', '$startTime', '$endTime', '$maxMarks','$diff', CURRENT_TIMESTAMP, '$qname');";
-		// var_dump($sql);
+		$questionText=Question::validateQuestionText($question);
+		$sql = "INSERT INTO `online_judge`.`questions` (`user_id`,`name` ,`q_text`, `start_time`, ".
+			"`end_time`, `max_marks`, `difficulty`, `timestamps`) VALUES ".
+			"('$userID', '$questionTitle','$question', '$startTime', '$endTime', '$maxMarks','$diff', CURRENT_TIMESTAMP);";
 		$result = mysqli_query($conn,$sql);
 		if ($result == true){
+			$id = mysqli_insert_id($conn);
+			// die($id);
+			$sql = "CREATE TABLE `online_judge`.`" . $id . "_image` ( `image_id` INT(3) NOT NULL AUTO_INCREMENT ,  `image_type` VARCHAR(25) NOT NULL ,  `image` BLOB NOT NULL ,  `image_size` VARCHAR(25) NOT NULL ,  `image_ctgy` VARCHAR(25) NOT NULL ,    PRIMARY KEY  (`image_id`)); ";
+			$sql.= "CREATE TABLE `online_judge`.`". $id ."_sample` ( `id` INT NOT NULL AUTO_INCREMENT ,  `input` TEXT NOT NULL ,  `output` TEXT NOT NULL ,  `display` TINYINT(1) NOT NULL DEFAULT '1' ,  `marks` INT NOT NULL DEFAULT '0' ,    PRIMARY KEY  (`id`)); ";
+			$sql.= "CREATE TABLE `online_judge`.`" . $id ."_test` ( `id` INT NOT NULL AUTO_INCREMENT ,  `input` TEXT NOT NULL ,  `output` TEXT NOT NULL ,  `display` TINYINT(1) NOT NULL DEFAULT '1' ,  `marks` INT NOT NULL DEFAULT '0' ,    PRIMARY KEY  (`id`)); ";
+			mysqli_multi_query($conn,$sql);
 			return true;
-	
 		} else {
+			$_SESSION['questionUploadError'] = 'Unable to create database entry for the question. Error : ' . mysqli_error($conn);
 			return false;
 		}
 	}
@@ -713,6 +720,8 @@ class Question
 	 */
 	public function createDirectoryForQuestion($directoryName, $mode)
 	{	
+		// $mode = 777;
+		// var_dump($directoryName);
 		$var = true;
 		/**
 		 * check if that directory already exists
@@ -727,6 +736,9 @@ class Question
 		/**
 		 * now creating the directory again
 		 */
+		// mkdir('../Uploads/Question/' . $directoryName , $mode);
+		// echo '../Uploads/Question/' . $directoryName;
+		// echo $mode;
 		return $var && mkdir('../Uploads/Question/' . $directoryName , $mode) && mkdir('../Uploads/Question/' . $directoryName . '/image' , $mode) && mkdir('../Uploads/Question/' . $directoryName . '/sample' , $mode) && mkdir('../Uploads/Question/' . $directoryName . '/test_case' , $mode) && mkdir('../Uploads/Question/' . $directoryName . '/Response' , $mode);
 	}
 
