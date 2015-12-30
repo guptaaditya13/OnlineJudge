@@ -476,7 +476,7 @@ class Question
 			$temp = new Question();
 			$temp->userID = $row['user_id'];
 			$temp->questionId = $row['id'];
-			$temp->questionTitle = $row['q_title'];
+			$temp->questionTitle = $row['name'];
 			$temp->questionText = $row['q_text'];
 			$temp->startTime = $row['start_time'];
 			$temp->endTime = $row['end_time'];
@@ -507,7 +507,7 @@ class Question
 			$temp = new Question();
 			$temp->userID = $row['user_id'];
 			$temp->questionId = $row['id'];
-			$temp->questionTitle = $row['q_title'];
+			$temp->questionTitle = $row['name'];
 			$temp->questionText = $row['q_text'];
 			$temp->startTime = $row['start_time'];
 			$temp->endTime = $row['end_time'];

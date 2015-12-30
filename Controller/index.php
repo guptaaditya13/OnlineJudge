@@ -17,7 +17,7 @@ require ('../Model/Models.php');
 
 // } else {
 	/**
-	 * Else request is served the Home page!
+	 * Else request is served 'the Home page'!
 	 */
 $arr = Question::getAll(Auth::loginStatus(), 10);
 $dir = '../View/';
