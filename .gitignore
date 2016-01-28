@@ -1,1 +1,9 @@
 Uploads/
+/onlineJudge/build.xml
+/onlineJudge/manifest.mf
+/onlineJudge/nbproject/
+/onlineJudge/build/
+/onlineJudge/nbbuild/
+/onlineJudge/dist/
+/onlineJudge/nbactions.xml
+/onlineJudge/.nb-gradie/
